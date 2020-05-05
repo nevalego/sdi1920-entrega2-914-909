@@ -16,11 +16,12 @@ redsocial.use(function(req, res, next) {
 
 var jwt = require('jsonwebtoken');
 redsocial.set('jwt',jwt);
+
 let fs = require('fs');
 let https = require('https');
+
 let expressSession = require('express-session');
 let crypto = require('crypto');
-
 redsocial.use(expressSession({
     secret: 'abcdefg',
     resave: true,
@@ -72,6 +73,9 @@ routerUsuarioToken.use(function(req, res, next) {
 //Enlaces que requeriran un token de usuario
 //...
 
+let gestorBD = require("./modules/gestorBD.js");
+gestorBD.init(redsocial,mongo);
+
 //Enlaces que requeriran routerUsuarioSession
 //Ejemplo
 //app.use("/mensaje/agregar",routerUsuarioSession);
@@ -79,7 +83,7 @@ routerUsuarioToken.use(function(req, res, next) {
 
 
 
-app.use(express.static('public'));
+redsocial.use(express.static('public'));
 
 //Variables
 redsocial.set('port', 8081);
@@ -88,7 +92,12 @@ redsocial.set('clave','abcdefg');
 redsocial.set('crypto',crypto);
 
 // Rutas/controladores por lógica
-require("./routes/rusuarios.js")(redsocial);
+//require("./routes/rusuarios.js")(redsocial);
+require("./routes/rusuarios.js")(redsocial, swig, gestorBD);
+
+redsocial.get('/', function (req, res) {
+    res.redirect('/base');
+});
 
 
 //Mensaje de error
