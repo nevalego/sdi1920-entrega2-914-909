@@ -76,24 +76,35 @@ routerUsuarioToken.use(function(req, res, next) {
 let gestorBD = require("./modules/gestorBD.js");
 gestorBD.init(redsocial,mongo);
 
-//Enlaces que requeriran routerUsuarioSession
-//Ejemplo
-//app.use("/mensaje/agregar",routerUsuarioSession);
+// Aplicar routerUsuarioToken
+// redsocial.use('/api/usuario', routerUsuarioToken);
 
+// routerUsuarioSession
+let routerUsuarioSession = express.Router();
+routerUsuarioSession.use(function (req, res, next) {
+    console.log("routerUsuarioSession");
+    if (req.session.usuario) {
+        // dejamos correr la petición
+        next();
+    } else {
+        console.log("va a : " + req.session.destino);
+        res.redirect("/identificarse");
+    }
+});
 
-
-
-redsocial.use(express.static('public'));
+// Aplicar routerUsuarioSession
+redsocial.use("/usuarios",routerUsuarioSession);
 
 //Variables
 redsocial.set('port', 8081);
-redsocial.set('db','mongodb://admin:sdi@tiendamusica-shard-00-00-uwber.mongodb.net:27017,tiendamusica-shard-00-01-uwber.mongodb.net:27017,tiendamusica-shard-00-02-uwber.mongodb.net:27017/test?ssl=true&replicaSet=tiendamusica-shard-0&authSource=admin&retryWrites=true&w=majority');
+redsocial.set('db', 'mongodb://administrador:redsocial914909@redsocial-shard-00-00-nukgt.mongodb.net:27017,redsocial-shard-00-01-nukgt.mongodb.net:27017,redsocial-shard-00-02-nukgt.mongodb.net:27017/test?ssl=true&replicaSet=redsocial-shard-0&authSource=admin&retryWrites=true&w=majority');
 redsocial.set('clave','abcdefg');
 redsocial.set('crypto',crypto);
 
 // Rutas/controladores por lógica
-//require("./routes/rusuarios.js")(redsocial);
 require("./routes/rusuarios.js")(redsocial, swig, gestorBD);
+
+redsocial.use(express.static('public'));
 
 redsocial.get('/', function (req, res) {
     res.redirect('/base');
@@ -111,17 +122,10 @@ redsocial.use(function (err, req, res, next) {
 });
 
 
-// Lanzar el servidor
-redsocial.listen(redsocial.get('port'), function () {
-    console.log("Servidor activo");
-})
-
-//Lanzar servidor 2
-/**
+//Lanzar servidor
 https.createServer({
     key: fs.readFileSync('certificates/alice.key'),
     cert: fs.readFileSync('certificates/alice.crt')
-}, app).listen(app.get('port'), function() {
+}, redsocial).listen(redsocial.get('port'), function() {
     console.log("Servidor activo");
 });
- */
