@@ -25,12 +25,21 @@
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
+                {% if (usuario != null || usuario != undefined || usuario != '') %}
                 <li id="mUsuarios" class="active"><a href="/usuarios">Usuarios</a></li>
+                {% endif %}
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="/registrarse"><span class="glyphicon glyphicon-user"></span> Registrate</a></li>
-                <li><a href="/identificarse"><span class="glyphicon glyphicon-log-in"></span> Identifícate</a></li>
-                <li><a href="/desconectarse"><span class="glyphicon glyphicon-log-in"></span> Cerrar sesión</a></li>
+                {% if (usuario == null || usuario == undefined || usuario == '') %}
+                <li><a id="registrarse" href="/registrarse"><span class="glyphicon glyphicon-user"></span>
+                    Registrate</a></li>
+                <li><a id="identificarse" href="/identificarse"><span class="glyphicon glyphicon-log-in"></span>
+                    Identifícate</a></li>
+                {% endif %}
+                {% if (usuario != null || usuario != undefined || usuario != '') %}
+                <li><a id="desconectarse" href="/desconectarse"><span class="glyphicon glyphicon-log-out"></span> Cerrar
+                    sesión</a></li>
+                {% endif %}
             </ul>
         </div>
     </div>

@@ -66,6 +66,15 @@ routerUsuarioToken.use(function (req, res, next) {
 let gestorDB = require("./modules/gestorDB.js");
 gestorDB.init(app, mongo);
 
+// Logger
+let log4js = require('log4js');
+log4js.configure({
+    appenders: {redsocial: {type: 'file', filename: 'logs/redsocial.log' }},
+    categories: {default: {appenders: ['redsocial'], level: 'trace'}}
+});
+
+let logger = log4js.getLogger('redsocial');
+
 // Aplicar routerUsuarioToken
 app.use('/api/usuario', routerUsuarioToken);
 
@@ -91,6 +100,7 @@ app.set('port', 8081);
 app.set('db', 'mongodb://administrador:redsocial914909@redsocial-shard-00-00-nukgt.mongodb.net:27017,redsocial-shard-00-01-nukgt.mongodb.net:27017,redsocial-shard-00-02-nukgt.mongodb.net:27017/test?ssl=true&replicaSet=redsocial-shard-0&authSource=admin&retryWrites=true&w=majority');
 app.set('clave', 'abcdefg');
 app.set('crypto', crypto);
+app.set('logger', logger);
 
 //Rutas/controladores por lógica
 require("./routes/rusuarios.js")(app, swig, gestorDB); // (app, param1, param2, etc.)
@@ -99,6 +109,7 @@ require("./routes/rusuarios.js")(app, swig, gestorDB); // (app, param1, param2, 
 app.use(express.static('public'));
 
 app.get('/', function (req, res) {
+    res.usuario = req.session.usuario;
     res.redirect('/tienda');
 })
 
