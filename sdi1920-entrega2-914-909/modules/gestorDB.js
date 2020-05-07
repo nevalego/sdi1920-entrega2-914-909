@@ -75,6 +75,26 @@ module.exports = {
             }
         });
     },
+    obtenerPeticionesDeAmistadPg : function(criterio,pg,funcionCallback){
+        this.mongo.MongoClient.connect(this.app.get('db'), function(err, db) {
+            if (err) {
+                funcionCallback(null);
+            } else {
+                let collection = db.collection('peticiones');
+                collection.count(function(err, count){
+                    collection.find(criterio).skip( (pg-1)*5 ).limit( 5 )
+                        .toArray(function(err, peticiones) {
+                            if (err) {
+                                funcionCallback(null);
+                            } else {
+                                funcionCallback(peticiones, count);
+                            }
+                            db.close();
+                        });
+                });
+            }
+        });
+    },
     enviarPeticionDeAmistad : function(peticion, funcionCallback) {
         this.mongo.MongoClient.connect(this.app.get('db'), function(err, db) {
             if (err) {

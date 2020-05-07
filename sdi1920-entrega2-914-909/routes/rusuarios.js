@@ -141,7 +141,6 @@ module.exports = function (app, swig, gestorDB) {
         };
         gestorDB.obtenerPeticionesDeAmistad(criterio, function(peticiones) {
             if (peticiones == null || peticiones.length>0) {
-                console.log("Numero de peticiones: "+peticiones.length)
                 res.redirect("/usuarios?mensaje=Ya existe una peticion de ese tipo o no es valida");
             } else {
                 gestorDB.enviarPeticionDeAmistad(peticion, function(id) {
@@ -157,5 +156,55 @@ module.exports = function (app, swig, gestorDB) {
             }
         });
 
+    });
+    app.get("/usuario/amistad", function (req, res) {
+        if ( req.session.usuario == null){
+            res.redirect("/identificarse");
+            app.get("logger").error('No hay un usuario identificado');
+        }
+        let criterio = {};
+        if( req.query.busqueda != null){
+            criterio = {
+                emisor : {$regex : ".*"+req.query.busqueda+".*"},
+                remitente: req.session.usuario.email,
+                aceptada: false
+
+            };
+        }
+        else{criterio = {
+            remitente: req.session.usuario.email,
+            aceptada: false
+        };}
+        let pg = parseInt(req.query.pg); // Es String !!!
+        if ( req.query.pg == null){ // Puede no venir el param
+            pg = 1;
+        }
+
+        gestorDB.obtenerPeticionesDeAmistadPg(criterio, pg,function (peticiones, total) {
+            if (peticiones == null) {
+                res.redirect("/usuarios");
+                app.get("logger").error('Error al listar las peticiones de amistad');
+            } else {
+                let ultimaPg = total/4;
+                if (total % 5 > 0 ){ // Sobran decimales
+                    ultimaPg = ultimaPg+1;
+                }
+                let paginas = []; // paginas mostrar
+                for(let i = pg-2 ; i <= pg+2 ; i++){
+                    if ( i > 0 && i <= ultimaPg){
+                        paginas.push(i);
+                    }
+                }
+                let respuesta = swig.renderFile('views/bsolicitudesAmistad.html',
+                    {
+                        usuario: req.session.usuario,
+                        peticiones: peticiones,
+                        paginas : paginas,
+                        actual : pg
+                    });
+                res.send(respuesta);
+                app.get("logger").info('El usuario ha listado sus solicitudes de amistad correctamente');
+            }
+        });
     });
 };
