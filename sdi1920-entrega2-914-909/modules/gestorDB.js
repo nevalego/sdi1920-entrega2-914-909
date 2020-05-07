@@ -58,4 +58,38 @@ module.exports = {
             }
         });
     },
+    obtenerPeticionesDeAmistad: function (criterio, funcionCallback) {
+        this.mongo.MongoClient.connect(this.app.get('db'), function (err, db) {
+            if (err) {
+                funcionCallback(null);
+            } else {
+                let collection = db.collection('peticiones');
+                collection.find(criterio).toArray(function (err, peticiones) {
+                    if (err) {
+                        funcionCallback(null);
+                    } else {
+                        funcionCallback(peticiones);
+                    }
+                    db.close();
+                });
+            }
+        });
+    },
+    enviarPeticionDeAmistad : function(peticion, funcionCallback) {
+        this.mongo.MongoClient.connect(this.app.get('db'), function(err, db) {
+            if (err) {
+                funcionCallback(null);
+            } else {
+                let collection = db.collection('peticiones');
+                collection.insert(peticion, function(err, result) {
+                    if (err) {
+                        funcionCallback(null);
+                    } else {
+                        funcionCallback(result.ops[0]._id);
+                    }
+                    db.close();
+                });
+            }
+        });
+    },
 };

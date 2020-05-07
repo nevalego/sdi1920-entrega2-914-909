@@ -121,4 +121,41 @@ module.exports = function (app, swig, gestorDB) {
         req.session.usuario = undefined;
         res.redirect("/identificarse");
     });
+
+    app.get('/usuario/amistad/:email', function (req, res) {
+        if ( req.session.usuario == null || req.session.usuario.email == req.params.email){
+            res.redirect("/identificarse");
+            app.get("logger").error('No hay un usuario identificado');
+        }
+        let peticion = {
+            emisor : req.session.usuario.email,
+            remitente: req.params.email,
+            aceptada : false
+        }
+        let criterio = {
+            $or:[{emisor : req.session.usuario.email,
+                remitente: req.params.email },
+                {emisor : req.params.email,
+                    remitente: req.session.usuario.email}
+                    ]
+        };
+        gestorDB.obtenerPeticionesDeAmistad(criterio, function(peticiones) {
+            if (peticiones == null || peticiones.length>0) {
+                console.log("Numero de peticiones: "+peticiones.length)
+                res.redirect("/usuarios?mensaje=Ya existe una peticion de ese tipo o no es valida");
+            } else {
+                gestorDB.enviarPeticionDeAmistad(peticion, function(id) {
+                    if (id == null){
+                        res.redirect("/usuarios?mensaje=Error al enviar la peticion");
+                        //res.send("Error al enviar la peticion");
+                    } else {
+                        res.redirect("/usuarios?mensaje=Peticion enviada");
+                        // res.send("Peticion enviada");
+                    }
+                });
+                //res.send("Ya existe una peticion de ese tipo o no es valida");
+            }
+        });
+
+    });
 };

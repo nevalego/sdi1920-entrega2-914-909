@@ -29,6 +29,7 @@
 			<th>Nombre</th>
 			<th>Apellidos</th>
 			<th>Email</th>
+			<th>Amistad</th>
 		</tr>
 		</thead>
 		<tbody>
@@ -37,6 +38,7 @@
 			<td>{{ usuario.name }}</td>
 			<td>{{ usuario.surname }}</td>
 			<td>{{ usuario.email }}</td>
+			<td><a href="/usuario/amistad/{{ usuario.email.toString() }}">Agregar Amigo</a></td>
 		</tr>
 		{% endfor %}
 		</tbody>
