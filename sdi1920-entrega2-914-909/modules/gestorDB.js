@@ -112,4 +112,21 @@ module.exports = {
             }
         });
     },
+    modificarPeticionDeAmistad : function(criterio, peticion, funcionCallback) {
+        this.mongo.MongoClient.connect(this.app.get('db'), function(err, db) {
+            if (err) {
+                funcionCallback(null);
+            } else {
+                let collection = db.collection('peticiones');
+                collection.update(criterio, {$set: peticion}, function(err, result) {
+                    if (err) {
+                        funcionCallback(null);
+                    } else {
+                        funcionCallback(result);
+                    }
+                    db.close();
+                });
+            }
+        });
+    },
 };

@@ -140,16 +140,21 @@ module.exports = function (app, swig, gestorDB) {
                     ]
         };
         gestorDB.obtenerPeticionesDeAmistad(criterio, function(peticiones) {
+            let respuesta = swig.renderFile('views/busuarios.html',
+                {
+                    usuario: req.session.usuario,
+                });
             if (peticiones == null || peticiones.length>0) {
-                res.redirect("/usuarios?mensaje=Ya existe una peticion de ese tipo o no es valida");
+                res.send(respuesta);
+                app.get("logger").info('Ya existe una peticion de ese tipo o no es valida');
             } else {
                 gestorDB.enviarPeticionDeAmistad(peticion, function(id) {
                     if (id == null){
-                        res.redirect("/usuarios?mensaje=Error al enviar la peticion");
-                        //res.send("Error al enviar la peticion");
+                        res.send(respuesta);
+                        app.get("logger").info('Error al enviar la peticion');
                     } else {
-                        res.redirect("/usuarios?mensaje=Peticion enviada");
-                        // res.send("Peticion enviada");
+                        res.send(respuesta);
+                        app.get("logger").info('Peticion enviada');
                     }
                 });
                 //res.send("Ya existe una peticion de ese tipo o no es valida");
@@ -206,5 +211,32 @@ module.exports = function (app, swig, gestorDB) {
                 app.get("logger").info('El usuario ha listado sus solicitudes de amistad correctamente');
             }
         });
+    });
+    app.get("/usuario/amistad/aceptar/:id", function (req, res) {
+        if ( req.session.usuario == null){
+            res.redirect("/identificarse");
+            app.get("logger").error('No hay un usuario identificado');
+        }
+        let criterio = { "_id" : gestorDB.mongo.ObjectID(req.params.id)};
+        let peticion = {
+            aceptada : true
+        }
+        gestorDB.modificarPeticionDeAmistad(criterio, peticion, function(result) {
+            let respuesta = swig.renderFile('views/bsolicitudesAmistad.html',
+                {
+                    usuario: req.session.usuario,
+                    peticiones: req.session.peticiones,
+                    paginas : req.session.paginas,
+                    actual : req.session.pg
+                });
+            if (result == null) {
+                res.send(respuesta);
+                app.get("logger").info('La peticion no ha sido aceptada correctamente');
+            } else {
+                res.send(respuesta);
+                app.get("logger").info('La peticion ha sido aceptada correctamente');
+            }
+        });
+
     });
 };
