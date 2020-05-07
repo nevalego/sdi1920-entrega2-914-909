@@ -1,20 +1,49 @@
 module.exports = function (app, swig, gestorDB) {
 
     app.get("/usuarios", function (req, res) {
-        let criterio = {
+        let criterio = {};
+        if( req.query.busqueda != null){
+            criterio = {
+                $or:[{name : {$regex : ".*"+req.query.busqueda+".*"}},
+                    {surname : {$regex : ".*"+req.query.busqueda+".*"}},
+                    {email : {$regex : ".*"+req.query.busqueda+".*"}}],
+                $and: [
+                    {email: {$ne: req.session.usuario.email}}
+                ]
+            };
+        }
+        else{criterio = {
             $and: [
                 {email: {$ne: req.session.usuario.email}}
             ]
-        };
+        };}
+        let pg = parseInt(req.query.pg); // Es String !!!
+        if ( req.query.pg == null){ // Puede no venir el param
+            pg = 1;
+        }
 
-        gestorDB.obtenerUsuarios(criterio, function (usuarios) {
+        gestorDB.obtenerUsuariosPg(criterio, pg,function (usuarios, total) {
             if (usuarios == null) {
                 res.redirect("/identificarse");
                 app.get("logger").error('Error al listar los usuarios');
             } else {
-                let respuesta = swig.renderFile('views/busuarios.html', {
-                    usuario: req.session.usuario,
-                    usuarios: usuarios});
+                let ultimaPg = total/4;
+                if (total % 5 > 0 ){ // Sobran decimales
+                    ultimaPg = ultimaPg+1;
+                }
+                let paginas = []; // paginas mostrar
+                for(let i = pg-2 ; i <= pg+2 ; i++){
+                    if ( i > 0 && i <= ultimaPg){
+                        paginas.push(i);
+                    }
+                }
+                let respuesta = swig.renderFile('views/busuarios.html',
+                    {
+                        usuario: req.session.usuario,
+                        usuarios: usuarios,
+                        paginas : paginas,
+                        actual : pg
+                    });
                 res.send(respuesta);
                 app.get("logger").info('El usuario ha listado los usuarios correctamente');
             }
