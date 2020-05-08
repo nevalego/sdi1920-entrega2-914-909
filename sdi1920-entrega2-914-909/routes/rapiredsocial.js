@@ -36,6 +36,7 @@ module.exports = function (app, gestorBD) {
                     ],
                 aceptada: true
             };
+            let logeado = res.usuario;
             gestorBD.obtenerPeticionesDeAmistad(criterio,function (amistades) {
                 if (amistades == null) {
                     app.get("logger").error("Se ha producido un error al obtener los amigos de la API");
@@ -46,6 +47,7 @@ module.exports = function (app, gestorBD) {
                 } else {
                     app.get("logger").info("Los amigos se listaron correctamente de la API");
                     res.status(200);
+                    res.logeado = logeado;
                     res.send(JSON.stringify(amistades));
                 }
             });

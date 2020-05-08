@@ -1,0 +1,104 @@
+<div id="widget-conversacion">
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>Mensajes</th>
+        </tr>
+        </thead>
+        <tbody id="tablaCuerpo">
+
+        </tbody>
+    </table>
+    <div class="form-group">
+        <label class="control-label col-sm-2" for="agregar-mensaje">Mensaje:</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" name="detalles-mensaje" id="agregar-mensaje"/>
+        </div>
+    </div>
+    <div class="col-sm-offset-2 col-sm-10">
+        <button type="button" class="btn btn-primary" id="boton-enviar"
+                onclick="enviarMensaje()">Enviar
+        </button>
+    </div>
+</div>
+<script>
+    window.history.pushState("", "", "/cliente.html?w=conversacion");
+
+    function cargarConversacion() {
+        $.ajax({
+            url: URLbase + "/search/conversacion/" + Cookies.get('amigoId'),
+            type: "GET",
+            data: {},
+            dataType: 'json',
+            headers: {"token": token},
+            success: function (respuesta) {
+                let conversacion = respuesta;
+                cargarMensajes(conversacion);
+            },
+            error: function () {
+                alert('Error al cargar la conversación');
+                $("#contenedor-principal").load("widget-amigos.html");
+            }
+        });
+    }
+
+    function cargarMensajes(conversacion) {
+        if (conversacion.length !== 0) {
+            $.ajax({
+                url: URLbase + "/conversacion/" + conversacion[0]._id,
+                type: "GET",
+                data: {},
+                dataType: 'json',
+                headers: {"token": token},
+                success: function (respuesta) {
+                    let mensajes = respuesta
+                    actualizarTabla(mensajes)
+                },
+                error: function (error) {
+                    alert('Error al cargar los mensajes de la conversación');
+                    $("#contenedor-principal").load("widget-amigos.html");
+                }
+            });
+        }
+    }
+
+
+    function actualizarTabla(mensajes) {
+        $("#tablaCuerpo").empty(); // Vaciar la tabla
+        for (let i = 0; i < mensajes.length; i++) {
+            $("#tablaCuerpo").append(
+                "<tr id=" + mensajes[i]._id + ">" +
+                "<td>" + mensajes[i].emisor + " : " + mensajes[i].mensaje + "</td>" +
+                "</tr>");
+        }
+    }
+
+    function enviarMensaje() {
+        $.ajax({
+            url: URLbase + "/mensaje/amigo/" + Cookies.get('amigoId'),
+            type: "POST",
+            data: {
+                mensaje: $("#agregar-mensaje").val(),
+                receptor: Cookies.get('autor')
+            },
+            dataType: 'json',
+            headers: {"token": token},
+            success: function () {
+                cargarMensajes();
+                $("#agregar-mensaje").val('');
+            },
+            error: function () {
+                alert('Error al crear el mensaje');
+            }
+        });
+    }
+
+    cargarConversacion();
+    refreshIntervalId = setInterval(cargarConversacion, 2000);
+
+
+    $("#navAmigos").click(function () {
+        clearInterval(refreshIntervalId);
+    });
+
+</script>

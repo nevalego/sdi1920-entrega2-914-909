@@ -22,7 +22,7 @@
             headers: {"token": token},
             success: function (respuesta) {
                 let amigos = respuesta;
-                actualizarTabla(amigos)
+                actualizarTabla(amigos, respuesta.logeado);
             },
             error: function () {
                 alert('Error al cargar los amigos');
@@ -31,12 +31,16 @@
         });
     }
 
-    function actualizarTabla(amigos) {
+    function actualizarTabla(amigos, logeado) {
         $("#tablaAmigos").empty();
         for (let i = 0; i < amigos.length; i++) {
+            let amigo = amigos[i].remitente;
+            if (amigo == logeado){
+                amigo = amigos[i].emisor;
+            }
             $("#tablaAmigos").append(
                 "<tr id=" + amigos[i]._id + ">" +
-                "<td><a onclick='widgetConversacion()'/> " + amigos[i].emisor +  "</td>" +
+                "<td><a onclick='widgetConversacion()'/> " + amigo + "</td>" +
                 "</tr>");
         }
     }
