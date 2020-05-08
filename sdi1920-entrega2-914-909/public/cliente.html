@@ -1,6 +1,6 @@
 <html lang="en">
 <head>
-  <title>jQuery uoMusic </title>
+  <title>Red Social</title>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
@@ -23,7 +23,7 @@
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav" id="barra-menu">
-        <li><a onclick=widgetCanciones()>Canciones</a></li>
+        <li><a id="navAmigos" onclick=widgetAmigos()>Amigos</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right" id="barra-menu-derecha">
 		<!-- Opciones de menú aqui -->
@@ -53,13 +53,16 @@
     if( w == "login"){
       $( "#contenedor-principal").load("widget-login.html");
     }
-    if ( w == "canciones"){
-      $( "#contenedor-principal").load("widget-canciones.html");
+    if ( w == "amigos"){
+      $( "#contenedor-principal").load("widget-amigos.html");
+    }
+    if ( w == "conversacion"){
+      $( "#contenedor-principal").load("widget-conversacion.html");
     }
   }
 
-  function widgetCanciones() {
-    $("#contenedor-principal").load("widget-canciones.html");
+  function widgetAmigos() {
+    $("#contenedor-principal").load("widget-amigos.html");
   }
 
 </script>
