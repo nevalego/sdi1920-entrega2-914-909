@@ -27,11 +27,13 @@ module.exports = function (app, gestorBD) {
             }
        });
     });
-    app.get("/api/amigos/", function (req, res) {
-        if (req.body.token) {
+    app.get("/api/amigos", function (req, res) {
+        if (req.headers['token']) {
             let criterio = {
-                $or:[{remitente: req.session.usuario.email},
-                    {emisor :  req.session.usuario.email}],
+                $or:[
+                    {remitente: {$ne: res.usuario}},
+                    {emisor :  {$ne: res.usuario}}
+                    ],
                 aceptada: true
             };
             gestorBD.obtenerPeticionesDeAmistad(criterio,function (amistades) {
@@ -53,7 +55,7 @@ module.exports = function (app, gestorBD) {
         if (req.token) {
             let mensaje = {
                 emisor: req.session.usuario,
-                destino:gestorBD.mongo.ObjectID(req.params.destino_id),
+                destino: req.params.destino,
                 texto: req.body.texto,
                 fecha: req.body.fecha,
                 leido: false

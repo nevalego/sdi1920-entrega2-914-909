@@ -1,0 +1,49 @@
+<div id="widget-conversacion">
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>Amigos</th>
+        </tr>
+        </thead>
+        <tbody id="tablaAmigos">
+
+        </tbody>
+    </table>
+</div>
+<script>
+    window.history.pushState("", "", "/cliente.html?w=amigos");
+
+    function cargarAmigos() {
+        $.ajax({
+            url: URLbase + "/amigos",
+            type: "GET",
+            data: {},
+            dataType: 'json',
+            headers: {"token": token},
+            success: function (respuesta) {
+                let amigos = respuesta;
+                actualizarTabla(amigos)
+            },
+            error: function () {
+                alert('Error al cargar los amigos');
+                $("#contenedor-principal").load("widget-amigos.html");
+            }
+        });
+    }
+
+    function actualizarTabla(amigos) {
+        $("#tablaAmigos").empty();
+        for (let i = 0; i < amigos.length; i++) {
+            $("#tablaAmigos").append(
+                "<tr id=" + amigos[i]._id + ">" +
+                "<td><a onclick='widgetConversacion()' " + amigos[i].emisor +  "</td>" +
+                "</tr>");
+        }
+    }
+
+    function widgetConversacion() {
+        $("#contenedor-principal").load("widget-conversacion.html");
+    }
+    cargarAmigos();
+
+</script>
