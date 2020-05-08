@@ -103,10 +103,10 @@ module.exports = function (app, swig, gestorDB) {
     });
 
     app.post("/identificarse", function (req, res) {
-        if (req.body.email == '' || req.body.email == undefined) {
+        if (req.body.email == '') {
             app.get("logger").error('El email no puede estar vacío');
             res.redirect("/identificarse?mensaje=El email no puede estar vacío")
-        } else if (req.body.password == undefined || req.body.password == '') {
+        } else if (req.body.password == '') {
             app.get("logger").error('La contraseña no puede estar vacía');
             res.redirect("/identificarse?mensaje=La contraseña no puede estar vacía")
         } else {
@@ -116,10 +116,8 @@ module.exports = function (app, swig, gestorDB) {
                 email: req.body.email,
                 password: seguro
             };
-
             gestorDB.obtenerUsuarios(criterio, function (usuarios) {
                 if (usuarios == undefined || usuarios.length == 0) {
-                    req.session.usuario = undefined;
                     res.redirect("/identificarse" +
                         "?mensaje=Email o password incorrecto"+
                         "&tipoMensaje=alert-danger ");
@@ -127,7 +125,6 @@ module.exports = function (app, swig, gestorDB) {
                 } else {
                     req.session.usuario = usuarios[0];
                     app.get("logger").info('El usuario ' + req.session.usuario.email + " se logeo correctamente");
-                    delete req.session.usuario.password;
                     res.redirect("/usuarios");
                 }
             });

@@ -11,7 +11,8 @@ module.exports = function (app, gestorBD) {
             if ( usuarios == null || usuarios.length == 0){
                 res.status(401); // unauthorized
                 res.json({
-                    autenticado: false
+                    autenticado: false,
+                    mensaje: "Inicio de seión no correcto"
                 })
                 }else {
                 var token = app.get('jwt').sign(
