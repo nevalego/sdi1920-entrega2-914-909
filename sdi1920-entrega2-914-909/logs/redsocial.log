@@ -1,5 +1,199 @@
+<<<<<<< HEAD
 [2020-05-08T19:35:06.929] [ERROR] redsocial - Email o password incorrecto
 [2020-05-08T19:36:24.380] [ERROR] redsocial - Email o password incorrecto
 [2020-05-08T19:37:57.658] [INFO] redsocial - El usuario pepe@email.com se logeo correctamente
 [2020-05-08T19:38:19.137] [INFO] redsocial - El usuario pepe@email.com se logeo correctamente
 [2020-05-08T19:38:19.846] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+=======
+[2020-05-08T20:41:36.477] [INFO] redsocial - El usuario patata@email.com se logeo correctamente
+[2020-05-08T20:41:37.071] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-08T20:41:40.891] [INFO] redsocial - El usuario ha listado sus solicitudes de amistad correctamente
+[2020-05-08T20:41:43.629] [INFO] redsocial - La peticion ha sido aceptada correctamente
+[2020-05-08T20:41:47.456] [INFO] redsocial - El usuario ha listado sus solicitudes de amistad correctamente
+[2020-05-08T20:42:08.567] [INFO] redsocial - El usuario ha listado sus amigos correctamente
+[2020-05-08T20:42:10.510] [INFO] redsocial - El usuario ha listado sus solicitudes de amistad correctamente
+[2020-05-08T20:42:15.658] [INFO] redsocial - La peticion ha sido aceptada correctamente
+[2020-05-08T20:56:28.898] [INFO] redsocial - El usuario patata@email.com se logeo correctamente
+[2020-05-08T20:56:29.365] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-08T20:56:32.356] [ERROR] redsocial - No hay un usuario identificado
+[2020-05-08T20:57:44.569] [INFO] redsocial - El usuario patata@email.com se logeo correctamente
+[2020-05-08T20:57:45.068] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-08T20:57:47.065] [INFO] redsocial - El usuario ha listado sus solicitudes de amistad correctamente
+[2020-05-08T20:57:50.168] [INFO] redsocial - El usuario ha listado sus solicitudes de amistad correctamente
+[2020-05-08T20:57:54.481] [INFO] redsocial - El usuario ha listado sus solicitudes de amistad correctamente
+[2020-05-08T20:57:58.376] [INFO] redsocial - El usuario ha listado sus solicitudes de amistad correctamente
+[2020-05-08T20:58:01.573] [INFO] redsocial - El usuario ha listado sus amigos correctamente
+[2020-05-08T20:58:04.145] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-08T20:59:54.608] [INFO] redsocial - El usuario patata@email.com se logeo correctamente
+[2020-05-08T20:59:55.071] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-08T21:00:28.028] [INFO] redsocial - El usuario patata@email.com se logeo correctamente
+[2020-05-08T21:00:28.515] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-08T21:00:57.563] [INFO] redsocial - El usuario patata@email.com se logeo correctamente
+[2020-05-08T21:00:58.032] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-08T21:01:00.752] [INFO] redsocial - Ya existe una peticion de ese tipo o no es valida
+[2020-05-08T21:01:01.202] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-08T21:01:05.089] [INFO] redsocial - Ya existe una peticion de ese tipo o no es valida
+[2020-05-08T21:01:05.513] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-08T21:01:07.616] [INFO] redsocial - El usuario ha listado sus solicitudes de amistad correctamente
+[2020-05-08T21:01:17.350] [INFO] redsocial - El usuario ha listado sus solicitudes de amistad correctamente
+[2020-05-08T21:01:20.061] [INFO] redsocial - El usuario ha listado sus solicitudes de amistad correctamente
+[2020-05-08T21:01:22.436] [INFO] redsocial - El usuario ha listado sus amigos correctamente
+[2020-05-08T21:01:24.714] [INFO] redsocial - El usuario ha listado sus solicitudes de amistad correctamente
+[2020-05-08T21:01:26.474] [INFO] redsocial - La peticion ha sido aceptada correctamente
+[2020-05-08T21:01:26.929] [INFO] redsocial - El usuario ha listado sus amigos correctamente
+[2020-05-08T21:01:31.487] [INFO] redsocial - El usuario ha listado sus solicitudes de amistad correctamente
+[2020-05-08T21:01:34.707] [INFO] redsocial - La peticion ha sido aceptada correctamente
+[2020-05-08T21:01:35.659] [INFO] redsocial - El usuario ha listado sus amigos correctamente
+[2020-05-08T21:01:38.607] [INFO] redsocial - El usuario ha listado sus solicitudes de amistad correctamente
+[2020-05-08T21:01:41.259] [INFO] redsocial - La peticion ha sido aceptada correctamente
+[2020-05-08T21:01:41.713] [INFO] redsocial - El usuario ha listado sus amigos correctamente
+[2020-05-08T21:01:44.004] [INFO] redsocial - El usuario ha listado sus amigos correctamente
+[2020-05-08T21:01:45.921] [INFO] redsocial - El usuario ha listado sus solicitudes de amistad correctamente
+[2020-05-08T21:05:56.485] [INFO] redsocial - El usuario patata@email.com se logeo correctamente
+[2020-05-08T21:05:57.226] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-08T21:06:01.444] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-08T21:06:03.652] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-08T21:06:04.965] [INFO] redsocial - El usuario ha listado sus solicitudes de amistad correctamente
+[2020-05-08T21:06:07.125] [INFO] redsocial - El usuario ha listado sus solicitudes de amistad correctamente
+[2020-05-08T21:06:09.391] [INFO] redsocial - El usuario ha listado sus solicitudes de amistad correctamente
+[2020-05-08T21:06:11.004] [INFO] redsocial - La peticion ha sido aceptada correctamente
+[2020-05-08T21:06:11.431] [INFO] redsocial - El usuario ha listado sus amigos correctamente
+[2020-05-08T21:06:17.908] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-08T21:06:19.583] [INFO] redsocial - Ya existe una peticion de ese tipo o no es valida
+[2020-05-08T21:06:20.623] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-08T21:06:25.921] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-08T21:06:27.572] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-08T21:06:32.501] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-08T21:06:46.299] [INFO] redsocial - El usuario ha listado sus solicitudes de amistad correctamente
+[2020-05-08T21:08:25.350] [INFO] redsocial - El usuario prueba@prueba.com se logeo correctamente
+[2020-05-08T21:08:25.904] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-08T21:08:28.981] [INFO] redsocial - Peticion enviada
+[2020-05-08T21:08:29.410] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-08T21:08:31.329] [INFO] redsocial - El usuario prueba@prueba.com cerró sesión correctamente
+[2020-05-08T21:08:41.146] [INFO] redsocial - El usuario prueba@prueba.com se logeo correctamente
+[2020-05-08T21:08:41.696] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-08T21:08:43.318] [INFO] redsocial - El usuario ha listado sus solicitudes de amistad correctamente
+[2020-05-08T21:08:44.827] [INFO] redsocial - El usuario ha listado sus amigos correctamente
+[2020-05-08T21:08:46.498] [INFO] redsocial - El usuario prueba@prueba.com cerró sesión correctamente
+[2020-05-08T21:08:51.529] [INFO] redsocial - El usuario patata@email.com se logeo correctamente
+[2020-05-08T21:08:52.060] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-08T21:08:59.317] [INFO] redsocial - Ya existe una peticion de ese tipo o no es valida
+[2020-05-08T21:09:00.300] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-08T21:09:06.856] [INFO] redsocial - Ya existe una peticion de ese tipo o no es valida
+[2020-05-08T21:09:07.775] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-08T21:09:10.030] [INFO] redsocial - El usuario ha listado sus solicitudes de amistad correctamente
+[2020-05-08T21:09:15.583] [INFO] redsocial - El usuario ha listado sus solicitudes de amistad correctamente
+[2020-05-08T21:09:18.602] [INFO] redsocial - La peticion ha sido aceptada correctamente
+[2020-05-08T21:09:20.232] [INFO] redsocial - El usuario ha listado sus amigos correctamente
+[2020-05-08T21:09:26.980] [INFO] redsocial - El usuario ha listado sus solicitudes de amistad correctamente
+[2020-05-08T21:09:36.134] [INFO] redsocial - El usuario ha listado sus solicitudes de amistad correctamente
+[2020-05-08T21:09:39.581] [INFO] redsocial - El usuario ha listado sus solicitudes de amistad correctamente
+[2020-05-08T21:09:41.822] [INFO] redsocial - El usuario ha listado sus solicitudes de amistad correctamente
+[2020-05-08T21:09:48.993] [INFO] redsocial - El usuario ha listado sus solicitudes de amistad correctamente
+[2020-05-08T21:12:00.453] [INFO] redsocial - El usuario patata@email.com se logeo correctamente
+[2020-05-08T21:12:00.935] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-08T21:12:02.988] [INFO] redsocial - El usuario ha listado sus solicitudes de amistad correctamente
+[2020-05-08T21:12:07.024] [INFO] redsocial - El usuario ha listado sus solicitudes de amistad correctamente
+[2020-05-08T21:12:10.763] [INFO] redsocial - El usuario ha listado sus solicitudes de amistad correctamente
+[2020-05-08T21:12:13.173] [INFO] redsocial - El usuario ha listado sus solicitudes de amistad correctamente
+[2020-05-08T21:12:24.293] [INFO] redsocial - El usuario ha listado sus amigos correctamente
+[2020-05-08T21:12:27.738] [INFO] redsocial - El usuario ha listado sus solicitudes de amistad correctamente
+[2020-05-08T21:12:32.150] [INFO] redsocial - El usuario ha listado sus solicitudes de amistad correctamente
+[2020-05-08T21:14:32.998] [INFO] redsocial - El usuario ha listado sus solicitudes de amistad correctamente
+[2020-05-08T21:14:36.115] [INFO] redsocial - El usuario ha listado sus solicitudes de amistad correctamente
+[2020-05-08T21:14:59.265] [INFO] redsocial - El usuario ha listado sus solicitudes de amistad correctamente
+[2020-05-08T21:15:02.975] [INFO] redsocial - El usuario ha listado sus solicitudes de amistad correctamente
+[2020-05-08T21:15:05.995] [INFO] redsocial - El usuario ha listado sus solicitudes de amistad correctamente
+[2020-05-08T21:15:09.496] [INFO] redsocial - El usuario ha listado sus solicitudes de amistad correctamente
+[2020-05-08T21:15:24.316] [INFO] redsocial - El usuario ha listado sus solicitudes de amistad correctamente
+[2020-05-08T21:15:34.562] [INFO] redsocial - El usuario ha listado sus solicitudes de amistad correctamente
+[2020-05-08T21:17:56.821] [INFO] redsocial - El usuario ha listado sus solicitudes de amistad correctamente
+[2020-05-08T21:18:02.711] [INFO] redsocial - El usuario ha listado sus solicitudes de amistad correctamente
+[2020-05-08T21:18:07.980] [INFO] redsocial - El usuario ha listado sus solicitudes de amistad correctamente
+[2020-05-08T21:18:10.008] [INFO] redsocial - El usuario ha listado sus solicitudes de amistad correctamente
+[2020-05-08T21:18:12.288] [INFO] redsocial - El usuario ha listado sus solicitudes de amistad correctamente
+[2020-05-08T21:18:16.149] [INFO] redsocial - El usuario ha listado sus solicitudes de amistad correctamente
+[2020-05-08T21:18:37.059] [INFO] redsocial - El usuario patata@email.com cerró sesión correctamente
+[2020-05-08T21:18:49.728] [ERROR] redsocial - Email o password incorrecto
+[2020-05-08T21:19:14.200] [ERROR] redsocial - Nuevo usuario registrado
+[2020-05-08T21:19:21.835] [INFO] redsocial - El usuario prueba2@prueba2.com se logeo correctamente
+[2020-05-08T21:19:22.301] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-08T21:19:27.148] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-08T21:19:29.762] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-08T21:19:36.265] [INFO] redsocial - Peticion enviada
+[2020-05-08T21:19:37.463] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-08T21:19:39.592] [INFO] redsocial - El usuario prueba2@prueba2.com cerró sesión correctamente
+[2020-05-08T21:19:45.484] [INFO] redsocial - El usuario patata@email.com se logeo correctamente
+[2020-05-08T21:19:46.302] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-08T21:19:49.464] [INFO] redsocial - El usuario ha listado sus solicitudes de amistad correctamente
+[2020-05-08T21:19:52.533] [INFO] redsocial - El usuario ha listado sus solicitudes de amistad correctamente
+[2020-05-08T21:19:55.902] [INFO] redsocial - El usuario ha listado sus solicitudes de amistad correctamente
+[2020-05-08T21:19:59.472] [INFO] redsocial - El usuario ha listado sus solicitudes de amistad correctamente
+[2020-05-08T21:20:06.715] [INFO] redsocial - El usuario ha listado sus solicitudes de amistad correctamente
+[2020-05-08T21:20:10.562] [INFO] redsocial - El usuario ha listado sus solicitudes de amistad correctamente
+[2020-05-08T21:20:14.438] [INFO] redsocial - El usuario ha listado sus solicitudes de amistad correctamente
+[2020-05-08T21:20:24.945] [INFO] redsocial - El usuario ha listado sus solicitudes de amistad correctamente
+[2020-05-08T21:20:25.175] [INFO] redsocial - El usuario ha listado sus solicitudes de amistad correctamente
+[2020-05-08T21:20:53.045] [INFO] redsocial - El usuario ha listado sus solicitudes de amistad correctamente
+[2020-05-08T21:20:58.222] [INFO] redsocial - El usuario ha listado sus solicitudes de amistad correctamente
+[2020-05-08T21:22:00.582] [INFO] redsocial - El usuario ha listado sus solicitudes de amistad correctamente
+[2020-05-08T21:22:02.591] [INFO] redsocial - El usuario ha listado sus solicitudes de amistad correctamente
+[2020-05-08T21:22:13.052] [INFO] redsocial - El usuario ha listado sus solicitudes de amistad correctamente
+[2020-05-08T21:22:15.744] [INFO] redsocial - La peticion ha sido aceptada correctamente
+[2020-05-08T21:22:16.166] [INFO] redsocial - El usuario ha listado sus amigos correctamente
+[2020-05-08T21:22:19.341] [INFO] redsocial - El usuario ha listado sus solicitudes de amistad correctamente
+[2020-05-08T21:22:22.599] [INFO] redsocial - El usuario ha listado sus solicitudes de amistad correctamente
+[2020-05-08T21:22:24.489] [INFO] redsocial - El usuario ha listado sus solicitudes de amistad correctamente
+[2020-05-08T21:22:29.277] [INFO] redsocial - El usuario ha listado sus solicitudes de amistad correctamente
+[2020-05-08T21:22:31.335] [INFO] redsocial - La peticion ha sido aceptada correctamente
+[2020-05-08T21:22:32.094] [INFO] redsocial - El usuario ha listado sus amigos correctamente
+[2020-05-08T21:22:34.966] [INFO] redsocial - El usuario ha listado sus solicitudes de amistad correctamente
+[2020-05-08T21:22:37.263] [INFO] redsocial - La peticion ha sido aceptada correctamente
+[2020-05-08T21:22:37.800] [INFO] redsocial - El usuario ha listado sus amigos correctamente
+[2020-05-08T21:22:40.078] [INFO] redsocial - El usuario ha listado sus solicitudes de amistad correctamente
+[2020-05-08T21:22:44.171] [INFO] redsocial - El usuario ha listado sus solicitudes de amistad correctamente
+[2020-05-08T21:22:47.441] [INFO] redsocial - El usuario ha listado sus solicitudes de amistad correctamente
+[2020-05-08T21:22:50.514] [INFO] redsocial - El usuario ha listado sus amigos correctamente
+[2020-05-08T21:22:52.626] [INFO] redsocial - El usuario ha listado sus solicitudes de amistad correctamente
+[2020-05-08T21:26:41.749] [INFO] redsocial - El usuario patata@email.com se logeo correctamente
+[2020-05-08T21:26:42.630] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-08T21:26:46.766] [INFO] redsocial - El usuario ha listado sus solicitudes de amistad correctamente
+[2020-05-08T21:26:50.732] [INFO] redsocial - El usuario ha listado sus amigos correctamente
+[2020-05-08T21:26:53.752] [INFO] redsocial - El usuario ha listado sus amigos correctamente
+[2020-05-08T21:26:55.971] [INFO] redsocial - El usuario ha listado sus amigos correctamente
+[2020-05-08T21:26:58.169] [INFO] redsocial - El usuario ha listado sus solicitudes de amistad correctamente
+[2020-05-08T21:27:22.689] [INFO] redsocial - El usuario ha listado sus solicitudes de amistad correctamente
+[2020-05-08T21:27:37.995] [INFO] redsocial - El usuario ha listado sus solicitudes de amistad correctamente
+[2020-05-08T21:27:41.432] [INFO] redsocial - El usuario ha listado sus solicitudes de amistad correctamente
+[2020-05-08T21:27:44.359] [INFO] redsocial - La peticion ha sido aceptada correctamente
+[2020-05-08T21:27:44.821] [INFO] redsocial - El usuario ha listado sus amigos correctamente
+[2020-05-08T21:27:47.981] [INFO] redsocial - El usuario ha listado sus solicitudes de amistad correctamente
+[2020-05-08T21:28:51.843] [INFO] redsocial - El usuario patata@email.com se logeo correctamente
+[2020-05-08T21:28:52.311] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-08T21:28:53.936] [INFO] redsocial - El usuario ha listado sus amigos correctamente
+[2020-05-08T21:28:56.879] [INFO] redsocial - El usuario ha listado sus solicitudes de amistad correctamente
+[2020-05-08T21:28:59.282] [INFO] redsocial - La peticion ha sido aceptada correctamente
+[2020-05-08T21:28:59.713] [INFO] redsocial - El usuario ha listado sus amigos correctamente
+[2020-05-08T21:29:02.235] [INFO] redsocial - El usuario ha listado sus solicitudes de amistad correctamente
+[2020-05-08T21:29:04.074] [INFO] redsocial - La peticion ha sido aceptada correctamente
+[2020-05-08T21:29:04.540] [INFO] redsocial - El usuario ha listado sus amigos correctamente
+[2020-05-08T21:29:07.192] [INFO] redsocial - El usuario ha listado sus solicitudes de amistad correctamente
+[2020-05-08T21:29:09.354] [INFO] redsocial - La peticion ha sido aceptada correctamente
+[2020-05-08T21:29:09.804] [INFO] redsocial - El usuario ha listado sus amigos correctamente
+[2020-05-08T21:29:13.308] [INFO] redsocial - El usuario ha listado sus solicitudes de amistad correctamente
+[2020-05-08T21:29:15.039] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-08T21:29:17.075] [INFO] redsocial - El usuario ha listado sus solicitudes de amistad correctamente
+[2020-05-08T21:29:19.942] [INFO] redsocial - La peticion ha sido aceptada correctamente
+[2020-05-08T21:29:20.407] [INFO] redsocial - El usuario ha listado sus amigos correctamente
+[2020-05-08T21:29:22.650] [INFO] redsocial - El usuario ha listado sus amigos correctamente
+[2020-05-08T21:29:25.371] [INFO] redsocial - El usuario ha listado sus amigos correctamente
+[2020-05-08T21:29:30.129] [INFO] redsocial - El usuario ha listado sus solicitudes de amistad correctamente
+[2020-05-08T21:29:38.251] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-08T21:29:42.939] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-08T21:29:45.105] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-08T21:29:49.585] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-08T21:29:54.105] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-08T21:29:56.247] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-08T21:30:02.654] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-08T21:30:07.396] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+>>>>>>> master

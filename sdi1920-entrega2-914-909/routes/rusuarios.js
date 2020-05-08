@@ -22,8 +22,11 @@ module.exports = function (app, swig, gestorDB) {
                 res.send("Error al listar usuarios");
                 app.get("logger").error('Error al listar los usuarios');
             } else {
-                let ultimaPg = total/5;
-                if (total % 5 > 0 ){ // Sobran decimales
+                let ultimaPg = 1;
+                if(total > 5){
+                    ultimaPg = total/5;
+                }
+                if (total % 5 > 0 && total/5 >1){ // Sobran decimales
                     ultimaPg = ultimaPg+1;
                 }
                 let paginas = []; // paginas mostrar
@@ -56,23 +59,20 @@ module.exports = function (app, swig, gestorDB) {
     });
 
     app.post('/usuario', function (req, res) {
-        app.get('logger').info('Usuario se va a registrar');
-        if (req.body.nombre == '' || req.body.apellidos == '' ||
-            req.body.password == '' || req.body.repassword == '' ||
-            req.body.email == '') {
-            res.redirect("/registrarse?mensaje=Debe rellenar todos los campos&tipoMensaje=alert-danger")
-            app.get('logger').error('Debe rellenar todos los campos');
-        } else if (req.body.password !== req.body.passwordrep) {
-            res.redirect("/registrarse?mensaje=La contraseña no coincide&tipoMensaje=alert-danger")
-            app.get('logger').error('La contraseña no coincide');
-        } else {
-            let seguro = app.get('crypto').createHmac('sha256', app.get('clave'))
-                .update(req.body.password).digest('hex');
-            let usuario = {
-                email: req.body.email,
-                name: req.body.name,
-                surname: req.body.surname,
-                password: seguro
+        let seguro = app.get('crypto').createHmac('sha256', app.get('clave'))
+            .update(req.body.password).digest('hex');
+
+        let usuario = {
+            email: req.body.email,
+            name: req.body.name,
+            surname: req.body.surname,
+            password: seguro
+        }
+        gestorDB.insertarUsuario(usuario, function (id) {
+            if (id == null) {
+                res.redirect("/registrarse?mensaje=Error al registrar usuario");
+            } else {
+                res.redirect("/identificarse?mensaje=Nuevo usuario registrado");
             }
             // Comprobar si ya existe un usuario con ese email
             let criterio = {email: req.body.email};
@@ -139,8 +139,8 @@ module.exports = function (app, swig, gestorDB) {
 
     app.get('/usuario/amistad/:email', function (req, res) {
         if ( req.session.usuario == null || req.session.usuario.email == req.params.email){
-            res.redirect("/identificarse");
             app.get("logger").error('No hay un usuario identificado');
+            res.redirect("/identificarse?mensaje=No hay un usuario identificado");
         }
         let peticion = {
             emisor : req.session.usuario.email,
@@ -161,22 +161,21 @@ module.exports = function (app, swig, gestorDB) {
             } else {
                 gestorDB.enviarPeticionDeAmistad(peticion, function(id) {
                     if (id == null){
-                        app.get("logger").info('Error al enviar la peticion');
                         res.redirect("/usuarios?mensaje=Error al enviar la peticion");
+                        app.get("logger").info('Error al enviar la peticion');
                     } else {
-                        app.get("logger").info('Peticion enviada');
                         res.redirect("/usuarios?mensaje=Peticion enviada");
+                        app.get("logger").info('Peticion enviada');
                     }
                 });
-                //res.send("Ya existe una peticion de ese tipo o no es valida");
             }
         });
 
     });
     app.get("/usuario/amistad", function (req, res) {
         if ( req.session.usuario == null){
-            res.redirect("/identificarse");
             app.get("logger").error('No hay un usuario identificado');
+            res.redirect("/identificarse?mensaje=No hay un usuario identificado");
         }
         let criterio = {};
         if( req.query.busqueda != null){
@@ -195,14 +194,16 @@ module.exports = function (app, swig, gestorDB) {
         if ( req.query.pg == null){ // Puede no venir el param
             pg = 1;
         }
-
         gestorDB.obtenerPeticionesDeAmistadPg(criterio, pg,function (peticiones, total) {
             if (peticiones == null) {
-                res.redirect("/usuarios");
                 app.get("logger").error('Error al listar las peticiones de amistad');
+                res.redirect("/usuarios?mensaje=Error al listar las peticiones de amistad");
             } else {
-                let ultimaPg = total/4;
-                if (total % 5 > 0 ){ // Sobran decimales
+                let ultimaPg = 1;
+                if(total > 5){
+                    ultimaPg = total/5;
+                }
+                if (total % 5 > 0 && total/5 >1){ // Sobran decimales
                     ultimaPg = ultimaPg+1;
                 }
                 let paginas = []; // paginas mostrar
@@ -244,8 +245,11 @@ module.exports = function (app, swig, gestorDB) {
                 res.redirect("/usuarios");
                 app.get("logger").error('Error al listar las peticiones de amistad');
             } else {
-                let ultimaPg = total/4;
-                if (total % 5 > 0 ){ // Sobran decimales
+                let ultimaPg = 1;
+                if(total > 5){
+                    ultimaPg = total/5;
+                }
+                if (total % 5 > 0 && total/5 >1){ // Sobran decimales
                     ultimaPg = ultimaPg+1;
                 }
                 let paginas = []; // paginas mostrar
@@ -269,8 +273,8 @@ module.exports = function (app, swig, gestorDB) {
     });
     app.get("/usuario/amistad/aceptar/:id", function (req, res) {
         if ( req.session.usuario == null){
-            res.redirect("/identificarse");
             app.get("logger").error('No hay un usuario identificado');
+            res.redirect("/identificarse");
         }
         let criterio = { "_id" : gestorDB.mongo.ObjectID(req.params.id)};
         let peticion = {
@@ -285,11 +289,11 @@ module.exports = function (app, swig, gestorDB) {
                     actual : req.session.pg
                 });
             if (result == null) {
-                res.send(respuesta);
                 app.get("logger").info('La peticion no ha sido aceptada correctamente');
+                res.redirect("/usuario/amistad?mensaje=La peticion no ha sido aceptada correctamente");
             } else {
-                res.send(respuesta);
                 app.get("logger").info('La peticion ha sido aceptada correctamente');
+                res.redirect("/usuario/amigos?mensaje=La peticion ha sido aceptada correctamente");
             }
         });
 

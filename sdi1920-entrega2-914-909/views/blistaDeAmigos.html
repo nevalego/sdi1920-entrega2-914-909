@@ -9,6 +9,7 @@
         <thead>
         <tr>
             <th>Usuario</th>
+            <th></th>
         </tr>
         </thead>
         <tbody>
@@ -29,7 +30,7 @@
     <ul class="pagination">
         {% for pagina in paginas%}
         <li class="page-item" id = "pi-{{pagina}}">
-            <a class="page-link" href="/peticiones?pg={{ pagina }}" >{{ pagina }}</a>
+            <a class="page-link" href="/usuario/amigos?pg={{ pagina }}" >{{ pagina }}</a>
         </li>
         {% endfor %}
         <script>
