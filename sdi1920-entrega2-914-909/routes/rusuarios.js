@@ -28,7 +28,7 @@ module.exports = function (app, swig, gestorDB) {
                 res.send("Error al listar usuarios");
                 app.get("logger").error('Error al listar los usuarios');
             } else {
-                let ultimaPg = total/4;
+                let ultimaPg = total/5;
                 if (total % 5 > 0 ){ // Sobran decimales
                     ultimaPg = ultimaPg+1;
                 }
@@ -140,22 +140,18 @@ module.exports = function (app, swig, gestorDB) {
                     remitente: req.session.usuario.email}
                     ]
         };
-        gestorDB.obtenerPeticionesDeAmistad(criterio, function(peticiones) {
-            let respuesta = swig.renderFile('views/busuarios.html',
-                {
-                    usuario: req.session.usuario,
-                });
-            if (peticiones == null || peticiones.length>0) {
-                res.send(respuesta);
+        gestorDB.obtenerPeticionesDeAmistad(criterio, function(peticionesExistentes) {
+            if (peticionesExistentes.length> 0) {
                 app.get("logger").info('Ya existe una peticion de ese tipo o no es valida');
+                res.redirect("/usuarios?mensaje=Ya existe una peticion de ese tipo o no es valida");
             } else {
                 gestorDB.enviarPeticionDeAmistad(peticion, function(id) {
                     if (id == null){
-                        res.send(respuesta);
                         app.get("logger").info('Error al enviar la peticion');
+                        res.redirect("/usuarios?mensaje=Error al enviar la peticion");
                     } else {
-                        res.send(respuesta);
                         app.get("logger").info('Peticion enviada');
+                        res.redirect("/usuarios?mensaje=Peticion enviada");
                     }
                 });
                 //res.send("Ya existe una peticion de ese tipo o no es valida");

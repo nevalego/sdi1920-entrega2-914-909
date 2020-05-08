@@ -268,3 +268,53 @@
 [2020-05-08T14:43:08.284] [INFO] redsocial - El usuario lucia@email.com se logeo correctamente
 [2020-05-08T14:43:08.801] [INFO] redsocial - El usuario ha listado los usuarios correctamente
 [2020-05-08T14:43:17.321] [INFO] redsocial - Peticion enviada
+[2020-05-08T17:37:57.820] [ERROR] redsocial - Email o password incorrecto
+[2020-05-08T17:38:04.901] [ERROR] redsocial - Email o password incorrecto
+[2020-05-08T17:39:37.214] [ERROR] redsocial - Email o password incorrecto
+[2020-05-08T17:40:33.744] [INFO] redsocial - El usuario prueba@prueba.com se logeo correctamente
+[2020-05-08T17:40:34.321] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-08T17:41:35.786] [INFO] redsocial - El usuario prueba@prueba.com se logeo correctamente
+[2020-05-08T17:41:36.306] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-08T17:41:40.421] [INFO] redsocial - Ya existe una peticion de ese tipo o no es valida
+[2020-05-08T17:41:49.482] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-08T17:42:45.693] [INFO] redsocial - El usuario prueba@prueba.com se logeo correctamente
+[2020-05-08T17:42:46.187] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-08T17:42:49.072] [INFO] redsocial - Ya existe una peticion de ese tipo o no es valida
+[2020-05-08T17:43:51.523] [INFO] redsocial - El usuario prueba@prueba.com se logeo correctamente
+[2020-05-08T17:43:52.024] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-08T17:44:01.562] [INFO] redsocial - Ya existe una peticion de ese tipo o no es valida
+[2020-05-08T17:52:52.593] [INFO] redsocial - El usuario prueba@prueba.com se logeo correctamente
+[2020-05-08T17:52:53.091] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-08T17:52:55.558] [INFO] redsocial - Ya existe una peticion de ese tipo o no es valida
+[2020-05-08T17:52:56.069] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-08T17:58:11.735] [INFO] redsocial - El usuario prueba@prueba.com se logeo correctamente
+[2020-05-08T17:58:12.246] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-08T17:58:15.051] [INFO] redsocial - Ya existe una peticion de ese tipo o no es valida
+[2020-05-08T17:58:15.532] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-08T18:02:05.180] [INFO] redsocial - El usuario prueba@prueba.com se logeo correctamente
+[2020-05-08T18:02:05.691] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-08T18:02:08.692] [INFO] redsocial - Ya existe una peticion de ese tipo o no es valida
+[2020-05-08T18:02:09.197] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-08T18:04:03.205] [INFO] redsocial - El usuario prueba@prueba.com se logeo correctamente
+[2020-05-08T18:04:03.734] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-08T18:04:06.552] [INFO] redsocial - Peticion enviada
+[2020-05-08T18:04:07.075] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-08T18:04:21.457] [INFO] redsocial - Ya existe una peticion de ese tipo o no es valida
+[2020-05-08T18:04:21.999] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-08T18:06:51.696] [INFO] redsocial - El usuario prueba@prueba.com se logeo correctamente
+[2020-05-08T18:06:52.301] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-08T18:06:55.780] [INFO] redsocial - Peticion enviada
+[2020-05-08T18:06:56.264] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-08T18:07:09.733] [INFO] redsocial - Peticion enviada
+[2020-05-08T18:07:10.286] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-08T18:07:27.712] [INFO] redsocial - Peticion enviada
+[2020-05-08T18:07:28.276] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-08T18:07:38.197] [INFO] redsocial - Peticion enviada
+[2020-05-08T18:07:38.723] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-08T18:07:40.457] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-08T18:07:44.187] [INFO] redsocial - Peticion enviada
+[2020-05-08T18:07:44.656] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-08T18:07:56.391] [INFO] redsocial - Peticion enviada
+[2020-05-08T18:07:56.877] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-08T18:07:59.151] [INFO] redsocial - Ya existe una peticion de ese tipo o no es valida
+[2020-05-08T18:07:59.629] [INFO] redsocial - El usuario ha listado los usuarios correctamente
