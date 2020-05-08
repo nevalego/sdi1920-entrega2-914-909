@@ -47,7 +47,9 @@ routerUsuarioToken.use(function (req, res, next) {
             if (err || (Date.now() / 1000 - infoToken.tiempo) > 240) {
                 res.status(403);
                 // Forbidden
-                res.json({acceso: false, error: 'Token invalido o caducado'});
+                res.json(
+                    {acceso: false,
+                        error: 'Token invalido o caducado'});
                 // También podríamos comprobar que intoToken.usuario existe
                 return;
             } else {
@@ -63,6 +65,10 @@ routerUsuarioToken.use(function (req, res, next) {
     }
 });
 
+// Aplicar routerUsuarioToken
+app.use('/api/amigos', routerUsuarioToken);
+app.use('/api/mensaje/:destino_id', routerUsuarioToken);
+
 let gestorDB = require("./modules/gestorDB.js");
 gestorDB.init(app, mongo);
 
@@ -74,10 +80,6 @@ log4js.configure({
 });
 
 let logger = log4js.getLogger('redsocial');
-
-// Aplicar routerUsuarioToken
-app.use('/api/usuarios', routerUsuarioToken);
-
 
 // routerUsuarioSession
 let routerUsuarioSession = express.Router();
@@ -110,7 +112,7 @@ app.set('logger', logger);
 
 //Rutas/controladores por lógica
 require("./routes/rusuarios.js")(app, swig, gestorDB); // (app, param1, param2, etc.)
-
+require("./routes/rapiredsocial")(app, gestorDB);
 
 app.use(express.static('public'));
 
