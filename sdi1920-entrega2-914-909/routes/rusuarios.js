@@ -6,18 +6,12 @@ module.exports = function (app, swig, gestorDB) {
             criterio = {
                 $or:[{name : {$regex : ".*"+req.query.busqueda+".*"}},
                     {surname : {$regex : ".*"+req.query.busqueda+".*"}},
-                    {email : {$regex : ".*"+req.query.busqueda+".*"}}],
-                $and: [
-                    {email: {$ne: req.session.usuario.email}}
-                ]
+                    {email : {$regex : ".*"+req.query.busqueda+".*"}}]
             };
         }
-        else{
-            criterio = {
-            $and: [
-                {email: {$ne: req.session.usuario.email}}
-            ]
-        };}
+        else {
+            criterio = {};
+        }
         let pg = parseInt(req.query.pg);
         if ( req.query.pg == null){
             pg = 1;

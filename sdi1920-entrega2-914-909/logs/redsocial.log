@@ -268,3 +268,44 @@
 [2020-05-08T14:43:08.284] [INFO] redsocial - El usuario lucia@email.com se logeo correctamente
 [2020-05-08T14:43:08.801] [INFO] redsocial - El usuario ha listado los usuarios correctamente
 [2020-05-08T14:43:17.321] [INFO] redsocial - Peticion enviada
+[2020-05-08T17:22:07.941] [INFO] redsocial - El usuario pepe@email.com se logeo correctamente
+[2020-05-08T17:22:08.780] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-08T17:22:28.163] [INFO] redsocial - Peticion enviada
+[2020-05-08T17:22:37.649] [INFO] redsocial - El usuario ha listado sus solicitudes de amistad correctamente
+[2020-05-08T17:22:42.142] [INFO] redsocial - La peticion ha sido aceptada correctamente
+[2020-05-08T17:22:44.695] [INFO] redsocial - El usuario ha listado sus amigos correctamente
+[2020-05-08T17:23:12.328] [INFO] redsocial - El usuario ha listado sus solicitudes de amistad correctamente
+[2020-05-08T17:23:15.577] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-08T17:23:28.808] [INFO] redsocial - El usuario ha listado sus amigos correctamente
+[2020-05-08T17:23:30.425] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-08T17:23:32.284] [INFO] redsocial - Ya existe una peticion de ese tipo o no es valida
+[2020-05-08T17:23:36.505] [INFO] redsocial - El usuario ha listado sus amigos correctamente
+[2020-05-08T17:23:39.408] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-08T17:30:49.907] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-08T17:31:00.603] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-08T17:31:17.175] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-08T17:31:19.987] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-08T17:45:34.747] [INFO] redsocial - El usuario ha listado sus solicitudes de amistad correctamente
+[2020-05-08T17:45:37.064] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-08T17:46:12.018] [INFO] redsocial - El usuario pepe@email.com se logeo correctamente
+[2020-05-08T17:46:12.553] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-08T17:46:18.725] [INFO] redsocial - El usuario pepe@email.com cerró sesión correctamente
+[2020-05-08T17:47:09.406] [ERROR] redsocial - Email o password incorrecto
+[2020-05-08T17:47:27.957] [ERROR] redsocial - Email o password incorrecto
+[2020-05-08T17:47:51.277] [ERROR] redsocial - Email o password incorrecto
+[2020-05-08T17:47:51.365] [ERROR] redsocial - Email o password incorrecto
+[2020-05-08T17:48:23.165] [INFO] redsocial - El usuario pepe@email.com se logeo correctamente
+[2020-05-08T17:48:25.877] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-08T17:48:50.187] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-08T17:49:21.154] [INFO] redsocial - El usuario pepe@email.com cerró sesión correctamente
+[2020-05-08T17:50:34.026] [INFO] redsocial - El usuario pepe@email.com se logeo correctamente
+[2020-05-08T17:50:34.882] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-08T17:50:42.857] [INFO] redsocial - El usuario pepe@email.com cerró sesión correctamente
+[2020-05-08T17:51:41.058] [INFO] redsocial - El usuario pepe@email.com se logeo correctamente
+[2020-05-08T17:51:41.641] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-08T17:51:44.119] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-08T17:51:46.710] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-08T17:53:22.247] [INFO] redsocial - El usuario pepe@email.com se logeo correctamente
+[2020-05-08T17:53:23.242] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-08T17:53:28.408] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-08T17:53:31.030] [INFO] redsocial - El usuario ha listado los usuarios correctamente
