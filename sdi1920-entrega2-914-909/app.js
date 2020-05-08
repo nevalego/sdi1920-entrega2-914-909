@@ -76,7 +76,8 @@ log4js.configure({
 let logger = log4js.getLogger('redsocial');
 
 // Aplicar routerUsuarioToken
-app.use('/api/usuario', routerUsuarioToken);
+app.use('/api/usuarios', routerUsuarioToken);
+
 
 // routerUsuarioSession
 let routerUsuarioSession = express.Router();
@@ -93,12 +94,16 @@ routerUsuarioSession.use(function (req, res, next) {
 
 //Aplicar routerUsuarioSession
 app.use("/usuarios", routerUsuarioSession);
-
+app.use("/tienda", routerUsuarioSession);
+app.use("/usuario/amistad/:email", routerUsuarioSession);
+app.use("/usuario/amistad", routerUsuarioSession);
+app.use("/usuario/amigos", routerUsuarioSession);
+app.use("/usuario/amistad/aceptar/:id", routerUsuarioSession);
 
 // Variables
 app.set('port', 8081);
-app.set('db', 'mongodb://administrador:redsocial914909@redsocial-shard-00-00-uwber.mongodb.net:27017,redsocial-shard-00-01-uwber.mongodb.net:27017,redsocial-shard-00-02-uwber.mongodb.net:27017/test?ssl=true&replicaSet=redsocial-shard-0&authSource=admin&retryWrites=true&w=majority');
-//app.set('db', 'mongodb://administrador:redsocial914909@redsocial-shard-00-00-nukgt.mongodb.net:27017,redsocial-shard-00-01-nukgt.mongodb.net:27017,redsocial-shard-00-02-nukgt.mongodb.net:27017/test?ssl=true&replicaSet=redsocial-shard-0&authSource=admin&retryWrites=true&w=majority');
+//app.set('db', 'mongodb://administrador:redsocial914909@redsocial-shard-00-00-uwber.mongodb.net:27017,redsocial-shard-00-01-uwber.mongodb.net:27017,redsocial-shard-00-02-uwber.mongodb.net:27017/test?ssl=true&replicaSet=redsocial-shard-0&authSource=admin&retryWrites=true&w=majority');
+app.set('db', 'mongodb://administrador:redsocial914909@redsocial-shard-00-00-nukgt.mongodb.net:27017,redsocial-shard-00-01-nukgt.mongodb.net:27017,redsocial-shard-00-02-nukgt.mongodb.net:27017/test?ssl=true&replicaSet=redsocial-shard-0&authSource=admin&retryWrites=true&w=majority');
 app.set('clave', 'abcdefg');
 app.set('crypto', crypto);
 app.set('logger', logger);

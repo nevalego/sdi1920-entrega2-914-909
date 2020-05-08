@@ -244,3 +244,27 @@
 [2020-05-08T02:07:06.024] [INFO] redsocial - El usuario prueba3@prueba3.com se logeo correctamente
 [2020-05-08T02:07:06.518] [INFO] redsocial - El usuario ha listado los usuarios correctamente
 [2020-05-08T02:07:08.959] [INFO] redsocial - El usuario ha listado sus amigos correctamente
+[2020-05-08T14:20:22.554] [INFO] redsocial - El usuario pepe@email.com se logeo correctamente
+[2020-05-08T14:20:23.001] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-08T14:20:27.163] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-08T14:20:31.735] [INFO] redsocial - El usuario ha listado sus solicitudes de amistad correctamente
+[2020-05-08T14:20:32.824] [INFO] redsocial - El usuario ha listado sus amigos correctamente
+[2020-05-08T14:20:33.756] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-08T14:26:38.645] [INFO] redsocial - El usuario pepe@email.com se logeo correctamente
+[2020-05-08T14:26:39.112] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-08T14:31:54.091] [INFO] redsocial - El usuario pepe@email.com se logeo correctamente
+[2020-05-08T14:31:54.789] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-08T14:31:56.761] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-08T14:33:53.277] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-08T14:38:43.122] [INFO] redsocial - El usuario pepe@email.com se logeo correctamente
+[2020-05-08T14:38:43.583] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-08T14:41:59.130] [INFO] redsocial - El usuario pepe@email.com se logeo correctamente
+[2020-05-08T14:41:59.612] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-08T14:42:05.795] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-08T14:42:07.137] [INFO] redsocial - El usuario pepe@email.com cerró sesión correctamente
+[2020-05-08T14:42:36.455] [INFO] redsocial - El usuario tomas@email.com se logeo correctamente
+[2020-05-08T14:42:36.912] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-08T14:42:42.248] [INFO] redsocial - El usuario tomas@email.com cerró sesión correctamente
+[2020-05-08T14:43:08.284] [INFO] redsocial - El usuario lucia@email.com se logeo correctamente
+[2020-05-08T14:43:08.801] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-08T14:43:17.321] [INFO] redsocial - Peticion enviada

@@ -29,4 +29,20 @@ module.exports = function (app, gestorBD) {
             }
        });
     });
+    app.get("/api/usuarios/", function (req, res) {
+        let criterio = {};
+        gestorBD.obtenerUsuarios(criterio,function (usuarios) {
+            if (usuarios == null) {
+                app.get("logger").error("Se ha producido un error al obtener los usuarios de la API");
+                res.status(500);
+                res.json({
+                    error: "Se ha producido un error al obtener los usuarios de la API"
+                })
+            } else {
+                app.get("logger").info("Los usuarios se listaron correctamente de la API");
+                res.status(200);
+                res.send(JSON.stringify(usuarios));
+            }
+        });
+    });
 }

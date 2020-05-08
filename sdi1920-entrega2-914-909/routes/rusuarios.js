@@ -12,19 +12,20 @@ module.exports = function (app, swig, gestorDB) {
                 ]
             };
         }
-        else{criterio = {
+        else{
+            criterio = {
             $and: [
                 {email: {$ne: req.session.usuario.email}}
             ]
         };}
-        let pg = parseInt(req.query.pg); // Es String !!!
-        if ( req.query.pg == null){ // Puede no venir el param
+        let pg = parseInt(req.query.pg);
+        if ( req.query.pg == null){
             pg = 1;
         }
 
         gestorDB.obtenerUsuariosPg(criterio, pg,function (usuarios, total) {
             if (usuarios == null) {
-                res.redirect("/identificarse");
+                res.send("Error al listar usuarios");
                 app.get("logger").error('Error al listar los usuarios');
             } else {
                 let ultimaPg = total/4;
