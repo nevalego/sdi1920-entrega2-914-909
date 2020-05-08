@@ -212,6 +212,50 @@ module.exports = function (app, swig, gestorDB) {
             }
         });
     });
+    app.get("/usuario/amigos", function (req, res) {
+        if ( req.session.usuario == null){
+            res.redirect("/identificarse");
+            app.get("logger").error('No hay un usuario identificado');
+        }
+        let criterio = {
+            $or:[{remitente: req.session.usuario.email},
+                {emisor :  req.session.usuario.email}],
+            aceptada: true
+        };
+        let pg = parseInt(req.query.pg); // Es String !!!
+        if ( req.query.pg == null){ // Puede no venir el param
+            pg = 1;
+        }
+
+        gestorDB.obtenerPeticionesDeAmistadPg(criterio, pg,function (peticiones, total) {
+
+            if (peticiones == null) {
+                res.redirect("/usuarios");
+                app.get("logger").error('Error al listar las peticiones de amistad');
+            } else {
+                let ultimaPg = total/4;
+                if (total % 5 > 0 ){ // Sobran decimales
+                    ultimaPg = ultimaPg+1;
+                }
+                let paginas = []; // paginas mostrar
+                for(let i = pg-2 ; i <= pg+2 ; i++){
+                    if ( i > 0 && i <= ultimaPg){
+                        paginas.push(i);
+                    }
+                }
+                let respuesta = swig.renderFile('views/blistaDeAmigos.html',
+                    {
+                        usuario: req.session.usuario,
+                        email:req.session.usuario.email,
+                        peticiones: peticiones,
+                        paginas : paginas,
+                        actual : pg
+                    });
+                res.send(respuesta);
+                app.get("logger").info('El usuario ha listado sus amigos correctamente');
+            }
+        });
+    });
     app.get("/usuario/amistad/aceptar/:id", function (req, res) {
         if ( req.session.usuario == null){
             res.redirect("/identificarse");

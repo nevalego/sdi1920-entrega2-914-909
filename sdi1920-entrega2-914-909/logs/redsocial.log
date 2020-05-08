@@ -234,3 +234,13 @@
 [2020-05-08T01:38:57.877] [INFO] redsocial - El usuario ha listado sus solicitudes de amistad correctamente
 [2020-05-08T01:39:00.349] [INFO] redsocial - La peticion ha sido aceptada correctamente
 [2020-05-08T01:39:24.433] [INFO] redsocial - El usuario ha listado sus solicitudes de amistad correctamente
+[2020-05-08T02:04:08.957] [ERROR] redsocial - No hay un usuario identificado
+[2020-05-08T02:04:15.251] [INFO] redsocial - El usuario prueba3@prueba3.com se logeo correctamente
+[2020-05-08T02:04:15.756] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-08T02:06:09.749] [ERROR] redsocial - No hay un usuario identificado
+[2020-05-08T02:06:16.526] [INFO] redsocial - El usuario prueba3@prueba3.com se logeo correctamente
+[2020-05-08T02:06:17.020] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-08T02:06:59.733] [ERROR] redsocial - No hay un usuario identificado
+[2020-05-08T02:07:06.024] [INFO] redsocial - El usuario prueba3@prueba3.com se logeo correctamente
+[2020-05-08T02:07:06.518] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-08T02:07:08.959] [INFO] redsocial - El usuario ha listado sus amigos correctamente
