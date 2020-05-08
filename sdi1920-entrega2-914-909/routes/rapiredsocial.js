@@ -12,7 +12,7 @@ module.exports = function (app, gestorBD) {
                 res.status(401); // unauthorized
                 res.json({
                     autenticado: false,
-                    mensaje: "Inicio de seión no correcto"
+                    mensaje: "Error al iniciar de seión"
                 })
                 }else {
                 var token = app.get('jwt').sign(
@@ -28,26 +28,28 @@ module.exports = function (app, gestorBD) {
        });
     });
     app.get("/api/amigos/", function (req, res) {
-        let criterio = {
-            $or:[{remitente: req.session.usuario.email},
-                {emisor :  req.session.usuario.email}],
-            aceptada: true
-        };
-        gestorBD.obtenerPeticionesDeAmistad(criterio,function (amistades) {
-            if (amistades == null) {
-                app.get("logger").error("Se ha producido un error al obtener los amigos de la API");
-                res.status(500);
-                res.json({
-                    error: "Se ha producido un error al obtener los amigos de la API"
-                })
-            } else {
-                app.get("logger").info("Los amigos se listaron correctamente de la API");
-                res.status(200);
-                res.send(JSON.stringify(amistades));
-            }
-        });
+        if (req.body.token) {
+            let criterio = {
+                $or:[{remitente: req.session.usuario.email},
+                    {emisor :  req.session.usuario.email}],
+                aceptada: true
+            };
+            gestorBD.obtenerPeticionesDeAmistad(criterio,function (amistades) {
+                if (amistades == null) {
+                    app.get("logger").error("Se ha producido un error al obtener los amigos de la API");
+                    res.status(500);
+                    res.json({
+                        error: "Se ha producido un error al obtener los amigos de la API"
+                    })
+                } else {
+                    app.get("logger").info("Los amigos se listaron correctamente de la API");
+                    res.status(200);
+                    res.send(JSON.stringify(amistades));
+                }
+            });
+        }
     });
-    app.post("/api/mensaje/:destino_id", function (req, res) {
+    app.post("/api/mensaje/:destino", function (req, res) {
         if (req.token) {
             let mensaje = {
                 emisor: req.session.usuario,
@@ -58,13 +60,13 @@ module.exports = function (app, gestorBD) {
             };
             gestorBD.insertarOferta(oferta, function (id) {
                 if (id == null) {
-                    app.get("logger").error("Error al crear mensaje (API)");
+                    app.get("logger").error("Error al crear mensaje en la API");
                     res.status(500);
                     res.json({
                         error: "se ha producido un error"
                     })
                 } else {
-                    app.get("logger").info("El mensaje se creó correctamente (API)");
+                    app.get("logger").info("El mensaje se creó correctamente en la API");
                     res.status(201);
                     res.json({
                         mensaje: "Mensaje creado",
@@ -74,5 +76,34 @@ module.exports = function (app, gestorBD) {
             });
         }
     });
-
+    app.get("/api/mensajes/:id", function (req, res) {
+        let criterioMongo = {"_id": gestorBD.mongo.ObjectID(req.params.id)};
+        gestorBD.obtenerConversacion(criterioMongo, function (conversaciones) {
+            if (conversaciones == null || conversaciones.length === 0) {
+                app.get("logger").error("Error al obtener mensajes de conversación de la API");
+                res.status(500);
+                res.json({
+                    error: "Error al obtener mensajes de conversación de la API"
+                })
+            } else {
+                let conversacion = conversaciones[0];
+                let criterio = {
+                    conversacion: gestorBD.mongo.ObjectID(conversacion._id)
+                };
+                gestorBD.obtenerMensajes(criterio, function (mensajes) {
+                    if (mensajes == null) {
+                        app.get("logger").error("Error al obtener los mensajes de la API");
+                        res.status(500);
+                        res.json({
+                            error: "Error al obtener los mensajes (API)"
+                        })
+                    } else {
+                        app.get("logger").info("Se han obtenido correctamente los mensajes de la API");
+                        res.status(200);
+                        res.send(JSON.stringify(mensajes));
+                    }
+                });
+            }
+        });
+    });
 }

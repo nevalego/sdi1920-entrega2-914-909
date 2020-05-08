@@ -94,7 +94,7 @@ module.exports = function (app, swig, gestorDB) {
                     });
                 }
             });
-        }});
+        })});
 
 
     app.get("/identificarse", function (req, res) {
