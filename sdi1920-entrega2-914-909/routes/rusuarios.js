@@ -56,23 +56,46 @@ module.exports = function (app, swig, gestorDB) {
     });
 
     app.post('/usuario', function (req, res) {
-        let seguro = app.get('crypto').createHmac('sha256', app.get('clave'))
-            .update(req.body.password).digest('hex');
-
-        let usuario = {
-            email: req.body.email,
-            name: req.body.name,
-            surname: req.body.surname,
-            password: seguro
-        }
-        gestorDB.insertarUsuario(usuario, function (id) {
-            if (id == null) {
-                res.redirect("/registrarse?mensaje=Error al registrar usuario");
-            } else {
-                res.redirect("/identificarse?mensaje=Nuevo usuario registrado");
+        app.get('logger').info('Usuario se va a registrar');
+        if (req.body.nombre == '' || req.body.apellidos == '' ||
+            req.body.password == '' || req.body.repassword == '' ||
+            req.body.email == '') {
+            res.redirect("/registrarse?mensaje=Debe rellenar todos los campos&tipoMensaje=alert-danger")
+            app.get('logger').error('Debe rellenar todos los campos');
+        } else if (req.body.password !== req.body.passwordrep) {
+            res.redirect("/registrarse?mensaje=La contraseña no coincide&tipoMensaje=alert-danger")
+            app.get('logger').error('La contraseña no coincide');
+        } else {
+            let seguro = app.get('crypto').createHmac('sha256', app.get('clave'))
+                .update(req.body.password).digest('hex');
+            let usuario = {
+                email: req.body.email,
+                name: req.body.name,
+                surname: req.body.surname,
+                password: seguro
             }
-        })
-    });
+            // Comprobar si ya existe un usuario con ese email
+            let criterio = {email: req.body.email};
+            gestorDB.obtenerUsuarios(criterio, function (usuarios) {
+                if (usuarios != null && usuarios.length !== 0) {
+                    app.get("logger").error('Debe escoger otro email');
+                    res.redirect("/registrarse?mensaje=Debe escoger otro email&tipoMensaje=alert-danger");
+                } else {
+                    gestorDB.insertarUsuario(usuario, function (resultado) {
+                        if (resultado == null) {
+                            app.get('logger').error('Error al registrar usuario');
+                            res.redirect("/registrarse?mensaje=Error al registrar usuario&tipoMensaje=alert-danger");
+                        } else {
+                            res.session.usuario = usuario;
+                            delete req.session.usuario.password;
+                            app.get('logger').info('Usuario ' + req.body.email + 'se ha registrado');
+                            res.redirect("/identificarse?mensaje=Usuario registrado correctamente");
+                        }
+                    });
+                }
+            });
+        }});
+
 
     app.get("/identificarse", function (req, res) {
         let respuesta = swig.renderFile('views/bidentificacion.html', {});

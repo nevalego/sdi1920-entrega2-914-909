@@ -309,3 +309,15 @@
 [2020-05-08T17:53:23.242] [INFO] redsocial - El usuario ha listado los usuarios correctamente
 [2020-05-08T17:53:28.408] [INFO] redsocial - El usuario ha listado los usuarios correctamente
 [2020-05-08T17:53:31.030] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-08T18:10:02.278] [INFO] redsocial - El usuario pepe@email.com se logeo correctamente
+[2020-05-08T18:10:02.705] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-08T18:10:09.359] [INFO] redsocial - El usuario pepe@email.com cerró sesión correctamente
+[2020-05-08T18:10:36.935] [INFO] redsocial - Usuario se va a registrar
+[2020-05-08T18:10:36.936] [ERROR] redsocial - Debe rellenar todos los campos
+[2020-05-08T18:12:24.244] [INFO] redsocial - Usuario se va a registrar
+[2020-05-08T18:12:24.247] [ERROR] redsocial - La contraseña no coincide
+[2020-05-08T18:13:20.918] [INFO] redsocial - Usuario se va a registrar
+[2020-05-08T18:17:58.030] [INFO] redsocial - Usuario se va a registrar
+[2020-05-08T18:17:58.715] [ERROR] redsocial - Debe escoger otro email
+[2020-05-08T18:18:25.386] [INFO] redsocial - Usuario se va a registrar
+[2020-05-08T18:18:27.254] [ERROR] redsocial - Debe escoger otro email
