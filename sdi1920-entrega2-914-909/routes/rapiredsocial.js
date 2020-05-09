@@ -104,6 +104,38 @@ module.exports = function (app, gestorBD) {
             });
         }
     });
+
+    //Ejercicio AS4 Marcar mensaje como leido
+    app.get("api/conversacion",function(req,res){
+        if (req.headers['token']) {
+            let criterio = {
+                $or: [{
+                    emisor: req.session.usuario.email,
+                    remitente: req.params.destino
+                },
+                    {
+                        emisor: req.params.destino,
+                        remitente: req.session.usuario.email
+                    }
+                ]
+            };
+
+            gestorBD.obtenerConversacion(criterio,function (conversaciones){
+                if (conversaciones == null) {
+                    app.get("logger").error("Se ha producido un error al obtener la conversacion");
+                    res.status(500);
+                    res.json({
+                        error: "Se ha producido un error al obtener la conversacion"
+                    })
+                } else {
+                    app.get("logger").info("Los amigos se listaron correctamente de la API");
+                    res.status(200);
+                    res.logeado = logeado;
+                    res.send(JSON.stringify(conversaciones));
+                }
+            });
+        }
+    });
     //Ejercicio AS5 Marcar mensaje como leido
     app.put("/api/mensaje/leido/:id", function (req, res) {
         if (req.token) {
