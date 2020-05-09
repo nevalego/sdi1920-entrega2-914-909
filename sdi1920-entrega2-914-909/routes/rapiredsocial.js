@@ -55,27 +55,51 @@ module.exports = function (app, gestorBD) {
     });
     app.post("/api/mensaje/:destino", function (req, res) {
         if (req.token) {
-            let mensaje = {
-                emisor: req.session.usuario,
-                destino: req.params.destino,
-                texto: req.body.texto,
-                fecha: req.body.fecha,
-                leido: false
-            };
-            gestorBD.insertarMensaje(mensaje, function (id) {
-                if (id == null) {
-                    app.get("logger").error("Error al crear mensaje en la API");
-                    res.status(500);
+            let criterio = {
+                $or: [{
+                    emisor: req.session.usuario.email,
+                    remitente: req.params.destino
+                },
+                    {
+                        emisor: req.params.destino,
+                        remitente: req.session.usuario.email
+                    }
+                ],
+                aceptada: true
+            }
+            //Se comprueba primero si los usuarios son amigos
+            gestorBD.obtenerPeticionesDeAmistad(criterio,function (amistad){
+                if (amistad == null || amistad.length == 0) {
+                    app.get("logger").error("Los usuarios no son amigos actualmente");
+                    res.status(403);
                     res.json({
-                        error: "Error al crear mensaje en la API"
+                        error: "Los usuarios no son amigos actualmente"
                     })
                 } else {
-                    app.get("logger").info("El mensaje se creó correctamente en la API");
-                    res.status(201);
-                    res.json({
-                        mensaje: "Mensaje creado",
-                        _id: id
-                    })
+                    let mensaje = {
+                        emisor: req.session.usuario.email,
+                        destino: req.params.destino,
+                        texto: req.body.texto,
+                        fecha: new Date(),
+                        leido: false
+                    };
+
+                    gestorBD.insertarMensaje(mensaje, function (id) {
+                        if (id == null) {
+                            app.get("logger").error("Error al crear mensaje en la API");
+                            res.status(500);
+                            res.json({
+                                error: "Error al crear mensaje en la API"
+                            })
+                        } else {
+                            app.get("logger").info("El mensaje se creó correctamente en la API");
+                            res.status(201);
+                            res.json({
+                                mensaje: "Mensaje creado",
+                                _id: id
+                            })
+                        }
+                    });
                 }
             });
         }
