@@ -104,6 +104,35 @@ module.exports = function (app, gestorBD) {
             });
         }
     });
+    //Ejercicio AS5 Marcar mensaje como leido
+    app.put("/api/mensaje/leido/:id", function (req, res) {
+        if (req.token) {
+            let criterio = { "_id" : gestorBD.mongo.ObjectID(req.params.id),
+                destino: req.session.usuario.email,
+                leido: false
+            };
+            let mensaje = {
+                leido:true
+            }
+            //Se comprueba primero si los usuarios son amigos
+            gestorBD.modificarMensaje(criterio, mensaje, function(id) {
+                if (result == null) {
+                    app.get("logger").error("Mensaje no existe, o no eres destinatario o ya esta leido");
+                    res.status(403);
+                    res.json({
+                        error : "Mensaje no existe, o no eres destinatario o ya esta leido"
+                    })
+                } else {
+                    app.get("logger").info("El mensaje se marco correctamente como leido");
+                    res.status(201);
+                    res.json({
+                        mensaje: "Mensaje marcado como leido",
+                        _id: id
+                    });
+                }
+            });
+        }
+    });
     app.get("/api/mensajes/:id", function (req, res) {
 
         // Obtener (emisor o receptor es usuario logeado o amigo)
