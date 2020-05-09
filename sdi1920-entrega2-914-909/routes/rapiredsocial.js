@@ -29,13 +29,26 @@ module.exports = function (app, gestorBD) {
     });
     app.get("/api/amigos", function (req, res) {
         if (req.headers['token']) {
-            let criterio = {
-                $or:[
-                    {remitente: {$ne: res.usuario}},
-                    {emisor :  {$ne: res.usuario}}
+            let criterio = {};
+            if( req.query.busqueda != null){
+                criterio = {
+                    aceptada: true,
+                    $or: [ {remitente: {$ne: res.usuario}},
+                        {emisor: {$ne: res.usuario}}
                     ],
-                aceptada: true
-            };
+                    $and: [
+                        {remitente : {$regex : ".*"+req.query.busqueda+".*"}}
+                        ]
+                };
+            } else {
+                criterio = {
+                       $or: [
+                        {remitente: {$ne: res.usuario}},
+                        {emisor: {$ne: res.usuario}}
+                    ],
+                    aceptada: true
+                };
+            }
             let logeado = res.usuario;
             gestorBD.obtenerPeticionesDeAmistad(criterio,function (amistades) {
                 if (amistades == null) {
@@ -48,7 +61,16 @@ module.exports = function (app, gestorBD) {
                     app.get("logger").info("Los amigos se listaron correctamente de la API");
                     res.status(200);
                     res.logeado = logeado;
-                    res.send(JSON.stringify(amistades));
+                    let amigos = [];
+                    for(i = 0; i < amistades.length ; i++){
+                        // Para cada peticion obtener el usuario distinto al logueado
+                        let amigo = amistades[i].remitente;
+                        if( amigo === logeado){
+                            amigo = amistades[i].emisor;
+                        }
+                        amigos[i]=amigo;
+                    }
+                    res.send(JSON.stringify(amigos));
                 }
             });
         }
