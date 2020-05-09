@@ -1,20 +1,18 @@
 module.exports = function (app, gestorBD) {
-    app.post("/api/autenticar/", function(req, res) {
+    app.post("/api/autenticar", function(req, res) {
        let seguro = app.get("crypto").createHmac('sha256', app.get('clave'))
            .update(req.body.password).digest('hex');
 
-       let criterio = {
-           email : req.body.email,
-           name : req.body.name,
-           surname : req.body.surname,
-           password : seguro
-       }
-
+        let criterio = {
+            email : req.body.email,
+            password : seguro
+        }
        gestorBD.obtenerUsuarios(criterio, function (usuarios) {
             if ( usuarios == null || usuarios.length == 0){
                 res.status(401); // unauthorized
                 res.json({
-                    autenticado: false
+                    autenticado: false,
+                    mensaje: "Error al iniciar de seión"
                 })
                 }else {
                 var token = app.get('jwt').sign(
@@ -29,19 +27,89 @@ module.exports = function (app, gestorBD) {
             }
        });
     });
-    app.get("/api/usuarios/", function (req, res) {
-        let criterio = {};
-        gestorBD.obtenerUsuarios(criterio,function (usuarios) {
-            if (usuarios == null) {
-                app.get("logger").error("Se ha producido un error al obtener los usuarios de la API");
+    app.get("/api/amigos", function (req, res) {
+        if (req.headers['token']) {
+            let criterio = {
+                $or:[
+                    {remitente: {$ne: res.usuario}},
+                    {emisor :  {$ne: res.usuario}}
+                    ],
+                aceptada: true
+            };
+            let logeado = res.usuario;
+            gestorBD.obtenerPeticionesDeAmistad(criterio,function (amistades) {
+                if (amistades == null) {
+                    app.get("logger").error("Se ha producido un error al obtener los amigos de la API");
+                    res.status(500);
+                    res.json({
+                        error: "Se ha producido un error al obtener los amigos de la API"
+                    })
+                } else {
+                    app.get("logger").info("Los amigos se listaron correctamente de la API");
+                    res.status(200);
+                    res.logeado = logeado;
+                    res.send(JSON.stringify(amistades));
+                }
+            });
+        }
+    });
+    app.post("/api/mensaje/:destino", function (req, res) {
+        if (req.token) {
+            let mensaje = {
+                emisor: req.session.usuario,
+                destino: req.params.destino,
+                texto: req.body.texto,
+                fecha: req.body.fecha,
+                leido: false
+            };
+            gestorBD.insertarMensaje(mensaje, function (id) {
+                if (id == null) {
+                    app.get("logger").error("Error al crear mensaje en la API");
+                    res.status(500);
+                    res.json({
+                        error: "Error al crear mensaje en la API"
+                    })
+                } else {
+                    app.get("logger").info("El mensaje se creó correctamente en la API");
+                    res.status(201);
+                    res.json({
+                        mensaje: "Mensaje creado",
+                        _id: id
+                    })
+                }
+            });
+        }
+    });
+    app.get("/api/mensajes/:id", function (req, res) {
+
+        // Obtener (emisor o receptor es usuario logeado o amigo)
+        let criterio = {"_id": gestorBD.mongo.ObjectID(req.params.id)};
+
+        gestorBD.obtenerConversacion(criterio, function (conversaciones) {
+            if (conversaciones == null || conversaciones.length === 0) {
+                app.get("logger").error("Error al obtener conversación de la API");
                 res.status(500);
                 res.json({
-                    error: "Se ha producido un error al obtener los usuarios de la API"
+                    error: "Error al obtener conversación de la API"
                 })
             } else {
-                app.get("logger").info("Los usuarios se listaron correctamente de la API");
-                res.status(200);
-                res.send(JSON.stringify(usuarios));
+                let conversacion = conversaciones[0];
+                let criterio = {
+                    conversacion: gestorBD.mongo.ObjectID(conversacion._id)
+                };
+                gestorBD.obtenerMensajes(criterio, function (mensajes) {
+                    if (mensajes == null) {
+                        app.get("logger").error("Error al obtener mensajes de la API");
+                        res.status(500);
+                        res.json({
+                            error: "Error al obtener los mensajes de la API"
+                        })
+                    } else {
+                        app.get("logger").info("Se han obtenido correctamente los mensajes de la API");
+                        res.status(200);
+                        res.send(JSON.stringify(mensajes));
+                    }
+                });
             }
         });
     });

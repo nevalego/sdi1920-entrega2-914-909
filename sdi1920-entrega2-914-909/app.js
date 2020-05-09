@@ -47,7 +47,9 @@ routerUsuarioToken.use(function (req, res, next) {
             if (err || (Date.now() / 1000 - infoToken.tiempo) > 240) {
                 res.status(403);
                 // Forbidden
-                res.json({acceso: false, error: 'Token invalido o caducado'});
+                res.json(
+                    {acceso: false,
+                        error: 'Token invalido o caducado'});
                 // También podríamos comprobar que intoToken.usuario existe
                 return;
             } else {
@@ -63,6 +65,11 @@ routerUsuarioToken.use(function (req, res, next) {
     }
 });
 
+// Aplicar routerUsuarioToken
+app.use('/api/amigos', routerUsuarioToken);
+app.use('/api/mensaje/:destino', routerUsuarioToken);
+app.use('/api/mensajes/:id', routerUsuarioToken);
+
 let gestorDB = require("./modules/gestorDB.js");
 gestorDB.init(app, mongo);
 
@@ -74,10 +81,6 @@ log4js.configure({
 });
 
 let logger = log4js.getLogger('redsocial');
-
-// Aplicar routerUsuarioToken
-app.use('/api/usuarios', routerUsuarioToken);
-
 
 // routerUsuarioSession
 let routerUsuarioSession = express.Router();
@@ -102,15 +105,15 @@ app.use("/usuario/amistad/aceptar/:id", routerUsuarioSession);
 
 // Variables
 app.set('port', 8081);
-app.set('db', 'mongodb://administrador:redsocial914909@redsocial-shard-00-00-uwber.mongodb.net:27017,redsocial-shard-00-01-uwber.mongodb.net:27017,redsocial-shard-00-02-uwber.mongodb.net:27017/test?ssl=true&replicaSet=redsocial-shard-0&authSource=admin&retryWrites=true&w=majority');
-//app.set('db', 'mongodb://administrador:redsocial914909@redsocial-shard-00-00-nukgt.mongodb.net:27017,redsocial-shard-00-01-nukgt.mongodb.net:27017,redsocial-shard-00-02-nukgt.mongodb.net:27017/test?ssl=true&replicaSet=redsocial-shard-0&authSource=admin&retryWrites=true&w=majority');
+//app.set('db', 'mongodb://administrador:redsocial914909@redsocial-shard-00-00-uwber.mongodb.net:27017,redsocial-shard-00-01-uwber.mongodb.net:27017,redsocial-shard-00-02-uwber.mongodb.net:27017/test?ssl=true&replicaSet=redsocial-shard-0&authSource=admin&retryWrites=true&w=majority');
+app.set('db', 'mongodb://administrador:redsocial914909@redsocial-shard-00-00-nukgt.mongodb.net:27017,redsocial-shard-00-01-nukgt.mongodb.net:27017,redsocial-shard-00-02-nukgt.mongodb.net:27017/test?ssl=true&replicaSet=redsocial-shard-0&authSource=admin&retryWrites=true&w=majority');
 app.set('clave', 'abcdefg');
 app.set('crypto', crypto);
 app.set('logger', logger);
 
 //Rutas/controladores por lógica
 require("./routes/rusuarios.js")(app, swig, gestorDB); // (app, param1, param2, etc.)
-
+require("./routes/rapiredsocial")(app, gestorDB);
 
 app.use(express.static('public'));
 
@@ -120,7 +123,7 @@ app.get('/', function (req, res) {
 })
 
 app.use(function (err, req, res, next) {
-    console.log("Error producido: " + err);// mostramos el erroe en consola
+    console.log("Error producido: " + err);
     if (!res.headersSent) {
         res.status(400);
         let respuesta = swig.renderFile('views/error.html',

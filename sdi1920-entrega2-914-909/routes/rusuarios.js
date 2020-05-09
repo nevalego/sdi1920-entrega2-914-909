@@ -6,10 +6,8 @@ module.exports = function (app, swig, gestorDB) {
             criterio = {
                 $or:[{name : {$regex : ".*"+req.query.busqueda+".*"}},
                     {surname : {$regex : ".*"+req.query.busqueda+".*"}},
-                    {email : {$regex : ".*"+req.query.busqueda+".*"}}],
-
-            }
-            ;
+                    {email : {$regex : ".*"+req.query.busqueda+".*"}}]
+            };
         }
         else {
             criterio = {};
@@ -72,14 +70,32 @@ module.exports = function (app, swig, gestorDB) {
         }
         gestorDB.insertarUsuario(usuario, function (id) {
             if (id == null) {
-                app.get("logger").error('Error al registrar usuario');
                 res.redirect("/registrarse?mensaje=Error al registrar usuario");
             } else {
-                app.get("logger").error('Nuevo usuario registrado');
                 res.redirect("/identificarse?mensaje=Nuevo usuario registrado");
             }
-        })
-    });
+            // Comprobar si ya existe un usuario con ese email
+            let criterio = {email: req.body.email};
+            gestorDB.obtenerUsuarios(criterio, function (usuarios) {
+                if (usuarios != null && usuarios.length !== 0) {
+                    app.get("logger").error('Debe escoger otro email');
+                    res.redirect("/registrarse?mensaje=Debe escoger otro email&tipoMensaje=alert-danger");
+                } else {
+                    gestorDB.insertarUsuario(usuario, function (resultado) {
+                        if (resultado == null) {
+                            app.get('logger').error('Error al registrar usuario');
+                            res.redirect("/registrarse?mensaje=Error al registrar usuario&tipoMensaje=alert-danger");
+                        } else {
+                            res.session.usuario = usuario;
+                            delete req.session.usuario.password;
+                            app.get('logger').info('Usuario ' + req.body.email + 'se ha registrado');
+                            res.redirect("/identificarse?mensaje=Usuario registrado correctamente");
+                        }
+                    });
+                }
+            });
+        })});
+
 
     app.get("/identificarse", function (req, res) {
         let respuesta = swig.renderFile('views/bidentificacion.html', {});
@@ -87,10 +103,10 @@ module.exports = function (app, swig, gestorDB) {
     });
 
     app.post("/identificarse", function (req, res) {
-        if (req.body.email == '' || req.body.email == undefined) {
+        if (req.body.email == '') {
             app.get("logger").error('El email no puede estar vacío');
             res.redirect("/identificarse?mensaje=El email no puede estar vacío")
-        } else if (req.body.password == undefined || req.body.password == '') {
+        } else if (req.body.password == '') {
             app.get("logger").error('La contraseña no puede estar vacía');
             res.redirect("/identificarse?mensaje=La contraseña no puede estar vacía")
         } else {
@@ -103,10 +119,8 @@ module.exports = function (app, swig, gestorDB) {
                 email: req.body.email,
                 password: seguro
             };
-
-            gestorDB.obtenerUsuarios(criterio2, function (usuarios) {
+            gestorDB.obtenerUsuarios(criterio, function (usuarios) {
                 if (usuarios == undefined || usuarios.length == 0) {
-                    req.session.usuario = undefined;
                     res.redirect("/identificarse" +
                         "?mensaje=Email o password incorrecto"+
                         "&tipoMensaje=alert-danger ");
@@ -114,7 +128,6 @@ module.exports = function (app, swig, gestorDB) {
                 } else {
                     req.session.usuario = usuarios[0];
                     app.get("logger").info('El usuario ' + req.session.usuario.email + " se logeo correctamente");
-                    delete req.session.usuario.password;
                     res.redirect("/usuarios");
                 }
             });
