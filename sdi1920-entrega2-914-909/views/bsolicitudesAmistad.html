@@ -27,13 +27,17 @@
         <thead>
         <tr>
             <th>Usuario</th>
+            <th>Nombre</th>
+            <th>Apellidos</th>
             <th></th>
         </tr>
         </thead>
         <tbody>
-        {% for peticion in peticiones %}
+        {% for usuario in usuarios %}
         <tr>
-            <td>{{ peticion.emisor}}</td>
+            <td>{{ usuario.email}}</td>
+            <td>{{ usuario.name}}</td>
+            <td>{{ usuario.surname}}</td>
             <td><a href="/usuario/amistad/aceptar/{{ peticion._id.toString()}}">Aceptar</a></td>
         </tr>
         {% endfor %}

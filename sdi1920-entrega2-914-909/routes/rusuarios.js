@@ -7,16 +7,12 @@ module.exports = function (app, swig, gestorDB) {
                 $or:[{name : {$regex : ".*"+req.query.busqueda+".*"}},
                     {surname : {$regex : ".*"+req.query.busqueda+".*"}},
                     {email : {$regex : ".*"+req.query.busqueda+".*"}}],
-                $and: [
-                    {email: {$ne: req.session.usuario.email}}
-                ]
+
             }
             ;
         }
         else {
-            criterio = {$and: [
-                    {email: {$ne: req.session.usuario.email}}
-                ]};
+            criterio = {};
         }
         let pg = parseInt(req.query.pg);
         if ( req.query.pg == null){
@@ -100,12 +96,15 @@ module.exports = function (app, swig, gestorDB) {
         } else {
             let seguro = app.get("crypto").createHmac('sha256', app.get('clave'))
                 .update(req.body.password).digest('hex');
-            let criterio = {
+            let criterio1 = {
+                email: req.body.email
+            };
+            let criterio2 = {
                 email: req.body.email,
                 password: seguro
             };
 
-            gestorDB.obtenerUsuarios(criterio, function (usuarios) {
+            gestorDB.obtenerUsuarios(criterio2, function (usuarios) {
                 if (usuarios == undefined || usuarios.length == 0) {
                     req.session.usuario = undefined;
                     res.redirect("/identificarse" +
@@ -129,39 +128,46 @@ module.exports = function (app, swig, gestorDB) {
     });
 
     app.get('/usuario/amistad/:email', function (req, res) {
-        if ( req.session.usuario == null || req.session.usuario.email == req.params.email){
-            app.get("logger").error('No hay un usuario identificado');
-            res.redirect("/identificarse?mensaje=No hay un usuario identificado");
-        }
-        let peticion = {
-            emisor : req.session.usuario.email,
-            remitente: req.params.email,
-            aceptada : false
-        }
-        let criterio = {
-            $or:[{emisor : req.session.usuario.email,
-                remitente: req.params.email },
-                {emisor : req.params.email,
-                    remitente: req.session.usuario.email}
-                    ]
-        };
-        gestorDB.obtenerPeticionesDeAmistad(criterio, function(peticionesExistentes) {
-            if (peticionesExistentes.length> 0) {
-                app.get("logger").info('Ya existe una peticion de ese tipo o no es valida');
-                res.redirect("/usuarios?mensaje=Ya existe una peticion de ese tipo o no es valida");
-            } else {
-                gestorDB.enviarPeticionDeAmistad(peticion, function(id) {
-                    if (id == null){
-                        res.redirect("/usuarios?mensaje=Error al enviar la peticion");
-                        app.get("logger").info('Error al enviar la peticion');
-                    } else {
-                        res.redirect("/usuarios?mensaje=Peticion enviada");
-                        app.get("logger").info('Peticion enviada');
-                    }
-                });
+        if (req.session.usuario == null) {
+            app.get("logger").error('No se encuentra un usuario identificado');
+            res.redirect("/identificarse?mensaje=No se encuentra un usuario identificado");
+        } else if (req.session.usuario.email == req.params.email) {
+            app.get("logger").error('No se puede pedir amistad a uno mismo');
+            res.redirect("/usuarios?mensaje=No se puede pedir amistad a uno mismo");
+        } else {
+            let peticion = {
+                emisor: req.session.usuario.email,
+                remitente: req.params.email,
+                aceptada: false
             }
-        });
-
+            let criterio = {
+                $or: [{
+                    emisor: req.session.usuario.email,
+                    remitente: req.params.email
+                },
+                    {
+                        emisor: req.params.email,
+                        remitente: req.session.usuario.email
+                    }
+                ]
+            };
+            gestorDB.obtenerPeticionesDeAmistad(criterio, function (peticionesExistentes) {
+                if (peticionesExistentes.length > 0) {
+                    app.get("logger").info('Ya existe una peticion de ese tipo o no es valida');
+                    res.redirect("/usuarios?mensaje=Ya existe una peticion de ese tipo o no es valida");
+                } else {
+                    gestorDB.enviarPeticionDeAmistad(peticion, function (id) {
+                        if (id == null) {
+                            res.redirect("/usuarios?mensaje=Error al enviar la peticion");
+                            app.get("logger").info('Error al enviar la peticion');
+                        } else {
+                            res.redirect("/usuarios?mensaje=Peticion enviada");
+                            app.get("logger").info('Peticion enviada');
+                        }
+                    });
+                }
+            });
+        }
     });
     app.get("/usuario/amistad", function (req, res) {
         if ( req.session.usuario == null){
@@ -169,6 +175,7 @@ module.exports = function (app, swig, gestorDB) {
             res.redirect("/identificarse?mensaje=No hay un usuario identificado");
         }
         let criterio = {};
+
         if( req.query.busqueda != null){
             criterio = {
                 emisor : {$regex : ".*"+req.query.busqueda+".*"},
@@ -181,40 +188,49 @@ module.exports = function (app, swig, gestorDB) {
             remitente: req.session.usuario.email,
             aceptada: false
         };}
-        let pg = parseInt(req.query.pg); // Es String !!!
-        if ( req.query.pg == null){ // Puede no venir el param
-            pg = 1;
-        }
-        gestorDB.obtenerPeticionesDeAmistadPg(criterio, pg,function (peticiones, total) {
+
+        gestorDB.obtenerPeticionesDeAmistad(criterio, function (peticiones) {
             if (peticiones == null) {
                 app.get("logger").error('Error al listar las peticiones de amistad');
                 res.redirect("/usuarios?mensaje=Error al listar las peticiones de amistad");
             } else {
-                let ultimaPg = 1;
-                if(total > 5){
-                    ultimaPg = total/5;
+                let emails = [];
+                peticiones.forEach(peticion=>emails.push({"email":peticion.emisor}));
+                let criterioAmigos ={
+                        "$or": emails
+                };
+                let pg = parseInt(req.query.pg); // Es String !!!
+                if ( req.query.pg == null){ // Puede no venir el param
+                    pg = 1;
                 }
-                if (total % 5 > 0 && total/5 >1){ // Sobran decimales
-                    ultimaPg = ultimaPg+1;
-                }
-                let paginas = []; // paginas mostrar
-                for(let i = pg-2 ; i <= pg+2 ; i++){
-                    if ( i > 0 && i <= ultimaPg){
-                        paginas.push(i);
+                gestorDB.obtenerUsuariosPg(criterioAmigos,pg, function (usuarios, total) {
+                    console.log("Numero de usuarios finales: "+usuarios.length);
+                    let ultimaPg = 1;
+                    if(total > 5){
+                        ultimaPg = total/5;
                     }
-                }
-                let respuesta = swig.renderFile('views/bsolicitudesAmistad.html',
-                    {
-                        usuario: req.session.usuario,
-                        peticiones: peticiones,
-                        paginas : paginas,
-                        actual : pg
+                    if (total % 5 > 0 && total/5 >1){ // Sobran decimales
+                        ultimaPg = ultimaPg+1;
+                    }
+                    let paginas = []; // paginas mostrar
+                    for(let i = pg-2 ; i <= pg+2 ; i++){
+                        if ( i > 0 && i <= ultimaPg){
+                            paginas.push(i);
+                        }
+                    }
+                    let respuesta = swig.renderFile('views/bsolicitudesAmistad.html',
+                        {
+                            usuario: req.session.usuario,
+                            usuarios: usuarios,
+                            paginas : paginas,
+                            actual : pg
+                        });
+                    res.send(respuesta);
+                    app.get("logger").info('El usuario ha listado sus solicitudes de amistad correctamente');
                     });
-                res.send(respuesta);
-                app.get("logger").info('El usuario ha listado sus solicitudes de amistad correctamente');
-            }
+                }
+            });
         });
-    });
     app.get("/usuario/amigos", function (req, res) {
         if ( req.session.usuario == null){
             res.redirect("/identificarse");
