@@ -62,12 +62,12 @@ module.exports = function (app, gestorBD) {
                 fecha: req.body.fecha,
                 leido: false
             };
-            gestorBD.insertarOferta(oferta, function (id) {
+            gestorBD.insertarMensaje(mensaje, function (id) {
                 if (id == null) {
                     app.get("logger").error("Error al crear mensaje en la API");
                     res.status(500);
                     res.json({
-                        error: "se ha producido un error"
+                        error: "Error al crear mensaje en la API"
                     })
                 } else {
                     app.get("logger").info("El mensaje se creó correctamente en la API");
@@ -81,13 +81,16 @@ module.exports = function (app, gestorBD) {
         }
     });
     app.get("/api/mensajes/:id", function (req, res) {
-        let criterioMongo = {"_id": gestorBD.mongo.ObjectID(req.params.id)};
-        gestorBD.obtenerConversacion(criterioMongo, function (conversaciones) {
+
+        // Obtener (emisor o receptor es usuario logeado o amigo)
+        let criterio = {"_id": gestorBD.mongo.ObjectID(req.params.id)};
+
+        gestorBD.obtenerConversacion(criterio, function (conversaciones) {
             if (conversaciones == null || conversaciones.length === 0) {
-                app.get("logger").error("Error al obtener mensajes de conversación de la API");
+                app.get("logger").error("Error al obtener conversación de la API");
                 res.status(500);
                 res.json({
-                    error: "Error al obtener mensajes de conversación de la API"
+                    error: "Error al obtener conversación de la API"
                 })
             } else {
                 let conversacion = conversaciones[0];
@@ -96,10 +99,10 @@ module.exports = function (app, gestorBD) {
                 };
                 gestorBD.obtenerMensajes(criterio, function (mensajes) {
                     if (mensajes == null) {
-                        app.get("logger").error("Error al obtener los mensajes de la API");
+                        app.get("logger").error("Error al obtener mensajes de la API");
                         res.status(500);
                         res.json({
-                            error: "Error al obtener los mensajes (API)"
+                            error: "Error al obtener los mensajes de la API"
                         })
                     } else {
                         app.get("logger").info("Se han obtenido correctamente los mensajes de la API");

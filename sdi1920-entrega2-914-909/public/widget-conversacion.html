@@ -75,7 +75,7 @@
 
     function enviarMensaje() {
         $.ajax({
-            url: URLbase + "/mensaje/amigo/" + Cookies.get('amigoId'),
+            url: URLbase + "/mensaje/" + Cookies.get('amigoId'),
             type: "POST",
             data: {
                 mensaje: $("#agregar-mensaje").val(),
@@ -94,11 +94,5 @@
     }
 
     cargarConversacion();
-    refreshIntervalId = setInterval(cargarConversacion, 2000);
-
-
-    $("#navAmigos").click(function () {
-        clearInterval(refreshIntervalId);
-    });
 
 </script>
