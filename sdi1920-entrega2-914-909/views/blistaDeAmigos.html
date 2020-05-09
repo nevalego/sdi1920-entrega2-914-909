@@ -9,17 +9,18 @@
         <thead>
         <tr>
             <th>Usuario</th>
+            <th>Nombre</th>
+            <th>Apellidos</th>
             <th></th>
         </tr>
         </thead>
         <tbody>
-        {% for peticion in peticiones %}
+        {% for usuario in usuarios %}
         <tr>
-            {% if peticion.emisor == email %}
-            <td>{{ peticion.remitente}}</td>
-            {% else %}
-            <td>{{ peticion.emisor}}</td>
-            {% endif %}
+            <td>{{ usuario.email}}</td>
+            <td>{{ usuario.name}}</td>
+            <td>{{ usuario.surname}}</td>
+            <td>Enviar Mensaje</td>
         </tr>
         {% endfor %}
         </tbody>
