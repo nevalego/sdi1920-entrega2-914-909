@@ -339,27 +339,30 @@ public class NotaneitorTests {
 	// Aceptar amistad y comprobar que desaparece
 	@Test
 	public void PR18() {
-		//Ir a la lista de amigos
+		// Ir a la lista de amigos
 		PO_LoginView.fillForm(driver, "pure@email.com", "123456");
 		PO_NavView.checkNavMode(driver, "mPeticionesAmistad");
-		//Aceptar la invitacion
+		// Aceptar la invitacion
 		PO_FriendsView.aceptFriendRequest(driver, "prueba@hotmail.com");
-		//Comprobar que ahora somos amigos
+		// Comprobar que ahora somos amigos
 		SeleniumUtils.textoPresentePagina(driver, "prueba@hotmail.com");
 		PO_View.checkElement(driver, "text", "La peticion ha sido aceptada correctamente");
 
-		//Ir a la lista de solicitudes y comprobar que ya no esta ahi
+		// Ir a la lista de solicitudes y comprobar que ya no esta ahi
 		PO_NavView.checkNavMode(driver, "mPeticionesAmistad");
 		SeleniumUtils.textoNoPresentePagina(driver, "prueba@hotmail.com");
 
-		
 	}
 
 	// PR19.
 	// Mostrar listado de amistades
 	@Test
 	public void PR19() {
-		assertTrue("PR19 sin hacer", false);
+		// Ir a la lista de amigos
+		PO_LoginView.fillForm(driver, "pure@email.com", "123456");
+		PO_NavView.checkNavMode(driver, "mListaDeAmigos");
+		SeleniumUtils.textoPresentePagina(driver, "prueba@hotmail.com");
+		SeleniumUtils.textoPresentePagina(driver, "Lista de Amigos");
 	}
 
 	// P20.
