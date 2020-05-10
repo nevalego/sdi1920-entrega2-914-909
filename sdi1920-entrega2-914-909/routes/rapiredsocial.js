@@ -16,7 +16,7 @@ module.exports = function (app, gestorBD) {
                 })
                 }else {
                 var token = app.get('jwt').sign(
-                    {usuario: criterio.email ,
+                    {usuario: usuarios[0] ,
                     tiempo: Date.now()/1000},
                     "secreto");
                 res.status(200);
@@ -31,26 +31,50 @@ module.exports = function (app, gestorBD) {
         if (req.headers['token']) {
             let criterio = {
                 $or:[
-                    {remitente: {$ne: res.usuario}},
-                    {emisor :  {$ne: res.usuario}}
-                    ],
+                    {remitente: res.usuario.email},
+                    {emisor :  res.usuario.email}],
                 aceptada: true
             };
             let logeado = res.usuario;
-            gestorBD.obtenerPeticionesDeAmistad(criterio,function (amistades) {
-                if (amistades == null) {
-                    app.get("logger").error("Se ha producido un error al obtener los amigos de la API");
+            gestorBD.obtenerPeticionesDeAmistad(criterio,function (peticiones) {
+                if (peticiones == null) {
+                    app.get("logger").error("Se ha producido un error al obtener las peticiones de la API");
                     res.status(500);
                     res.json({
-                        error: "Se ha producido un error al obtener los amigos de la API"
+                        error: "Se ha producido un error al obtener las peticiones de la API"
                     })
                 } else {
-                    app.get("logger").info("Los amigos se listaron correctamente de la API");
-                    res.status(200);
-                    res.logeado = logeado;
-                    res.send(JSON.stringify(amistades));
-                }
-            });
+                    let emails = [];
+                    peticiones.forEach(peticion=>emails.push({"email":peticion.emisor}));
+                    peticiones.forEach(peticion=>emails.push({"email":peticion.remitente}));
+                    let criterioAmigos ={
+                        "$or": emails,
+                        email:{$ne: logeado.email}
+                    };
+                    gestorBD.obtenerUsuarios(criterioAmigos, function (usuarios) {
+                            if( usuarios == null || usuarios.length == 0){
+                                app.get("logger").error("Se ha producido un error al obtener los usuarios amigos de la API");
+                                res.status(500);
+                                res.json({
+                                    error: "Se ha producido un error al obtener los usuarios amigos de la API"
+                                })
+                            }else{
+                                app.get("logger").info("Los amigos se listaron correctamente de la API");
+                                res.status(200);
+                                res.logeado = logeado;
+                                res.send(JSON.stringify({
+                                    usuario: logeado,
+                                    usuarios: usuarios
+                                }));
+                            }
+                    });
+            }
+        });
+        } else {
+            res.status(500);
+            res.json({
+                error: "No hay usuario identificado"
+            })
         }
     });
     app.post("/api/mensaje/:destino", function (req, res) {

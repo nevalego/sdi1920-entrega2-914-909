@@ -26,7 +26,9 @@
         <li><a id="navAmigos" onclick=widgetAmigos()>Amigos</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right" id="barra-menu-derecha">
-		<!-- Opciones de menú aqui -->
+        <li id="desconectarse" onclick="desconectar()"><a>
+          <span class="glyphicon glyphicon-log-out"></span>
+          Cerrar sesión</a></li>
       </ul>
     </div>
   </div>
@@ -62,7 +64,14 @@
   }
 
   function widgetAmigos() {
-    $("#contenedor-principal").load("widget-amigos.html");
+    if( Cookies.get('token') !== null) {
+      $("#contenedor-principal").load("widget-amigos.html");
+    } else {
+      desconectar();
+    }
+  }
+  function desconectar() {
+    $("#contenedor-principal").load("widget-login.html");
   }
 
 </script>

@@ -1,8 +1,12 @@
-<div id="widget-conversacion">
+<div id="widget-amigos">
+    <h2>Amigos</h2>
     <table class="table table-hover">
         <thead>
         <tr>
-            <th>Amigos</th>
+            <th>Nombre</th>
+            <th>Apellidos</th>
+            <th>Email</th>
+            <th></th>
         </tr>
         </thead>
         <tbody id="tablaAmigos">
@@ -12,6 +16,8 @@
 </div>
 <script>
     window.history.pushState("", "", "/cliente.html?w=amigos");
+    $("#navAmigos").show();
+    $("#desconectarse").show();
 
     function cargarAmigos() {
         $.ajax({
@@ -21,8 +27,7 @@
             dataType: 'json',
             headers: {"token": token},
             success: function (respuesta) {
-                let amigos = respuesta;
-                actualizarTabla(amigos, respuesta.logeado);
+                actualizarTabla(respuesta.usuarios);
             },
             error: function () {
                 alert('Error al cargar los amigos');
@@ -31,17 +36,16 @@
         });
     }
 
-    function actualizarTabla(amigos, logeado) {
+    function actualizarTabla(usuarios) {
         $("#tablaAmigos").empty();
-        for (let i = 0; i < amigos.length; i++) {
-            let amigo = amigos[i].remitente;
-            if (amigo == logeado){
-                amigo = amigos[i].emisor;
-            }
+        for (let i = 0; i < usuarios.length; i++) {
             $("#tablaAmigos").append(
-                "<tr id=" + amigos[i]._id + ">" +
-                "<td><a onclick='widgetConversacion()'> " + amigo + "</a></td>" +
-                "</tr>");
+                "<tr id=" + usuarios[i]._id + ">" +
+                "<td>" + usuarios[i].name + "</td>"+
+                "<td>" + usuarios[i].surname + "</td>"+
+                "<td>" + usuarios[i].email + "</td>"+
+                "<td><a onclick='widgetConversacion()'>" +
+                "Abrir conversación"+"</a></td>" + "</tr>");
         }
     }
 
