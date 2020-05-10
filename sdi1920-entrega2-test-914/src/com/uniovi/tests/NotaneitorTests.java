@@ -139,7 +139,9 @@ public class NotaneitorTests {
 	// Usuario estandar
 	@Test
 	public void PR05() {
-		assertTrue("PR05 sin hacer", false);
+		PO_LoginView.fillForm(driver, "prueba@hotmail.com", "123456");
+		// Comprobamos que entramos en la sección privada
+		PO_View.checkElement(driver, "text", "Usuarios");
 	}
 
 	// PR06.
