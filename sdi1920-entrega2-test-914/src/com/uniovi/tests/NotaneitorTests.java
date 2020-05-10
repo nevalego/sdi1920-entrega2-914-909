@@ -163,7 +163,9 @@ public class NotaneitorTests {
 	// Contraseña incorrecta
 	@Test
 	public void PR07() {
-		assertTrue("PR07 sin hacer", false);
+		PO_LoginView.fillForm(driver, "prueba@hotmail.com", "2222222");
+		//Comprobamos que seguimos en la pagina
+		PO_View.checkElement(driver, "text", "Email o password incorrecto");
 	}
 
 	// PR08.
