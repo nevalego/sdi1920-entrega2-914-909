@@ -332,14 +332,27 @@ public class NotaneitorTests {
 		SeleniumUtils.textoPresentePagina(driver, "prueba@hotmail.com");
 
 		// Clickamos segunda pagina
-		//PO_UserListView.clickPagination(driver, 2);
+		// PO_UserListView.clickPagination(driver, 2);
 	}
 
 	// PR18.
 	// Aceptar amistad y comprobar que desaparece
 	@Test
 	public void PR18() {
-		assertTrue("PR18 sin hacer", false);
+		//Ir a la lista de amigos
+		PO_LoginView.fillForm(driver, "pure@email.com", "123456");
+		PO_NavView.checkNavMode(driver, "mPeticionesAmistad");
+		//Aceptar la invitacion
+		PO_FriendsView.aceptFriendRequest(driver, "prueba@hotmail.com");
+		//Comprobar que ahora somos amigos
+		SeleniumUtils.textoPresentePagina(driver, "prueba@hotmail.com");
+		PO_View.checkElement(driver, "text", "La peticion ha sido aceptada correctamente");
+
+		//Ir a la lista de solicitudes y comprobar que ya no esta ahi
+		PO_NavView.checkNavMode(driver, "mPeticionesAmistad");
+		SeleniumUtils.textoNoPresentePagina(driver, "prueba@hotmail.com");
+
+		
 	}
 
 	// PR19.
