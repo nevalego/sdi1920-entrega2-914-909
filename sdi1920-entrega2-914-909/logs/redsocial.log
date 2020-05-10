@@ -720,3 +720,290 @@
 [2020-05-10T18:43:50.440] [INFO] redsocial - El usuario prueba@prueba.com se logeo correctamente
 [2020-05-10T18:43:50.917] [INFO] redsocial - El usuario ha listado los usuarios correctamente
 [2020-05-10T18:43:53.828] [INFO] redsocial - El usuario ha listado sus amigos correctamente
+[2020-05-10T23:34:41.784] [INFO] redsocial - Coleccion borrada exitosamente
+[2020-05-11T00:52:30.096] [INFO] redsocial - Coleccion borrada exitosamente
+[2020-05-11T00:52:31.140] [INFO] redsocial - Coleccion borrada exitosamente
+[2020-05-11T00:56:14.671] [INFO] redsocial - Coleccion borrada exitosamente
+[2020-05-11T00:56:15.443] [INFO] redsocial - Coleccion borrada exitosamente
+[2020-05-11T00:56:20.018] [INFO] redsocial - Usuario prueba0@email.comse ha registrado
+[2020-05-11T00:56:23.511] [INFO] redsocial - Usuario prueba1@email.comse ha registrado
+[2020-05-11T00:56:26.773] [INFO] redsocial - Usuario prueba2@email.comse ha registrado
+[2020-05-11T00:56:30.161] [INFO] redsocial - Usuario prueba3@email.comse ha registrado
+[2020-05-11T00:56:33.364] [INFO] redsocial - Usuario prueba4@email.comse ha registrado
+[2020-05-11T00:56:36.406] [INFO] redsocial - Usuario prueba5@email.comse ha registrado
+[2020-05-11T00:56:39.551] [INFO] redsocial - Usuario prueba6@email.comse ha registrado
+[2020-05-11T00:56:42.754] [INFO] redsocial - Usuario prueba7@email.comse ha registrado
+[2020-05-11T00:56:45.869] [INFO] redsocial - Usuario prueba8@email.comse ha registrado
+[2020-05-11T00:56:49.121] [INFO] redsocial - Usuario prueba9@email.comse ha registrado
+[2020-05-11T00:56:50.581] [INFO] redsocial - El usuario prueba9@email.com se logeo correctamente
+[2020-05-11T00:56:51.113] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-11T00:56:52.230] [INFO] redsocial - Peticion enviada
+[2020-05-11T00:56:52.739] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-11T00:56:53.920] [INFO] redsocial - Peticion enviada
+[2020-05-11T00:56:54.469] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-11T01:03:28.912] [INFO] redsocial - Coleccion borrada exitosamente
+[2020-05-11T01:03:29.529] [INFO] redsocial - Coleccion borrada exitosamente
+[2020-05-11T01:03:33.457] [INFO] redsocial - Usuario prueba0@email.comse ha registrado
+[2020-05-11T01:03:36.786] [INFO] redsocial - Usuario prueba1@email.comse ha registrado
+[2020-05-11T01:03:40.168] [INFO] redsocial - Usuario prueba2@email.comse ha registrado
+[2020-05-11T01:03:43.404] [INFO] redsocial - Usuario prueba3@email.comse ha registrado
+[2020-05-11T01:03:46.785] [INFO] redsocial - Usuario prueba4@email.comse ha registrado
+[2020-05-11T01:03:49.804] [INFO] redsocial - Usuario prueba5@email.comse ha registrado
+[2020-05-11T01:03:53.141] [INFO] redsocial - Usuario prueba6@email.comse ha registrado
+[2020-05-11T01:03:56.247] [INFO] redsocial - Usuario prueba7@email.comse ha registrado
+[2020-05-11T01:03:59.172] [INFO] redsocial - Usuario prueba8@email.comse ha registrado
+[2020-05-11T01:04:02.590] [INFO] redsocial - Usuario prueba9@email.comse ha registrado
+[2020-05-11T01:04:03.882] [INFO] redsocial - El usuario prueba9@email.com se logeo correctamente
+[2020-05-11T01:04:04.427] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-11T01:04:05.476] [INFO] redsocial - Peticion enviada
+[2020-05-11T01:04:05.918] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-11T01:04:07.114] [INFO] redsocial - Peticion enviada
+[2020-05-11T01:04:07.559] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-11T01:05:31.094] [INFO] redsocial - Coleccion borrada exitosamente
+[2020-05-11T01:05:31.697] [INFO] redsocial - Coleccion borrada exitosamente
+[2020-05-11T01:05:35.425] [INFO] redsocial - Usuario prueba0@email.comse ha registrado
+[2020-05-11T01:05:38.552] [INFO] redsocial - Usuario prueba1@email.comse ha registrado
+[2020-05-11T01:05:41.719] [INFO] redsocial - Usuario prueba2@email.comse ha registrado
+[2020-05-11T01:05:45.148] [INFO] redsocial - Usuario prueba3@email.comse ha registrado
+[2020-05-11T01:05:48.185] [INFO] redsocial - Usuario prueba4@email.comse ha registrado
+[2020-05-11T01:05:51.289] [INFO] redsocial - Usuario prueba5@email.comse ha registrado
+[2020-05-11T01:05:54.606] [INFO] redsocial - Usuario prueba6@email.comse ha registrado
+[2020-05-11T01:05:57.663] [INFO] redsocial - Usuario prueba7@email.comse ha registrado
+[2020-05-11T01:06:01.127] [INFO] redsocial - Usuario prueba8@email.comse ha registrado
+[2020-05-11T01:06:04.291] [INFO] redsocial - Usuario prueba9@email.comse ha registrado
+[2020-05-11T01:06:05.877] [INFO] redsocial - El usuario prueba9@email.com se logeo correctamente
+[2020-05-11T01:06:06.356] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-11T01:06:07.468] [INFO] redsocial - Peticion enviada
+[2020-05-11T01:06:08.187] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-11T01:06:09.272] [INFO] redsocial - Peticion enviada
+[2020-05-11T01:06:09.722] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-11T01:06:11.117] [INFO] redsocial - Peticion enviada
+[2020-05-11T01:06:11.556] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-11T01:06:13.368] [INFO] redsocial - Peticion enviada
+[2020-05-11T01:06:14.036] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-11T01:06:14.319] [INFO] redsocial - El usuario prueba9@email.com cerró sesión correctamente
+[2020-05-11T01:06:15.723] [INFO] redsocial - El usuario prueba8@email.com se logeo correctamente
+[2020-05-11T01:06:16.225] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-11T01:06:17.362] [INFO] redsocial - Peticion enviada
+[2020-05-11T01:06:17.818] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-11T01:06:19.048] [INFO] redsocial - Peticion enviada
+[2020-05-11T01:06:19.568] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-11T01:06:20.753] [INFO] redsocial - Peticion enviada
+[2020-05-11T01:06:21.446] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-11T01:06:22.678] [INFO] redsocial - Peticion enviada
+[2020-05-11T01:06:23.233] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-11T01:06:23.519] [INFO] redsocial - El usuario prueba8@email.com cerró sesión correctamente
+[2020-05-11T01:06:24.764] [INFO] redsocial - El usuario prueba7@email.com se logeo correctamente
+[2020-05-11T01:06:25.290] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-11T01:06:26.649] [INFO] redsocial - Peticion enviada
+[2020-05-11T01:06:27.207] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-11T01:06:28.371] [INFO] redsocial - Peticion enviada
+[2020-05-11T01:06:28.946] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-11T01:06:30.059] [INFO] redsocial - Peticion enviada
+[2020-05-11T01:06:30.481] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-11T01:06:31.802] [INFO] redsocial - Peticion enviada
+[2020-05-11T01:06:32.285] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-11T01:06:32.558] [INFO] redsocial - El usuario prueba7@email.com cerró sesión correctamente
+[2020-05-11T01:06:33.789] [INFO] redsocial - El usuario prueba6@email.com se logeo correctamente
+[2020-05-11T01:06:34.233] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-11T01:06:35.850] [INFO] redsocial - Peticion enviada
+[2020-05-11T01:06:36.294] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-11T01:06:37.470] [INFO] redsocial - Peticion enviada
+[2020-05-11T01:06:38.282] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-11T01:06:39.408] [INFO] redsocial - Peticion enviada
+[2020-05-11T01:06:40.134] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-11T01:06:41.483] [INFO] redsocial - Peticion enviada
+[2020-05-11T01:06:41.924] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-11T01:06:42.252] [INFO] redsocial - El usuario prueba6@email.com cerró sesión correctamente
+[2020-05-11T01:06:43.508] [INFO] redsocial - El usuario prueba2@email.com se logeo correctamente
+[2020-05-11T01:06:44.210] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-11T01:06:45.813] [INFO] redsocial - El usuario ha listado sus solicitudes de amistad correctamente
+[2020-05-11T01:06:46.566] [INFO] redsocial - La peticion ha sido aceptada correctamente
+[2020-05-11T01:06:47.363] [INFO] redsocial - El usuario ha listado sus amigos correctamente
+[2020-05-11T01:06:48.493] [INFO] redsocial - El usuario ha listado sus solicitudes de amistad correctamente
+[2020-05-11T01:06:49.198] [INFO] redsocial - La peticion ha sido aceptada correctamente
+[2020-05-11T01:06:50.093] [INFO] redsocial - El usuario ha listado sus amigos correctamente
+[2020-05-11T01:06:51.562] [INFO] redsocial - El usuario ha listado sus solicitudes de amistad correctamente
+[2020-05-11T01:06:52.360] [INFO] redsocial - La peticion ha sido aceptada correctamente
+[2020-05-11T01:06:53.178] [INFO] redsocial - El usuario ha listado sus amigos correctamente
+[2020-05-11T01:06:54.324] [INFO] redsocial - El usuario ha listado sus solicitudes de amistad correctamente
+[2020-05-11T01:06:55.226] [INFO] redsocial - La peticion ha sido aceptada correctamente
+[2020-05-11T01:06:56.319] [INFO] redsocial - El usuario ha listado sus amigos correctamente
+[2020-05-11T01:06:59.570] [INFO] redsocial - Usuario prueba@hotmail.comse ha registrado
+[2020-05-11T01:07:01.361] [INFO] redsocial - El usuario prueba@hotmail.com se logeo correctamente
+[2020-05-11T01:07:01.778] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-11T01:07:16.648] [ERROR] redsocial - Error por contraseñas no iguales
+[2020-05-11T01:07:19.640] [ERROR] redsocial - Debe escoger otro email
+[2020-05-11T01:07:21.234] [INFO] redsocial - El usuario prueba@hotmail.com se logeo correctamente
+[2020-05-11T01:07:21.655] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-11T01:07:25.546] [ERROR] redsocial - Email o password incorrecto
+[2020-05-11T01:07:27.338] [ERROR] redsocial - Email o password incorrecto
+[2020-05-11T01:07:29.131] [INFO] redsocial - El usuario prueba@hotmail.com se logeo correctamente
+[2020-05-11T01:07:29.555] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-11T01:07:29.982] [INFO] redsocial - El usuario prueba@hotmail.com cerró sesión correctamente
+[2020-05-11T01:07:31.696] [INFO] redsocial - El usuario prueba@hotmail.com se logeo correctamente
+[2020-05-11T01:07:32.190] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-11T01:07:32.498] [INFO] redsocial - El usuario prueba@hotmail.com cerró sesión correctamente
+[2020-05-11T01:07:33.887] [INFO] redsocial - El usuario prueba@hotmail.com se logeo correctamente
+[2020-05-11T01:07:34.399] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-11T01:07:35.282] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-11T01:07:36.072] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-11T01:07:37.549] [INFO] redsocial - El usuario prueba@hotmail.com se logeo correctamente
+[2020-05-11T01:07:37.982] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-11T01:07:39.158] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-11T01:07:40.646] [INFO] redsocial - El usuario prueba@hotmail.com se logeo correctamente
+[2020-05-11T01:07:41.076] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-11T01:07:42.304] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-11T01:07:43.769] [INFO] redsocial - El usuario prueba@hotmail.com se logeo correctamente
+[2020-05-11T01:07:44.230] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-11T01:07:45.506] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-11T01:07:46.690] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-11T01:07:47.917] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-11T01:07:49.554] [INFO] redsocial - El usuario prueba@hotmail.com se logeo correctamente
+[2020-05-11T01:07:50.012] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-11T01:07:51.013] [INFO] redsocial - Peticion enviada
+[2020-05-11T01:07:51.445] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-11T01:07:51.795] [INFO] redsocial - El usuario prueba@hotmail.com cerró sesión correctamente
+[2020-05-11T01:07:53.091] [INFO] redsocial - El usuario prueba0@email.com se logeo correctamente
+[2020-05-11T01:07:53.518] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-11T01:07:54.727] [INFO] redsocial - El usuario ha listado sus solicitudes de amistad correctamente
+[2020-05-11T01:07:56.228] [INFO] redsocial - El usuario prueba@hotmail.com se logeo correctamente
+[2020-05-11T01:07:56.669] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-11T01:07:57.300] [INFO] redsocial - Ya existe una peticion de ese tipo o no es valida
+[2020-05-11T01:07:57.727] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-11T01:07:59.135] [INFO] redsocial - El usuario prueba3@email.com se logeo correctamente
+[2020-05-11T01:07:59.623] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-11T01:08:00.820] [INFO] redsocial - El usuario ha listado sus solicitudes de amistad correctamente
+[2020-05-11T01:08:02.252] [INFO] redsocial - El usuario prueba0@email.com se logeo correctamente
+[2020-05-11T01:08:02.673] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-11T01:08:03.791] [INFO] redsocial - El usuario ha listado sus solicitudes de amistad correctamente
+[2020-05-11T01:08:04.482] [INFO] redsocial - La peticion ha sido aceptada correctamente
+[2020-05-11T01:08:05.549] [INFO] redsocial - El usuario ha listado sus amigos correctamente
+[2020-05-11T01:08:06.881] [INFO] redsocial - El usuario ha listado sus solicitudes de amistad correctamente
+[2020-05-11T01:08:08.617] [INFO] redsocial - El usuario prueba0@email.com se logeo correctamente
+[2020-05-11T01:08:09.168] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-11T01:08:10.346] [INFO] redsocial - El usuario ha listado sus amigos correctamente
+[2020-05-11T01:11:05.788] [INFO] redsocial - Coleccion borrada exitosamente
+[2020-05-11T01:11:06.330] [INFO] redsocial - Coleccion borrada exitosamente
+[2020-05-11T01:11:11.897] [INFO] redsocial - Usuario prueba0@email.comse ha registrado
+[2020-05-11T01:11:15.189] [INFO] redsocial - Usuario prueba1@email.comse ha registrado
+[2020-05-11T01:11:18.374] [INFO] redsocial - Usuario prueba2@email.comse ha registrado
+[2020-05-11T01:11:21.344] [INFO] redsocial - Usuario prueba3@email.comse ha registrado
+[2020-05-11T01:11:24.721] [INFO] redsocial - Usuario prueba4@email.comse ha registrado
+[2020-05-11T01:11:27.808] [INFO] redsocial - Usuario prueba5@email.comse ha registrado
+[2020-05-11T01:11:30.840] [INFO] redsocial - Usuario prueba6@email.comse ha registrado
+[2020-05-11T01:11:34.037] [INFO] redsocial - Usuario prueba7@email.comse ha registrado
+[2020-05-11T01:11:37.152] [INFO] redsocial - Usuario prueba8@email.comse ha registrado
+[2020-05-11T01:11:40.329] [INFO] redsocial - Usuario prueba9@email.comse ha registrado
+[2020-05-11T01:11:41.740] [INFO] redsocial - El usuario prueba9@email.com se logeo correctamente
+[2020-05-11T01:11:42.209] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-11T01:11:43.415] [INFO] redsocial - Peticion enviada
+[2020-05-11T01:11:43.846] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-11T01:11:44.915] [INFO] redsocial - Peticion enviada
+[2020-05-11T01:11:45.382] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-11T01:11:46.421] [INFO] redsocial - Peticion enviada
+[2020-05-11T01:11:46.876] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-11T01:11:48.002] [INFO] redsocial - Peticion enviada
+[2020-05-11T01:11:48.456] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-11T01:11:48.743] [INFO] redsocial - El usuario prueba9@email.com cerró sesión correctamente
+[2020-05-11T01:11:49.958] [INFO] redsocial - El usuario prueba8@email.com se logeo correctamente
+[2020-05-11T01:11:50.395] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-11T01:11:51.486] [INFO] redsocial - Peticion enviada
+[2020-05-11T01:11:51.913] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-11T01:11:52.979] [INFO] redsocial - Peticion enviada
+[2020-05-11T01:11:53.538] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-11T01:11:54.859] [INFO] redsocial - Peticion enviada
+[2020-05-11T01:11:55.443] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-11T01:11:56.649] [INFO] redsocial - Peticion enviada
+[2020-05-11T01:11:57.211] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-11T01:11:57.582] [INFO] redsocial - El usuario prueba8@email.com cerró sesión correctamente
+[2020-05-11T01:11:58.900] [INFO] redsocial - El usuario prueba7@email.com se logeo correctamente
+[2020-05-11T01:11:59.457] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-11T01:12:00.552] [INFO] redsocial - Peticion enviada
+[2020-05-11T01:12:01.111] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-11T01:12:02.283] [INFO] redsocial - Peticion enviada
+[2020-05-11T01:12:02.746] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-11T01:12:03.841] [INFO] redsocial - Peticion enviada
+[2020-05-11T01:12:04.331] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-11T01:12:05.521] [INFO] redsocial - Peticion enviada
+[2020-05-11T01:12:06.048] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-11T01:12:06.330] [INFO] redsocial - El usuario prueba7@email.com cerró sesión correctamente
+[2020-05-11T01:12:07.616] [INFO] redsocial - El usuario prueba6@email.com se logeo correctamente
+[2020-05-11T01:12:08.093] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-11T01:12:09.301] [INFO] redsocial - Peticion enviada
+[2020-05-11T01:12:09.780] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-11T01:12:10.950] [INFO] redsocial - Peticion enviada
+[2020-05-11T01:12:11.423] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-11T01:12:12.538] [INFO] redsocial - Peticion enviada
+[2020-05-11T01:12:13.031] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-11T01:12:14.285] [INFO] redsocial - Peticion enviada
+[2020-05-11T01:12:14.785] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-11T01:12:15.084] [INFO] redsocial - El usuario prueba6@email.com cerró sesión correctamente
+[2020-05-11T01:12:16.378] [INFO] redsocial - El usuario prueba2@email.com se logeo correctamente
+[2020-05-11T01:12:16.849] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-11T01:12:18.054] [INFO] redsocial - El usuario ha listado sus solicitudes de amistad correctamente
+[2020-05-11T01:12:18.742] [INFO] redsocial - La peticion ha sido aceptada correctamente
+[2020-05-11T01:12:19.712] [INFO] redsocial - El usuario ha listado sus amigos correctamente
+[2020-05-11T01:12:21.030] [INFO] redsocial - El usuario ha listado sus solicitudes de amistad correctamente
+[2020-05-11T01:12:21.847] [INFO] redsocial - La peticion ha sido aceptada correctamente
+[2020-05-11T01:12:22.808] [INFO] redsocial - El usuario ha listado sus amigos correctamente
+[2020-05-11T01:12:24.049] [INFO] redsocial - El usuario ha listado sus solicitudes de amistad correctamente
+[2020-05-11T01:12:24.880] [INFO] redsocial - La peticion ha sido aceptada correctamente
+[2020-05-11T01:12:26.211] [INFO] redsocial - El usuario ha listado sus amigos correctamente
+[2020-05-11T01:12:27.673] [INFO] redsocial - El usuario ha listado sus solicitudes de amistad correctamente
+[2020-05-11T01:12:28.537] [INFO] redsocial - La peticion ha sido aceptada correctamente
+[2020-05-11T01:12:30.180] [INFO] redsocial - El usuario ha listado sus amigos correctamente
+[2020-05-11T01:12:33.729] [INFO] redsocial - Usuario prueba@hotmail.comse ha registrado
+[2020-05-11T01:12:35.985] [INFO] redsocial - El usuario prueba@hotmail.com se logeo correctamente
+[2020-05-11T01:12:36.645] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-11T01:12:51.635] [ERROR] redsocial - Error por contraseñas no iguales
+[2020-05-11T01:12:55.651] [ERROR] redsocial - Debe escoger otro email
+[2020-05-11T01:12:57.747] [INFO] redsocial - El usuario prueba@hotmail.com se logeo correctamente
+[2020-05-11T01:12:58.250] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-11T01:13:02.243] [ERROR] redsocial - Email o password incorrecto
+[2020-05-11T01:13:03.979] [ERROR] redsocial - Email o password incorrecto
+[2020-05-11T01:13:05.797] [INFO] redsocial - El usuario prueba@hotmail.com se logeo correctamente
+[2020-05-11T01:13:06.726] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-11T01:13:07.101] [INFO] redsocial - El usuario prueba@hotmail.com cerró sesión correctamente
+[2020-05-11T01:13:08.945] [INFO] redsocial - El usuario prueba@hotmail.com se logeo correctamente
+[2020-05-11T01:13:09.398] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-11T01:13:09.837] [INFO] redsocial - El usuario prueba@hotmail.com cerró sesión correctamente
+[2020-05-11T01:13:11.870] [INFO] redsocial - El usuario prueba@hotmail.com se logeo correctamente
+[2020-05-11T01:13:14.611] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-11T01:13:16.458] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-11T01:13:18.702] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-11T01:13:20.730] [INFO] redsocial - El usuario prueba@hotmail.com se logeo correctamente
+[2020-05-11T01:13:21.800] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-11T01:13:23.771] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-11T01:13:25.975] [INFO] redsocial - El usuario prueba@hotmail.com se logeo correctamente
+[2020-05-11T01:13:27.085] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-11T01:13:28.925] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-11T01:13:30.731] [INFO] redsocial - El usuario prueba@hotmail.com se logeo correctamente
+[2020-05-11T01:13:31.741] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-11T01:13:33.239] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-11T01:13:34.400] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-11T01:13:35.874] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-11T01:13:37.491] [INFO] redsocial - El usuario prueba@hotmail.com se logeo correctamente
+[2020-05-11T01:13:38.311] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-11T01:13:39.530] [INFO] redsocial - Peticion enviada
+[2020-05-11T01:13:40.190] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-11T01:13:40.658] [INFO] redsocial - El usuario prueba@hotmail.com cerró sesión correctamente
+[2020-05-11T01:13:42.294] [INFO] redsocial - El usuario prueba0@email.com se logeo correctamente
+[2020-05-11T01:13:43.045] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-11T01:13:44.499] [INFO] redsocial - El usuario ha listado sus solicitudes de amistad correctamente
+[2020-05-11T01:13:46.131] [INFO] redsocial - El usuario prueba@hotmail.com se logeo correctamente
+[2020-05-11T01:13:46.642] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-11T01:13:47.351] [INFO] redsocial - Ya existe una peticion de ese tipo o no es valida
+[2020-05-11T01:13:47.911] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-11T01:13:49.496] [INFO] redsocial - El usuario prueba3@email.com se logeo correctamente
+[2020-05-11T01:13:49.960] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-11T01:13:51.158] [INFO] redsocial - El usuario ha listado sus solicitudes de amistad correctamente
+[2020-05-11T01:13:52.986] [INFO] redsocial - El usuario prueba0@email.com se logeo correctamente
+[2020-05-11T01:13:53.842] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-11T01:13:55.643] [INFO] redsocial - El usuario ha listado sus solicitudes de amistad correctamente
+[2020-05-11T01:13:56.457] [INFO] redsocial - La peticion ha sido aceptada correctamente
+[2020-05-11T01:13:58.861] [INFO] redsocial - El usuario ha listado sus amigos correctamente
+[2020-05-11T01:14:01.332] [INFO] redsocial - El usuario ha listado sus solicitudes de amistad correctamente
+[2020-05-11T01:14:02.965] [INFO] redsocial - El usuario prueba0@email.com se logeo correctamente
+[2020-05-11T01:14:04.121] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-11T01:14:05.628] [INFO] redsocial - El usuario ha listado sus amigos correctamente

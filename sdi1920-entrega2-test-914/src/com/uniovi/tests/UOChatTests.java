@@ -52,9 +52,26 @@ public class UOChatTests {
 
 	@BeforeClass
 	static public void begin() {
-		// COnfiguramos las pruebas.
-		// Fijamos el timeout en cada opciÃ³n de carga de una vista. 2 segundos.
-		// PO_View.setTimeout(3);
+		// Se eliminan las bases de datos existentes
+		PO_InitAplication.reiniciarBBDD(driver, "peticiones");
+		PO_InitAplication.reiniciarBBDD(driver, "usuarios");
+		System.out.println("Se han borrado las bases de datos");
+		
+		//Se registran los usuarios necesarios
+		driver.navigate().to(URL);
+		PO_InitAplication.insertUsers(driver);
+		System.out.println("Se han insertado todos los usuarios");
+
+		//Se insertan todas las peticiones de amistad
+		//Los usuarios del 9 al 6 enviaran solicitudes
+		// a los usuarios del 2 al 4 inclusives 
+		PO_InitAplication.insertAmistades(driver);
+		System.out.println("Se han insertado todas las peticiones de amistad");
+		
+		//Se aceptaran todas las amistades del user 2
+		PO_InitAplication.aceptarAmistades(driver, 2);
+		System.out.println("Se han aceptado todas las peticiones de amistad del usuario 2");
+
 
 	}
 
@@ -212,12 +229,8 @@ public class UOChatTests {
 		PO_LoginView.fillForm(driver, "prueba@hotmail.com", "123456");
 		// Comprobamos que entramos en la sección privada
 		PO_View.checkElement(driver, "text", "Usuarios");
-
-		// Clickamos segunda pagina
-		PO_UserListView.clickPagination(driver, 2);
-
-		// Comprobamos que son visibles todos los usuarios
-		SeleniumUtils.textoPresentePagina(driver, "prueba@hotmail.com");
+		// Comprobamos todos los usuarios en la aplicacion
+		PO_UserListView.comprobarTodosLosUsuarios(driver);
 
 	}
 
@@ -230,7 +243,7 @@ public class UOChatTests {
 		// Comprobamos que entramos en la sección privada
 		PO_View.checkElement(driver, "text", "Usuarios");
 		PO_UserListView.makeASearch(driver, "");
-		SeleniumUtils.textoPresentePagina(driver, "Prueba");
+		PO_UserListView.comprobarPrimeraPagina(driver);
 	}
 
 	// PR13.
@@ -268,13 +281,13 @@ public class UOChatTests {
 		// Hacemos busqueda por nombre
 		PO_UserListView.makeASearch(driver, "Prueba2");
 		// Al no aparecer ninguno no debe aparecer esta opcion
-		SeleniumUtils.textoPresentePagina(driver, "Prueba2");
+		SeleniumUtils.textoPresentePagina(driver, "prueba2@email.com");
 		SeleniumUtils.textoPresentePagina(driver, "Agregar Amigo");
 
 		// Hacemos busqueda por apellido
-		PO_UserListView.makeASearch(driver, "De Patata");
+		PO_UserListView.makeASearch(driver, "2Prueba");
 		// Al no aparecer ninguno no debe aparecer esta opcion
-		SeleniumUtils.textoPresentePagina(driver, "Pure");
+		SeleniumUtils.textoPresentePagina(driver, "prueba2@email.com");
 		SeleniumUtils.textoPresentePagina(driver, "Agregar Amigo");
 
 	}
@@ -287,14 +300,14 @@ public class UOChatTests {
 		// Comprobamos que entramos en la sección privada
 		PO_View.checkElement(driver, "text", "Usuarios");
 		// Se envia la solicitud a un usuario
-		PO_FriendsView.sendFriendRequest(driver, "pure@email.com");
+		PO_FriendsView.sendFriendRequest(driver, "prueba0@email.com");
 		// Comprobamos que sale el mensaje de confirmacion
 		PO_View.checkElement(driver, "text", "Peticion enviada");
 
 		// Salimos de Sesion y vamos al del receptor para comprobar que le ha llegado
 		// la invitacion
 		PO_HomeView.clickOption(driver, "/desconectarse", "class", "btn btn-primary");
-		PO_LoginView.fillForm(driver, "pure@email.com", "123456");
+		PO_LoginView.fillForm(driver, "prueba0@email.com", "123456");
 		PO_NavView.checkNavMode(driver, "mPeticionesAmistad");
 		// Comprobamos que aparece la invitacion
 		SeleniumUtils.textoPresentePagina(driver, "prueba@hotmail.com");
@@ -310,7 +323,7 @@ public class UOChatTests {
 		// Comprobamos que entramos en la sección privada
 		PO_View.checkElement(driver, "text", "Usuarios");
 		// Se envia la solicitud a un usuario
-		PO_FriendsView.sendFriendRequest(driver, "pure@email.com");
+		PO_FriendsView.sendFriendRequest(driver, "prueba0@email.com");
 		// Comprobamos que sale el mensaje de confirmacion
 		PO_View.checkElement(driver, "text", "Ya existe una peticion de ese tipo o no es valida");
 	}
@@ -319,20 +332,21 @@ public class UOChatTests {
 	// Listar invitaciones de amistad
 	@Test
 	public void PR17() {
-		PO_LoginView.fillForm(driver, "pure@email.com", "123456");
+		PO_LoginView.fillForm(driver, "prueba3@email.com", "123456");
 		PO_NavView.checkNavMode(driver, "mPeticionesAmistad");
 
 		// Comprobamos que aparece cada invitacion
-		SeleniumUtils.textoPresentePagina(driver, "prueba@hotmail.com");
+		SeleniumUtils.textoPresentePagina(driver, "prueba6@email.com");
 
 		// Comprobamos que aparece la invitacion
-		SeleniumUtils.textoPresentePagina(driver, "prueba@hotmail.com");
+		SeleniumUtils.textoPresentePagina(driver, "prueba7@email.com");
 
 		// Comprobamos que aparece la invitacion
-		SeleniumUtils.textoPresentePagina(driver, "prueba@hotmail.com");
+		SeleniumUtils.textoPresentePagina(driver, "prueba8@email.com");
+		// Comprobamos que aparece la invitacion
+		SeleniumUtils.textoPresentePagina(driver, "prueba9@email.com");
 
-		// Clickamos segunda pagina
-		// PO_UserListView.clickPagination(driver, 2);
+		
 	}
 
 	// PR18.
@@ -340,7 +354,7 @@ public class UOChatTests {
 	@Test
 	public void PR18() {
 		// Ir a la lista de amigos
-		PO_LoginView.fillForm(driver, "pure@email.com", "123456");
+		PO_LoginView.fillForm(driver, "prueba0@email.com", "123456");
 		PO_NavView.checkNavMode(driver, "mPeticionesAmistad");
 		// Aceptar la invitacion
 		PO_FriendsView.aceptFriendRequest(driver, "prueba@hotmail.com");
@@ -359,7 +373,7 @@ public class UOChatTests {
 	@Test
 	public void PR19() {
 		// Ir a la lista de amigos
-		PO_LoginView.fillForm(driver, "pure@email.com", "123456");
+		PO_LoginView.fillForm(driver, "prueba0@email.com", "123456");
 		PO_NavView.checkNavMode(driver, "mListaDeAmigos");
 		SeleniumUtils.textoPresentePagina(driver, "prueba@hotmail.com");
 		SeleniumUtils.textoPresentePagina(driver, "Lista de Amigos");

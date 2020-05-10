@@ -21,6 +21,23 @@ public class PO_UserListView extends PO_NavView {
 		elementos.get(0).click();
 	}
 
+	public static void comprobarTodosLosUsuarios(WebDriver driver) {
+		for(int i = 0; i<5;i++) {
+			SeleniumUtils.textoPresentePagina(driver,"prueba"+i+"@email.com");
+		}
+		PO_UserListView.clickPagination(driver, 2);
+		for(int i = 5; i<10;i++) {
+			SeleniumUtils.textoPresentePagina(driver,"prueba"+i+"@email.com");
+		}
+		PO_UserListView.clickPagination(driver, 3);
+		SeleniumUtils.textoPresentePagina(driver, "prueba@hotmail.com");
+	}
+	public static void comprobarPrimeraPagina(WebDriver driver) {
+		for(int i = 0; i<5;i++) {
+			SeleniumUtils.textoPresentePagina(driver,"prueba"+i+"@email.com");
+		}
+	}
+	
 	public static void makeASearch(WebDriver driver, String textToSearch) {
 		WebElement search = driver.findElement(By.id("searchText"));
 		search.click();
