@@ -370,7 +370,8 @@ public class NotaneitorTests {
 	// No se estará autenticado
 	@Test
 	public void PR20() {
-		assertTrue("PR20 sin hacer", false);
+		driver.navigate().to("https://localhost:8081/usuarios");
+		SeleniumUtils.textoPresentePagina(driver, "Identificación de usuario");
 	}
 
 	// PR21.
