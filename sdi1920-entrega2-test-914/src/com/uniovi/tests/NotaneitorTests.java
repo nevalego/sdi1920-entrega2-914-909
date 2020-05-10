@@ -199,7 +199,9 @@ public class NotaneitorTests {
 		PO_LoginView.fillForm(driver, "prueba@hotmail.com", "123456");
 		// Comprobamos que entramos en la sección privada
 		PO_View.checkElement(driver, "text", "Usuarios");
+		// Salimos de sesion
 		PO_HomeView.clickOption(driver, "/desconectarse", "class", "btn btn-primary");
+		// Comprobamos que no detecta el link de desconectarse
 		PO_HomeView.clickNoOption(driver, "/desconectarse");
 	}
 
@@ -207,7 +209,16 @@ public class NotaneitorTests {
 	// Mostrar usuarios del sistema
 	@Test
 	public void PR11() {
-		assertTrue("PR11 sin hacer", false);
+		PO_LoginView.fillForm(driver, "prueba@hotmail.com", "123456");
+		// Comprobamos que entramos en la sección privada
+		PO_View.checkElement(driver, "text", "Usuarios");
+		
+		//Clickamos segunda pagina
+		PO_UserListView.clickPagination(driver, 2);
+		
+		// Comprobamos que son visibles todos los usuarios
+		SeleniumUtils.textoPresentePagina(driver, "prueba@hotmail.com");
+
 	}
 
 	// PR12.

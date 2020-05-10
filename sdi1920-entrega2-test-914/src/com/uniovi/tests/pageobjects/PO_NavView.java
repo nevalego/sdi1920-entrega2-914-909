@@ -42,6 +42,7 @@ public class PO_NavView  extends PO_View{
 		//CLickamos en la opción de registro y esperamos a que se cargue el enlace de Registro.
 		SeleniumUtils.EsperaCargaPaginaNoTexto(driver, textOption, timeout);
 	}
+	
 
 	/**
 	 * Selecciona el enlace de idioma correspondiente al texto textLanguage 

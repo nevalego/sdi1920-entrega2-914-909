@@ -1,5 +1,7 @@
 package com.uniovi.tests.pageobjects;
 
+import static org.junit.Assert.assertTrue;
+
 import java.util.List;
 
 import org.openqa.selenium.By;
@@ -9,6 +11,15 @@ import org.openqa.selenium.WebElement;
 import com.uniovi.tests.util.SeleniumUtils;
 
 public class PO_UserListView extends PO_NavView {
+	
+	public static void clickPagination(WebDriver driver, int numPagina) {
+		//CLickamos en la opción de registro y esperamos a que se cargue el enlace de Registro.
+		List<WebElement> elementos = SeleniumUtils.EsperaCargaPagina(driver, "@href", "/usuarios?pg="+numPagina, getTimeout());
+		//Tiene que haber un sólo elemento.
+		assertTrue(elementos.size()==1);
+		//Ahora lo clickamos
+		elementos.get(0).click();
+	}
 
 	public static void makeASearch(WebDriver driver, String textToSearch) {
 		WebElement search = driver.findElement(By.id("searchText"));
