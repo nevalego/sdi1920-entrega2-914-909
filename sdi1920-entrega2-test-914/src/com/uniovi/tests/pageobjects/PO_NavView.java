@@ -30,6 +30,18 @@ public class PO_NavView  extends PO_View{
 		//Tiene que haber un sólo elemento.
 		assertTrue(elementos.size()==1);	
 	}
+	
+	/**
+	 * Intenta hacer click en una de las opciones principales (a href) y comprueba que no vaya a la vista con el elemento de tipo type con el texto Destino
+	 * @param driver: apuntando al navegador abierto actualmente.
+	 * @param textOption: Texto de la opción principal.
+	 * @param criterio: "id" or "class" or "text" or "@attribute" or "free". Si el valor de criterio es free es una expresion xpath completa. 
+	 * @param textoDestino: texto correspondiente a la búsqueda de la página destino.
+	 */
+	public static void clickNoOption(WebDriver driver, String textOption) {
+		//CLickamos en la opción de registro y esperamos a que se cargue el enlace de Registro.
+		SeleniumUtils.EsperaCargaPaginaNoTexto(driver, textOption, timeout);
+	}
 
 	/**
 	 * Selecciona el enlace de idioma correspondiente al texto textLanguage 

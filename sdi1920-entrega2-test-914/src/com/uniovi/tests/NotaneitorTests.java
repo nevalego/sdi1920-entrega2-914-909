@@ -150,12 +150,12 @@ public class NotaneitorTests {
 	@Test
 	public void PR06() {
 		PO_LoginView.fillForm(driver, "", "123456");
-		//Comprobamos que seguimos en la pagina
+		// Comprobamos que seguimos en la pagina
 		SeleniumUtils.textoPresentePagina(driver, "Identificación de usuario");
 		PO_LoginView.fillForm(driver, "prueba@hotmail.com", "");
-		//Comprobamos que seguimos en la pagina
+		// Comprobamos que seguimos en la pagina
 		SeleniumUtils.textoPresentePagina(driver, "Identificación de usuario");
-		
+
 	}
 
 	// PR07.
@@ -164,7 +164,7 @@ public class NotaneitorTests {
 	@Test
 	public void PR07() {
 		PO_LoginView.fillForm(driver, "prueba@hotmail.com", "2222222");
-		//Comprobamos que seguimos en la pagina
+		// Comprobamos que seguimos en la pagina
 		PO_View.checkElement(driver, "text", "Email o password incorrecto");
 	}
 
@@ -174,7 +174,7 @@ public class NotaneitorTests {
 	@Test
 	public void PR08() {
 		PO_LoginView.fillForm(driver, "emailNoExistente@hotmail.com", "123456");
-		//Comprobamos que seguimos en la pagina
+		// Comprobamos que seguimos en la pagina
 		PO_View.checkElement(driver, "text", "Email o password incorrecto");
 	}
 
@@ -196,7 +196,11 @@ public class NotaneitorTests {
 	// Boton cerrar sesion no visible si no esta loggeado
 	@Test
 	public void PR10() {
-		assertTrue("PR10 sin hacer", false);
+		PO_LoginView.fillForm(driver, "prueba@hotmail.com", "123456");
+		// Comprobamos que entramos en la sección privada
+		PO_View.checkElement(driver, "text", "Usuarios");
+		PO_HomeView.clickOption(driver, "/desconectarse", "class", "btn btn-primary");
+		PO_HomeView.clickNoOption(driver, "/desconectarse");
 	}
 
 	// PR11.
