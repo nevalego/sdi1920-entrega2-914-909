@@ -16,7 +16,7 @@ import com.uniovi.tests.pageobjects.*;
 
 //Ordenamos las pruebas por el nombre del mÃ©todo
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class NotaneitorTests {
+public class UOChatTests {
 	// En Windows (Debe ser la versiÃ³n 65.0.1 y desactivar las actualizacioens
 	// automÃ¡ticas)):
 	// Rutas Miguel
@@ -371,7 +371,7 @@ public class NotaneitorTests {
 	@Test
 	public void PR20() {
 		driver.navigate().to("https://localhost:8081/usuarios");
-		//Comprobamos que nos redirige a identificacion
+		// Comprobamos que nos redirige a identificacion
 		SeleniumUtils.textoPresentePagina(driver, "Identificación de usuario");
 	}
 
@@ -381,7 +381,7 @@ public class NotaneitorTests {
 	@Test
 	public void PR21() {
 		driver.navigate().to("https://localhost:8081/usuario/amistad");
-		//Comprobamos que nos redirige a identificacion
+		// Comprobamos que nos redirige a identificacion
 		SeleniumUtils.textoPresentePagina(driver, "Identificación de usuario");
 	}
 
@@ -390,55 +390,80 @@ public class NotaneitorTests {
 	// Se mostrará mensaje la accion indebida
 	@Test
 	public void PR22() {
-		
+
 		driver.navigate().to("https://localhost:8081/usuario/amigos");
-		//Comprobamos que nos redirige a identificacion
+		// Comprobamos que nos redirige a identificacion
 		SeleniumUtils.textoPresentePagina(driver, "Identificación de usuario");
 	}
 
-	// PR23. Sin hacer /
+	// PR23.
+	// Inicio de sesión con datos válidos
 	@Test
 	public void PR23() {
 		assertTrue("PR23 sin hacer", false);
 	}
 
-	// PR24. Sin hacer /
+	// PR24.
+	// Inicio de sesión con datos inválidos
+	// Usuario no existente en la aplicación
 	@Test
 	public void PR24() {
 		assertTrue("PR24 sin hacer", false);
 	}
 
-	// PR25. Sin hacer /
+	// PR25.
+	// Acceder a la lista de amigos de un usuario
+	// Que al menos tenga tres amigos
 	@Test
 	public void PR25() {
 		assertTrue("PR25 sin hacer", false);
 	}
 
-	// PR26. Sin hacer /
+	// PR26.
+	// Acceder a la lista de amigos de un usuario
+	// Realizar un filtrado para encontrar a un amigo por nombre
 	@Test
 	public void PR26() {
 		assertTrue("PR26 sin hacer", false);
 	}
 
-	// PR27. Sin hacer /
+	// PR27
+	// Acceder a la lista de mensajes de un amigo “chat”
+	// La lista debe contener al menos tres mensajes.
 	@Test
 	public void PR27() {
 		assertTrue("PR27 sin hacer", false);
 	}
 
-	// PR029. Sin hacer /
+	// PR028
+	// Acceder a la lista de mensajes de un amigo “chat” y crear un nuevo mensaje
+	// validar que mensaje aparece en la lista de mensajes
+	@Test
+	public void PR28() {
+		assertTrue("PR29 sin hacer", false);
+	}
+
+	// PR029
+	// Idenficiarse como usuario y enviar mensaje a un amigo
+	// Identificarse como el otro usuario y comprobar que el mensaje ha llegado
 	@Test
 	public void PR29() {
 		assertTrue("PR29 sin hacer", false);
 	}
 
-	// PR030. Sin hacer /
+	// PR030.
+	// Idenficiarse como usuario y enviar 3 mensajes a un amigo
+	// Identificarse como el otro usuario y comprobar que el mensaje ha llegado
 	@Test
 	public void PR30() {
 		assertTrue("PR30 sin hacer", false);
 	}
 
-	// PR031. Sin hacer /
+	// PR031.
+	// Idenficiarse como usuario y enviar mensaje al ultimo amigo
+	// Logearse como el segundo usuario y comprobar que el chat aparece el primero
+	// Logearse como un tercer usuario y enviar un mensaje al primero.
+	// Loguearse como el primer usuario y comprobar que el char aparece el primero
 	@Test
 	public void PR31() {
 		assertTrue("PR31 sin hacer", false);
