@@ -26,9 +26,9 @@
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
                 {% if (usuario != null || usuario != undefined || usuario != '') %}
-                <li id="mUsuarios" class="active"><a href="/usuarios">Usuarios</a></li>
-                <li id="mPeticionesAmistad" class="active"><a href="/usuario/amistad">Peticiones Amistad</a></li>
-                <li id="mListaDeAmigos" class="active"><a href="/usuario/amigos">Lista de Amigos</a></li>
+                <li class="active"><a id="mUsuarios" href="/usuarios">Usuarios</a></li>
+                <li><a id="mPeticionesAmistad" href="/usuario/amistad">Peticiones Amistad</a></li>
+                <li class="active"><a id="mListaDeAmigos" href="/usuario/amigos">Lista de Amigos</a></li>
                 {% endif %}
             </ul>
             <ul class="nav navbar-nav navbar-right">

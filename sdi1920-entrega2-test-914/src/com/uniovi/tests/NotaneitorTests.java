@@ -283,7 +283,24 @@ public class NotaneitorTests {
 	// Enviar solicitud de amistad y comprobar que existe
 	@Test
 	public void PR15() {
-		assertTrue("PR15 sin hacer", false);
+		PO_LoginView.fillForm(driver, "prueba@hotmail.com", "123456");
+		// Comprobamos que entramos en la sección privada
+		PO_View.checkElement(driver, "text", "Usuarios");
+		// Se envia la solicitud a un usuario 
+		PO_FriendsView.sendFriendRequest(driver, "pure@email.com");
+		//Comprobamos que sale el mensaje de confirmacion
+		PO_View.checkElement(driver, "text", "Peticion enviada");
+		
+		//Salimos de Sesion y vamos al del receptor para comprobar que le ha llegado
+		//la invitacion
+		PO_HomeView.clickOption(driver, "/desconectarse", "class", "btn btn-primary");
+		PO_LoginView.fillForm(driver, "pure@email.com", "123456");
+		PO_NavView.checkNavMode(driver, "mPeticionesAmistad");
+		//PO_HomeView.clickOption(driver, "/usuario/amistad", "class", "page-link");
+		//Comprobamos que aparece la invitacion
+		SeleniumUtils.textoPresentePagina(driver, "prueba@hotmail.com");
+		SeleniumUtils.textoPresentePagina(driver, "Aceptar");
+
 	}
 
 	// PR16.

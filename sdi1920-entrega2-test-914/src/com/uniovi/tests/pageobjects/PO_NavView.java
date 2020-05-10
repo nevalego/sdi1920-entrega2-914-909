@@ -31,6 +31,16 @@ public class PO_NavView  extends PO_View{
 		assertTrue(elementos.size()==1);	
 	}
 	
+	public static void checkNavMode(WebDriver driver, String option) {
+		
+		// Esperamos a que aparezca el menú de opciones.
+		List<WebElement> elementos = SeleniumUtils.EsperaCargaPagina(driver, "id", option, getTimeout());
+		// SeleniumUtils.esperarSegundos(driver, 2);
+
+		elementos.get(0).click();
+	}
+
+	
 	/**
 	 * Intenta hacer click en una de las opciones principales (a href) y comprueba que no vaya a la vista con el elemento de tipo type con el texto Destino
 	 * @param driver: apuntando al navegador abierto actualmente.

@@ -1,5 +1,7 @@
 package com.uniovi.tests.pageobjects;
 
+import static org.junit.Assert.assertTrue;
+
 import java.util.List;
 
 import org.openqa.selenium.WebDriver;
@@ -8,6 +10,14 @@ import org.openqa.selenium.WebElement;
 import com.uniovi.tests.util.SeleniumUtils;
 
 public class PO_FriendsView extends PO_NavView {
+	public static void sendFriendRequest(WebDriver driver, String email) {
+		//CLickamos en la opción de registro y esperamos a que se cargue el enlace de Registro.
+		List<WebElement> elementos = SeleniumUtils.EsperaCargaPagina(driver, "@href", "/usuario/amistad/"+email, getTimeout());
+		//Tiene que haber un sólo elemento.
+		assertTrue(elementos.size()==1);
+		//Ahora lo clickamos
+		elementos.get(0).click();
+	}
 
 	public static void aceptInvitation(WebDriver driver, String friendName) {
 		List<WebElement> elementos = SeleniumUtils.EsperaCargaPagina(driver, "id", "btnAceptInvitation"+friendName, getTimeout());
