@@ -79,7 +79,7 @@ module.exports = function (app, gestorBD) {
         }
     });
     // S4 Mostrar mensajes de una conversación
-    app.get("api/conversacion/:id",function(req,res){
+    app.get("/api/conversacion/:id",function(req,res){
         if (req.headers['token']) {
             // Primero obtener usuario por _id -> amigo.email -> obtener mensajes
             let criterioAmigo = {"_id": gestorBD.mongo.ObjectID(req.params.id)};
@@ -118,7 +118,7 @@ module.exports = function (app, gestorBD) {
                         } else {
                             app.get("logger").info("Los mensajes se listaron correctamente de la API");
                             res.status(200);
-                            res.logeado = logeado;
+                            res.logeado = amigo;
                             res.send(JSON.stringify(mensajes));
                         }
                     });
