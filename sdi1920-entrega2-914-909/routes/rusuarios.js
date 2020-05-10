@@ -277,7 +277,7 @@ module.exports = function (app, swig, gestorDB) {
                                 paginas.push(i);
                             }
                         }
-                        let respuesta = swig.renderFile('views/bsolicitudesAmistad.html',
+                        let respuesta = swig.renderFile('views/blistaDeAmigos.html',
                             {
                                 usuario: req.session.usuario,
                                 usuarios: usuarios,
