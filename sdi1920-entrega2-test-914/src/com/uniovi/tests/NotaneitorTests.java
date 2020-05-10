@@ -173,7 +173,9 @@ public class NotaneitorTests {
 	// Email no existente
 	@Test
 	public void PR08() {
-		assertTrue("PR08 sin hacer", false);
+		PO_LoginView.fillForm(driver, "emailNoExistente@hotmail.com", "123456");
+		//Comprobamos que seguimos en la pagina
+		PO_View.checkElement(driver, "text", "Email o password incorrecto");
 	}
 
 	// PR09.
