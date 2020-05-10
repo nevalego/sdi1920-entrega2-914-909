@@ -307,7 +307,13 @@ public class NotaneitorTests {
 	// Enviar amistad a un usuario al que ya se envio una
 	@Test
 	public void PR16() {
-		assertTrue("PR16 sin hacer", false);
+		PO_LoginView.fillForm(driver, "prueba@hotmail.com", "123456");
+		// Comprobamos que entramos en la sección privada
+		PO_View.checkElement(driver, "text", "Usuarios");
+		// Se envia la solicitud a un usuario 
+		PO_FriendsView.sendFriendRequest(driver, "pure@email.com");
+		//Comprobamos que sale el mensaje de confirmacion
+		PO_View.checkElement(driver, "text", "Ya existe una peticion de ese tipo o no es valida");
 	}
 
 	// PR017.
