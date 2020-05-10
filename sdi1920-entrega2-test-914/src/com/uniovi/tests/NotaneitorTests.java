@@ -85,7 +85,27 @@ public class NotaneitorTests {
 	// email, nombre o apellidos vacio
 	@Test
 	public void PR02() {
-		assertTrue("PR02 sin hacer", false);
+		// Vamos al formulario de registro
+				PO_HomeView.clickOption(driver, "/registrarse", "class", "btn btn-primary");
+				// Rellenamos el formulario con email vacio.
+				PO_RegisterView.fillForm(driver, "", "Prueba2", "Prueba2", "123456", "123456");
+				SeleniumUtils.textoPresentePagina(driver, "Registrar usuario");
+				// Rellenamos el formulario con nombre vacio.
+				PO_RegisterView.fillForm(driver, "prueba2@hotmail.com", "", "Prueba2", "123456", "123456");
+				SeleniumUtils.textoPresentePagina(driver, "Registrar usuario");
+				// Rellenamos el formulario con apellido vacio.
+				PO_RegisterView.fillForm(driver, "prueba2@hotmail.com", "Prueba2", "", "123456", "123456");
+				SeleniumUtils.textoPresentePagina(driver, "Registrar usuario");
+				// Rellenamos el formulario con contraseña vacia.
+				PO_RegisterView.fillForm(driver, "prueba2@hotmail.com", "Prueba2", "Prueba2", "", "123456");
+				SeleniumUtils.textoPresentePagina(driver, "Registrar usuario");
+				// Rellenamos el formulario con recontraseña vacia.
+				PO_RegisterView.fillForm(driver, "prueba2@hotmail.com", "Prueba2", "Prueba2", "123456", "");
+				SeleniumUtils.textoPresentePagina(driver, "Registrar usuario");
+				// Dejamos el formulario vacio.
+				PO_RegisterView.fillForm(driver, "", "", "", "", "");
+				SeleniumUtils.textoPresentePagina(driver, "Registrar usuario");
+				
 	}
 
 	// PR03.

@@ -35,8 +35,8 @@ public class PO_View {
 	 * @param locale: Retorna el índice correspondient al idioma. 0 p.SPANISH y 1 p.ENGLISH.
 	 * @return Se retornará la lista de elementos resultantes de la búsqueda.
 	 */
-	static public List<WebElement> checkKey(WebDriver driver, String key, int locale) {
-		List<WebElement> elementos = SeleniumUtils.EsperaCargaPagina(driver, "text", p.getString(key, locale), getTimeout());
+	static public List<WebElement> checkKey(WebDriver driver, String key) {
+		List<WebElement> elementos = SeleniumUtils.EsperaCargaPagina(driver, "text",key, getTimeout());
 		return elementos;
 	}
 	/**
