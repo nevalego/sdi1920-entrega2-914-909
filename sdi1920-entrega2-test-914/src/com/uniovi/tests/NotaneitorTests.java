@@ -23,8 +23,11 @@ public class NotaneitorTests {
 	static String PathFirefox65 = "C:\\Program Files\\Mozilla Firefox\\firefox.exe";
 	static String Geckdriver024 = "D:\\Universidad\\SDI\\Pruebas Selenium\\geckodriver024win64.exe";
 	// Rutas Nerea
-	//static String PathFirefox65 = "/Archivos de programa/Mozilla Firefox/firefox.exe";
-	//static String Geckdriver024 = "/Users/nerea/Documents/2 SEMESTRE/SDI/5. Web testing con Selenium/PL-SDI-Sesión5-material/PL-SDI-Sesión5-material/geckodriver024win64.exe";
+	// static String PathFirefox65 = "/Archivos de programa/Mozilla
+	// Firefox/firefox.exe";
+	// static String Geckdriver024 = "/Users/nerea/Documents/2 SEMESTRE/SDI/5. Web
+	// testing con
+	// Selenium/PL-SDI-Sesión5-material/PL-SDI-Sesión5-material/geckodriver024win64.exe";
 
 	// ComÃºn a Windows y a MACOSX
 	static WebDriver driver = getDriver(PathFirefox65, Geckdriver024);
@@ -51,7 +54,7 @@ public class NotaneitorTests {
 	static public void begin() {
 		// COnfiguramos las pruebas.
 		// Fijamos el timeout en cada opciÃ³n de carga de una vista. 2 segundos.
-		PO_View.setTimeout(3);
+		// PO_View.setTimeout(3);
 
 	}
 
@@ -61,15 +64,24 @@ public class NotaneitorTests {
 		driver.quit();
 	}
 
-	// PR01. 
-	//Registro de Usuario con datos válidos
+	// PR01.
+	// Registro de Usuario con datos válidos
 	@Test
 	public void PR01() {
-		assertTrue("PR01 sin hacer", false);
+		// Vamos al formulario de registro
+		PO_HomeView.clickOption(driver, "/registrarse", "class", "btn btn-primary");
+		// Rellenamos el formulario
+		PO_RegisterView.fillForm(driver, "prueba@hotmail.com", "Prueba", "Prueba", "123456", "123456");
+		// Comprobamos que nos dan un mensaje de registro realizado
+		PO_View.checkElement(driver, "text", "Usuario registrado correctamente");
+		PO_LoginView.fillForm(driver, "prueba@hotmail.com", "123456");
+		// Comprobamos que entramos en la sección privada
+		PO_View.checkElement(driver, "text", "Usuarios");
+		
 	}
 
 	// PR02.
-	//Registro de usuarios con datos invalidos
+	// Registro de usuarios con datos invalidos
 	// email, nombre o apellidos vacio
 	@Test
 	public void PR02() {
@@ -93,8 +105,8 @@ public class NotaneitorTests {
 	}
 
 	// PR05.
-	//Inicio de sesión con datos válidos
-	//Usuario estandar
+	// Inicio de sesión con datos válidos
+	// Usuario estandar
 	@Test
 	public void PR05() {
 		assertTrue("PR05 sin hacer", false);
@@ -197,7 +209,7 @@ public class NotaneitorTests {
 		assertTrue("PR18 sin hacer", false);
 	}
 
-	// PR19. 
+	// PR19.
 	// Mostrar listado de amistades
 	@Test
 	public void PR19() {
@@ -220,7 +232,7 @@ public class NotaneitorTests {
 		assertTrue("PR21 sin hacer", false);
 	}
 
-	// PR22. 
+	// PR22.
 	// Acceder a la lista de amigos de otro usuario
 	// Se mostrará mensaje la accion indebida
 	@Test
