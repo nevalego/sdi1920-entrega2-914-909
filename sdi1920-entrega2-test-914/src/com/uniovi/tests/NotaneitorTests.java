@@ -125,7 +125,13 @@ public class NotaneitorTests {
 	// Email existente
 	@Test
 	public void PR04() {
-		assertTrue("PR04 sin hacer", false);
+		// Vamos al formulario de registro
+		PO_HomeView.clickOption(driver, "/registrarse", "class", "btn btn-primary");
+		// Rellenamos el formulario
+		PO_RegisterView.fillForm(driver, "prueba@hotmail.com", "Prueba", "Prueba", "123456", "123456");
+		// Comprobamos que nos dan un mensaje de error por email existente
+		PO_View.checkElement(driver, "text", "Debe escoger otro email");
+
 	}
 
 	// PR05.
