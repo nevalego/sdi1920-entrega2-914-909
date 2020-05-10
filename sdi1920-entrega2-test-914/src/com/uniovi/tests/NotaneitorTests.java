@@ -226,7 +226,11 @@ public class NotaneitorTests {
 	// Se muestra todo
 	@Test
 	public void PR12() {
-		assertTrue("PR12 sin hacer", false);
+		PO_LoginView.fillForm(driver, "prueba@hotmail.com", "123456");
+		// Comprobamos que entramos en la sección privada
+		PO_View.checkElement(driver, "text", "Usuarios");
+		PO_UserListView.makeASearch(driver, "");
+		SeleniumUtils.textoPresentePagina(driver, "Prueba");
 	}
 
 	// PR13.

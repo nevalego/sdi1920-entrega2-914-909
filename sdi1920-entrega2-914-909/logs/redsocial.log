@@ -547,3 +547,7 @@
 [2020-05-10T04:11:19.205] [INFO] redsocial - Los amigos se listaron correctamente de la API
 [2020-05-10T04:21:39.823] [INFO] redsocial - Los amigos se listaron correctamente de la API
 [2020-05-10T04:21:44.926] [INFO] redsocial - Los amigos se listaron correctamente de la API
+[2020-05-10T17:02:05.723] [ERROR] redsocial - Email o password incorrecto
+[2020-05-10T17:02:58.705] [INFO] redsocial - El usuario prueba@hotmail.com se logeo correctamente
+[2020-05-10T17:03:00.072] [INFO] redsocial - El usuario ha listado los usuarios correctamente
+[2020-05-10T17:03:01.616] [INFO] redsocial - El usuario ha listado los usuarios correctamente
