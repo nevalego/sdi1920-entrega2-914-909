@@ -83,6 +83,7 @@ module.exports = function (app, gestorBD) {
         if (req.headers['token']) {
             // Primero obtener usuario por _id -> amigo.email -> obtener mensajes
             let criterioAmigo = {"_id": gestorBD.mongo.ObjectID(req.params.id)};
+            let logeado = res.usuario;
             gestorBD.obtenerUsuarios(criterioAmigo, function (usuarios) {
                 if (usuarios == null) {
                     app.get("logger").error("Se ha producido un error al obtener al amigo de la API");
@@ -118,7 +119,7 @@ module.exports = function (app, gestorBD) {
                         } else {
                             app.get("logger").info("Los mensajes se listaron correctamente de la API");
                             res.status(200);
-                            res.logeado = amigo;
+                            res.logeado = logeado;
                             res.send(JSON.stringify(mensajes));
                         }
                     });
@@ -128,37 +129,24 @@ module.exports = function (app, gestorBD) {
     });
 
     // S3 Crear mensaje
-    app.post("/api/mensaje/:destino", function (req, res) {
-        if (req.token) {
-            let criterio = {
-                $or: [{
-                    emisor: req.session.usuario.email,
-                    remitente: req.params.destino
-                },
-                    {
-                        emisor: req.params.destino,
-                        remitente: req.session.usuario.email
-                    }
-                ],
-                aceptada: true
-            }
-            //Se comprueba primero si los usuarios son amigos
-            gestorBD.obtenerPeticionesDeAmistad(criterio,function (amistad){
-                if (amistad == null || amistad.length == 0) {
-                    app.get("logger").error("Los usuarios no son amigos actualmente");
-                    res.status(403);
+    app.post("/api/mensaje/:id", function (req, res) {
+        if (req.headers['token']) {
+            let criterioAmigo = {"_id": gestorBD.mongo.ObjectID(req.params.id)};
+            gestorBD.obtenerUsuarios(criterioAmigo, function (usuarios) {
+                if (usuarios == null) {
+                    app.get("logger").error("Se ha producido un error al obtener al amigo de la API");
+                    res.status(500);
                     res.json({
-                        error: "Los usuarios no son amigos actualmente"
+                        error: "Se ha producido un error al obtener al amigo de la API"
                     })
                 } else {
                     let mensaje = {
-                        emisor: req.session.usuario.email,
-                        destino: req.params.destino,
+                        emisor: req.body.autor,
+                        destino: usuarios[0].email,
                         texto: req.body.texto,
                         fecha: new Date(),
                         leido: false
                     };
-
                     gestorBD.insertarMensaje(mensaje, function (id) {
                         if (id == null) {
                             app.get("logger").error("Error al crear mensaje en la API");
@@ -170,7 +158,7 @@ module.exports = function (app, gestorBD) {
                             app.get("logger").info("El mensaje se creó correctamente en la API");
                             res.status(201);
                             res.json({
-                                mensaje: "Mensaje creado",
+                                mensaje: "Mensaje creado en la API",
                                 _id: id
                             })
                         }

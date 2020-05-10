@@ -67,7 +67,7 @@ routerUsuarioToken.use(function (req, res, next) {
 
 // Aplicar routerUsuarioToken
 app.use('/api/amigos', routerUsuarioToken);
-app.use('/api/mensaje/:destino', routerUsuarioToken);
+app.use('/api/mensaje/:id', routerUsuarioToken);
 app.use('/api/conversacion/:id', routerUsuarioToken);
 app.use('/api/mensaje/leido/:id', routerUsuarioToken);
 

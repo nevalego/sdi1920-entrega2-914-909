@@ -27,7 +27,7 @@
             dataType: 'json',
             headers: {"token": token},
             success: function (respuesta) {
-                actualizarTabla(respuesta.usuarios);
+                actualizarTabla(respuesta.usuarios, respuesta.usuario);
             },
             error: function () {
                 alert('Error al cargar los amigos');
@@ -36,7 +36,7 @@
         });
     }
 
-    function actualizarTabla(usuarios) {
+    function actualizarTabla(usuarios, logeado) {
         $("#tablaAmigos").empty();
         for (let i = 0; i < usuarios.length; i++) {
             let amigo = usuarios[i];
@@ -46,14 +46,15 @@
                 "<td>" + usuarios[i].surname + "</td>"+
                 "<td>" + usuarios[i].email + "</td>"+
                 "<td>" +
-                "<a onclick=abrirConversacion('" + usuarios[i]._id + "')>Abrir conversación</a><br>" +
+                "<a onclick=abrirConversacion('" + usuarios[i]._id + "','"+  logeado.email + "')>Abrir conversación</a><br>" +
                 "</td>" +
                 "</tr>");
         }
     }
 
-    function abrirConversacion(amigoId) {
+    function abrirConversacion(amigoId, logeado) {
         Cookies.set('amigoId',amigoId);
+        Cookies.set('logeado', logeado)
         $("#contenedor-principal").load("widget-conversacion.html");
     }
     cargarAmigos();
