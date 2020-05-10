@@ -371,6 +371,7 @@ public class NotaneitorTests {
 	@Test
 	public void PR20() {
 		driver.navigate().to("https://localhost:8081/usuarios");
+		//Comprobamos que nos redirige a identificacion
 		SeleniumUtils.textoPresentePagina(driver, "Identificación de usuario");
 	}
 
@@ -379,7 +380,9 @@ public class NotaneitorTests {
 	// No se estará autenticado
 	@Test
 	public void PR21() {
-		assertTrue("PR21 sin hacer", false);
+		driver.navigate().to("https://localhost:8081/usuario/amistad");
+		//Comprobamos que nos redirige a identificacion
+		SeleniumUtils.textoPresentePagina(driver, "Identificación de usuario");
 	}
 
 	// PR22.
@@ -387,7 +390,10 @@ public class NotaneitorTests {
 	// Se mostrará mensaje la accion indebida
 	@Test
 	public void PR22() {
-		assertTrue("PR22 sin hacer", false);
+		
+		driver.navigate().to("https://localhost:8081/usuario/amigos");
+		//Comprobamos que nos redirige a identificacion
+		SeleniumUtils.textoPresentePagina(driver, "Identificación de usuario");
 	}
 
 	// PR23. Sin hacer /
