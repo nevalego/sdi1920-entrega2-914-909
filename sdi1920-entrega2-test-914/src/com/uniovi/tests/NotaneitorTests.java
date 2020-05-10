@@ -149,7 +149,13 @@ public class NotaneitorTests {
 	// email y contraseña vacios
 	@Test
 	public void PR06() {
-		assertTrue("PR06 sin hacer", false);
+		PO_LoginView.fillForm(driver, "", "123456");
+		//Comprobamos que seguimos en la pagina
+		SeleniumUtils.textoPresentePagina(driver, "Identificación de usuario");
+		PO_LoginView.fillForm(driver, "prueba@hotmail.com", "");
+		//Comprobamos que seguimos en la pagina
+		SeleniumUtils.textoPresentePagina(driver, "Identificación de usuario");
+		
 	}
 
 	// PR07.
