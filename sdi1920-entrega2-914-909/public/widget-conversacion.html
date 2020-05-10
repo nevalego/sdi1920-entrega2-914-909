@@ -52,16 +52,16 @@
 
     function enviarMensaje() {
         $.ajax({
-            url: URLbase + "/mensaje/" + Cookies.get('amigo'),
+            url: URLbase + "/mensaje/" + Cookies.get('amigoId'),
             type: "POST",
             data: {
-                mensaje: $("#agregar-mensaje").val(),
-                receptor: Cookies.get('autor')
+                texto: $("#agregar-mensaje").val(),
+                autor: Cookies.get('logeado')
             },
             dataType: 'json',
             headers: {"token": token},
             success: function () {
-                cargarMensajes();
+                cargarConversacion();
                 $("#agregar-mensaje").val('');
             },
             error: function () {
