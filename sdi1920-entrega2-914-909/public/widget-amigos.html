@@ -39,17 +39,21 @@
     function actualizarTabla(usuarios) {
         $("#tablaAmigos").empty();
         for (let i = 0; i < usuarios.length; i++) {
+            let amigo = usuarios[i];
             $("#tablaAmigos").append(
-                "<tr id=" + usuarios[i]._id + ">" +
+                "<tr id=" + usuarios[i]._id + ">"+
                 "<td>" + usuarios[i].name + "</td>"+
                 "<td>" + usuarios[i].surname + "</td>"+
                 "<td>" + usuarios[i].email + "</td>"+
-                "<td><a onclick='widgetConversacion()'>" +
-                "Abrir conversación"+"</a></td>" + "</tr>");
+                "<td>" +
+                "<a onclick=abrirConversacion('" + usuarios[i]._id + "')>Abrir conversación</a><br>" +
+                "</td>" +
+                "</tr>");
         }
     }
 
-    function widgetConversacion() {
+    function abrirConversacion(amigoId) {
+        Cookies.set('amigoId',amigoId);
         $("#contenedor-principal").load("widget-conversacion.html");
     }
     cargarAmigos();

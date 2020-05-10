@@ -26,14 +26,13 @@
 
     function cargarConversacion() {
         $.ajax({
-            url: URLbase + "/search/conversacion/" + Cookies.get('amigoId'),
+            url: URLbase + "/conversacion/" + Cookies.get('amigoId'),
             type: "GET",
             data: {},
             dataType: 'json',
             headers: {"token": token},
             success: function (respuesta) {
-                let conversacion = respuesta;
-                cargarMensajes(conversacion);
+                actualizarTabla(respuesta);
             },
             error: function () {
                 alert('Error al cargar la conversación');
@@ -41,41 +40,19 @@
             }
         });
     }
-
-    function cargarMensajes(conversacion) {
-        if (conversacion.length !== 0) {
-            $.ajax({
-                url: URLbase + "/conversacion/" + conversacion[0]._id,
-                type: "GET",
-                data: {},
-                dataType: 'json',
-                headers: {"token": token},
-                success: function (respuesta) {
-                    let mensajes = respuesta
-                    actualizarTabla(mensajes)
-                },
-                error: function (error) {
-                    alert('Error al cargar los mensajes de la conversación');
-                    $("#contenedor-principal").load("widget-amigos.html");
-                }
-            });
-        }
-    }
-
-
     function actualizarTabla(mensajes) {
-        $("#tablaCuerpo").empty(); // Vaciar la tabla
+        $("#tablaCuerpo").empty();
         for (let i = 0; i < mensajes.length; i++) {
             $("#tablaCuerpo").append(
                 "<tr id=" + mensajes[i]._id + ">" +
-                "<td>" + mensajes[i].emisor + " : " + mensajes[i].mensaje + "</td>" +
+                "<td>" + mensajes[i].emisor + " : " + mensajes[i].texto + "</td>" +
                 "</tr>");
         }
     }
 
     function enviarMensaje() {
         $.ajax({
-            url: URLbase + "/mensaje/" + Cookies.get('amigoId'),
+            url: URLbase + "/mensaje/" + Cookies.get('amigo'),
             type: "POST",
             data: {
                 mensaje: $("#agregar-mensaje").val(),
