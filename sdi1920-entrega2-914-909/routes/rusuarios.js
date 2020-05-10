@@ -261,8 +261,8 @@ module.exports = function (app, swig, gestorDB) {
                 }
                 gestorDB.obtenerUsuariosPg(criterioAmigos,pg, function (usuarios, total) {
                     if (usuarios == null || usuarios.length==0) {
-                        res.redirect("/usuario/amistad?mensaje=No existe ese usuario en la base de datos");
-                        app.get("logger").error('No existe ese usuario en la base de datos');
+                        res.redirect("/usuario/amistad?mensaje=Error al obtener los usuarios amigos");
+                        app.get("logger").error('Error al obtener los usuarios amigos');
                     } else {
                         let ultimaPg = 1;
                         if (total > 5) {
@@ -277,7 +277,7 @@ module.exports = function (app, swig, gestorDB) {
                                 paginas.push(i);
                             }
                         }
-                        let respuesta = swig.renderFile('views/bsolicitudesAmistad.html',
+                        let respuesta = swig.renderFile('views/blistaDeAmigos.html',
                             {
                                 usuario: req.session.usuario,
                                 usuarios: usuarios,
