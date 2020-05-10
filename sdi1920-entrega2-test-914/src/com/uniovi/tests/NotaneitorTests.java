@@ -77,7 +77,7 @@ public class NotaneitorTests {
 		PO_LoginView.fillForm(driver, "prueba@hotmail.com", "123456");
 		// Comprobamos que entramos en la sección privada
 		PO_View.checkElement(driver, "text", "Usuarios");
-		
+
 	}
 
 	// PR02.
@@ -86,26 +86,26 @@ public class NotaneitorTests {
 	@Test
 	public void PR02() {
 		// Vamos al formulario de registro
-				PO_HomeView.clickOption(driver, "/registrarse", "class", "btn btn-primary");
-				// Rellenamos el formulario con email vacio.
-				PO_RegisterView.fillForm(driver, "", "Prueba2", "Prueba2", "123456", "123456");
-				SeleniumUtils.textoPresentePagina(driver, "Registrar usuario");
-				// Rellenamos el formulario con nombre vacio.
-				PO_RegisterView.fillForm(driver, "prueba2@hotmail.com", "", "Prueba2", "123456", "123456");
-				SeleniumUtils.textoPresentePagina(driver, "Registrar usuario");
-				// Rellenamos el formulario con apellido vacio.
-				PO_RegisterView.fillForm(driver, "prueba2@hotmail.com", "Prueba2", "", "123456", "123456");
-				SeleniumUtils.textoPresentePagina(driver, "Registrar usuario");
-				// Rellenamos el formulario con contraseña vacia.
-				PO_RegisterView.fillForm(driver, "prueba2@hotmail.com", "Prueba2", "Prueba2", "", "123456");
-				SeleniumUtils.textoPresentePagina(driver, "Registrar usuario");
-				// Rellenamos el formulario con recontraseña vacia.
-				PO_RegisterView.fillForm(driver, "prueba2@hotmail.com", "Prueba2", "Prueba2", "123456", "");
-				SeleniumUtils.textoPresentePagina(driver, "Registrar usuario");
-				// Dejamos el formulario vacio.
-				PO_RegisterView.fillForm(driver, "", "", "", "", "");
-				SeleniumUtils.textoPresentePagina(driver, "Registrar usuario");
-				
+		PO_HomeView.clickOption(driver, "/registrarse", "class", "btn btn-primary");
+		// Rellenamos el formulario con email vacio.
+		PO_RegisterView.fillForm(driver, "", "Prueba2", "Prueba2", "123456", "123456");
+		SeleniumUtils.textoPresentePagina(driver, "Registrar usuario");
+		// Rellenamos el formulario con nombre vacio.
+		PO_RegisterView.fillForm(driver, "prueba2@hotmail.com", "", "Prueba2", "123456", "123456");
+		SeleniumUtils.textoPresentePagina(driver, "Registrar usuario");
+		// Rellenamos el formulario con apellido vacio.
+		PO_RegisterView.fillForm(driver, "prueba2@hotmail.com", "Prueba2", "", "123456", "123456");
+		SeleniumUtils.textoPresentePagina(driver, "Registrar usuario");
+		// Rellenamos el formulario con contraseña vacia.
+		PO_RegisterView.fillForm(driver, "prueba2@hotmail.com", "Prueba2", "Prueba2", "", "123456");
+		SeleniumUtils.textoPresentePagina(driver, "Registrar usuario");
+		// Rellenamos el formulario con recontraseña vacia.
+		PO_RegisterView.fillForm(driver, "prueba2@hotmail.com", "Prueba2", "Prueba2", "123456", "");
+		SeleniumUtils.textoPresentePagina(driver, "Registrar usuario");
+		// Dejamos el formulario vacio.
+		PO_RegisterView.fillForm(driver, "", "", "", "", "");
+		SeleniumUtils.textoPresentePagina(driver, "Registrar usuario");
+
 	}
 
 	// PR03.
@@ -113,7 +113,11 @@ public class NotaneitorTests {
 	// contraseña invalida repetida
 	@Test
 	public void PR03() {
-		assertTrue("PR03 sin hacer", false);
+		// Vamos al formulario de registro
+		PO_HomeView.clickOption(driver, "/registrarse", "class", "btn btn-primary");
+		// Rellenamos el formulario con contraseña repetida erronea.
+		PO_RegisterView.fillForm(driver, "prueba2@hotmail.com", "Prueba2", "Prueba2", "123456", "222222");
+		PO_View.checkElement(driver, "text", "Las contraseñas no coinciden");
 	}
 
 	// PR04.
