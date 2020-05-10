@@ -183,7 +183,13 @@ public class NotaneitorTests {
 	// Redirigir a login
 	@Test
 	public void PR09() {
-		assertTrue("PR09 sin hacer", false);
+		PO_LoginView.fillForm(driver, "prueba@hotmail.com", "123456");
+		// Comprobamos que entramos en la sección privada
+		PO_View.checkElement(driver, "text", "Usuarios");
+		PO_HomeView.clickOption(driver, "/desconectarse", "class", "btn btn-primary");
+		PO_View.checkElement(driver, "text", "Identificación de usuario");
+		SeleniumUtils.textoNoPresentePagina(driver, "Usuarios");
+
 	}
 
 	// PR10.
