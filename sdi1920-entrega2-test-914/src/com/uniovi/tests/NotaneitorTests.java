@@ -212,10 +212,10 @@ public class NotaneitorTests {
 		PO_LoginView.fillForm(driver, "prueba@hotmail.com", "123456");
 		// Comprobamos que entramos en la sección privada
 		PO_View.checkElement(driver, "text", "Usuarios");
-		
-		//Clickamos segunda pagina
+
+		// Clickamos segunda pagina
 		PO_UserListView.clickPagination(driver, 2);
-		
+
 		// Comprobamos que son visibles todos los usuarios
 		SeleniumUtils.textoPresentePagina(driver, "prueba@hotmail.com");
 
@@ -238,7 +238,15 @@ public class NotaneitorTests {
 	// No muestra nada
 	@Test
 	public void PR13() {
-		assertTrue("PR13 sin hacer", false);
+		PO_LoginView.fillForm(driver, "prueba@hotmail.com", "123456");
+		// Comprobamos que entramos en la sección privada
+		PO_View.checkElement(driver, "text", "Usuarios");
+		// Si hay uno o mas usuarios estos tendran esta opcion
+		SeleniumUtils.textoPresentePagina(driver, "Agregar Amigo");
+		PO_UserListView.makeASearch(driver, "UnicornioSubmarino");
+		// Al no aparecer ninguno no debe aparecer esta opcion
+		SeleniumUtils.textoNoPresentePagina(driver, "Agregar Amigo");
+
 	}
 
 	// PR14.
