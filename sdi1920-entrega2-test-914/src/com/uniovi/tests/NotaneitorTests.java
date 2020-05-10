@@ -258,13 +258,13 @@ public class NotaneitorTests {
 		PO_View.checkElement(driver, "text", "Usuarios");
 		// Si hay uno o mas usuarios estos tendran esta opcion
 		SeleniumUtils.textoPresentePagina(driver, "Agregar Amigo");
-		
+
 		// Hacemos Busqueda por email
 		PO_UserListView.makeASearch(driver, "prueba@hotmail.com");
 		// Al no aparecer ninguno no debe aparecer esta opcion
 		SeleniumUtils.textoPresentePagina(driver, "Prueba");
 		SeleniumUtils.textoPresentePagina(driver, "Agregar Amigo");
-		
+
 		// Hacemos busqueda por nombre
 		PO_UserListView.makeASearch(driver, "Prueba2");
 		// Al no aparecer ninguno no debe aparecer esta opcion
@@ -286,18 +286,17 @@ public class NotaneitorTests {
 		PO_LoginView.fillForm(driver, "prueba@hotmail.com", "123456");
 		// Comprobamos que entramos en la sección privada
 		PO_View.checkElement(driver, "text", "Usuarios");
-		// Se envia la solicitud a un usuario 
+		// Se envia la solicitud a un usuario
 		PO_FriendsView.sendFriendRequest(driver, "pure@email.com");
-		//Comprobamos que sale el mensaje de confirmacion
+		// Comprobamos que sale el mensaje de confirmacion
 		PO_View.checkElement(driver, "text", "Peticion enviada");
-		
-		//Salimos de Sesion y vamos al del receptor para comprobar que le ha llegado
-		//la invitacion
+
+		// Salimos de Sesion y vamos al del receptor para comprobar que le ha llegado
+		// la invitacion
 		PO_HomeView.clickOption(driver, "/desconectarse", "class", "btn btn-primary");
 		PO_LoginView.fillForm(driver, "pure@email.com", "123456");
 		PO_NavView.checkNavMode(driver, "mPeticionesAmistad");
-		//PO_HomeView.clickOption(driver, "/usuario/amistad", "class", "page-link");
-		//Comprobamos que aparece la invitacion
+		// Comprobamos que aparece la invitacion
 		SeleniumUtils.textoPresentePagina(driver, "prueba@hotmail.com");
 		SeleniumUtils.textoPresentePagina(driver, "Aceptar");
 
@@ -310,9 +309,9 @@ public class NotaneitorTests {
 		PO_LoginView.fillForm(driver, "prueba@hotmail.com", "123456");
 		// Comprobamos que entramos en la sección privada
 		PO_View.checkElement(driver, "text", "Usuarios");
-		// Se envia la solicitud a un usuario 
+		// Se envia la solicitud a un usuario
 		PO_FriendsView.sendFriendRequest(driver, "pure@email.com");
-		//Comprobamos que sale el mensaje de confirmacion
+		// Comprobamos que sale el mensaje de confirmacion
 		PO_View.checkElement(driver, "text", "Ya existe una peticion de ese tipo o no es valida");
 	}
 
@@ -320,7 +319,20 @@ public class NotaneitorTests {
 	// Listar invitaciones de amistad
 	@Test
 	public void PR17() {
-		assertTrue("PR17 sin hacer", false);
+		PO_LoginView.fillForm(driver, "pure@email.com", "123456");
+		PO_NavView.checkNavMode(driver, "mPeticionesAmistad");
+
+		// Comprobamos que aparece cada invitacion
+		SeleniumUtils.textoPresentePagina(driver, "prueba@hotmail.com");
+
+		// Comprobamos que aparece la invitacion
+		SeleniumUtils.textoPresentePagina(driver, "prueba@hotmail.com");
+
+		// Comprobamos que aparece la invitacion
+		SeleniumUtils.textoPresentePagina(driver, "prueba@hotmail.com");
+
+		// Clickamos segunda pagina
+		//PO_UserListView.clickPagination(driver, 2);
 	}
 
 	// PR18.

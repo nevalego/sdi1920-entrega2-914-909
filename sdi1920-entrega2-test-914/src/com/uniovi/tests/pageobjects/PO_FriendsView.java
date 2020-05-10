@@ -18,6 +18,16 @@ public class PO_FriendsView extends PO_NavView {
 		//Ahora lo clickamos
 		elementos.get(0).click();
 	}
+	
+	public static void clickPagination(WebDriver driver, int numPagina) {
+		//CLickamos en la opción de registro y esperamos a que se cargue el enlace de Registro.
+		List<WebElement> elementos = SeleniumUtils.EsperaCargaPagina(driver, "@href", "/usuario/amistad?pg="+numPagina, getTimeout());
+		//Tiene que haber un sólo elemento.
+		assertTrue(elementos.size()==1);
+		//Ahora lo clickamos
+		elementos.get(0).click();
+	}
+
 
 	public static void aceptInvitation(WebDriver driver, String friendName) {
 		List<WebElement> elementos = SeleniumUtils.EsperaCargaPagina(driver, "id", "btnAceptInvitation"+friendName, getTimeout());
