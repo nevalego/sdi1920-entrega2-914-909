@@ -209,4 +209,20 @@ module.exports = function (app, gestorBD) {
             });
         }
     });
+
+    //SOLO PARA USO DE TESTS
+    //METODO DE BORRADO DE COLECCIONES
+    app.get("/api/eliminarColeccion",function (req, res) {
+        let coleccion = req.query.coleccion;
+        gestorBD.resetBD(coleccion, function (resultado) {
+            if(resultado){
+                app.get("logger").info('Coleccion borrada exitosamente');
+                res.send("Coleccion borrada exitosamente");
+
+            }else{
+                app.get("logger").error('No se ha podido borrar la coleccion');
+                res.send("No se ha podido borrar la coleccion");
+            }
+        })
+    });
 }

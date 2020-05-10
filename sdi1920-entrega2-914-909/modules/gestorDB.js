@@ -197,5 +197,22 @@ module.exports = {
                 });
             }
         });
+    },
+    resetBD: function (criterio, funcionCallback) {
+        //SOLO PARA PRUEBAS
+        this.mongo.MongoClient.connect(this.app.get('db'), function(err, db) {
+            if (err) {
+                funcionCallback(false);
+            } else {
+                var collection = db.collection(criterio);
+                collection.remove({},function (err,obj) {
+                    if (err) {
+                        funcionCallback(false);
+                    }else{
+                        funcionCallback(true);
+                    }
+                });
+            }
+        });
     }
 };

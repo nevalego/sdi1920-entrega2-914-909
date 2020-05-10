@@ -297,8 +297,6 @@ module.exports = function (app, swig, gestorDB) {
             app.get("logger").error('No hay un usuario identificado');
             res.redirect("/identificarse");
         }
-        //console.log("Remitente: "+req.session.usuario.email);
-        //console.log("Emisor: "+req.params.email);
         let criterio = { "remitente" : req.session.usuario.email,
                         "emisor": req.params.email,
         };
