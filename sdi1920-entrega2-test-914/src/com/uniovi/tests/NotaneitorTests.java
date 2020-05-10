@@ -253,7 +253,30 @@ public class NotaneitorTests {
 	// Busqueda que aparezca lo que se debe
 	@Test
 	public void PR14() {
-		assertTrue("PR14 sin hacer", false);
+		PO_LoginView.fillForm(driver, "prueba@hotmail.com", "123456");
+		// Comprobamos que entramos en la sección privada
+		PO_View.checkElement(driver, "text", "Usuarios");
+		// Si hay uno o mas usuarios estos tendran esta opcion
+		SeleniumUtils.textoPresentePagina(driver, "Agregar Amigo");
+		
+		// Hacemos Busqueda por email
+		PO_UserListView.makeASearch(driver, "prueba@hotmail.com");
+		// Al no aparecer ninguno no debe aparecer esta opcion
+		SeleniumUtils.textoPresentePagina(driver, "Prueba");
+		SeleniumUtils.textoPresentePagina(driver, "Agregar Amigo");
+		
+		// Hacemos busqueda por nombre
+		PO_UserListView.makeASearch(driver, "Prueba2");
+		// Al no aparecer ninguno no debe aparecer esta opcion
+		SeleniumUtils.textoPresentePagina(driver, "Prueba2");
+		SeleniumUtils.textoPresentePagina(driver, "Agregar Amigo");
+
+		// Hacemos busqueda por apellido
+		PO_UserListView.makeASearch(driver, "De Patata");
+		// Al no aparecer ninguno no debe aparecer esta opcion
+		SeleniumUtils.textoPresentePagina(driver, "Pure");
+		SeleniumUtils.textoPresentePagina(driver, "Agregar Amigo");
+
 	}
 
 	// PR15.
