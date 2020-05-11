@@ -70,6 +70,9 @@ public class UOChatTests {
 		PO_InitAplication.aceptarAmistades(driver, 2);
 		System.out.println("Se han aceptado todas las peticiones de amistad del usuario 2");
 
+		// Insertando mensajes
+		PO_InitAplication.insertMensajes(driver);
+		System.out.println("Se han aceptado todos los mensajes");
 
 	}
 
