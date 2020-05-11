@@ -1,5 +1,22 @@
 <div id="widget-amigos">
     <h2>Amigos</h2>
+    <div class="row">
+        <div id="custom-search-input ">
+            <div class="form-group" >
+                <div
+                        class="input-group col-xs-8 col-sm-6 col-md-4 col-lg-5 pull-right">
+                    <input id="searchText" type="text" class="search-query form-control"
+                           placeholder="Buscar" name="busqueda"/>
+                    <span class="input-group-btn">
+                        <button id="btnSearch" class="btn" type="button"
+                                onclick="filtrarAmigos()">
+                            <span class="glyphicon glyphicon-search"></span>
+                        </button>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
     <table class="table table-hover">
         <thead>
         <tr>
@@ -46,10 +63,31 @@
                 "<td>" + usuarios[i].surname + "</td>"+
                 "<td>" + usuarios[i].email + "</td>"+
                 "<td>" +
-                "<a onclick=abrirConversacion('" + usuarios[i]._id + "','"+  logeado.email + "')>Abrir conversación</a><br>" +
+                "<a id='abrirConversacion'" +
+                " onclick=abrirConversacion('" + usuarios[i]._id + "','"+  logeado.email + "')>Abrir conversación</a><br>" +
                 "</td>" +
                 "</tr>");
         }
+    }
+
+    function  filtrarAmigos() {
+        let searchText = $("#searchText").val();
+        $.ajax({
+            url: URLbase + "/amigos",
+            type: "GET",
+            data: {
+                searchText: $("#searchText").val()
+            },
+            dataType: 'json',
+            headers: {"token": token},
+            success: function (respuesta) {
+                actualizarTabla(respuesta.usuarios, respuesta.usuario);
+            },
+            error: function () {
+                alert('Error al cargar los amigos');
+                $("#contenedor-principal").load("widget-amigos.html");
+            }
+        });
     }
 
     function abrirConversacion(amigoId, logeado) {
