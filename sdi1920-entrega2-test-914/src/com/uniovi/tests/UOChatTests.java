@@ -31,8 +31,8 @@ public class UOChatTests {
 
 	// ComÃºn a Windows y a MACOSX
 	static WebDriver driver = getDriver(PathFirefox65, Geckdriver024);
-	//static String URL = "https://localhost:8081";
-	static String URL = "https://localhost:8081/cliente.html";
+	static String URL = "https://localhost:8081";
+	static String URL_API = "https://localhost:8081/cliente.html";
 
 	public static WebDriver getDriver(String PathFirefox, String Geckdriver) {
 		System.setProperty("webdriver.firefox.bin", PathFirefox);
@@ -415,9 +415,10 @@ public class UOChatTests {
 	// Inicio de sesión con datos válidos
 	@Test
 	public void PR23() {
+		driver.navigate().to(URL_API);
 		PO_LoginView.fillForm(driver, "prueba@hotmail.com", "123456");
 		// Comprobamos que entramos en la sección privada
-		PO_View.checkElement(driver, "text", "cerrar sesion");
+		PO_View.checkElement(driver, "text", "Cerrar sesión");
 	}
 
 	// PR24.
@@ -425,7 +426,10 @@ public class UOChatTests {
 	// Usuario no existente en la aplicación
 	@Test
 	public void PR24() {
-		assertTrue("PR24 sin hacer", false);
+		driver.navigate().to(URL_API);
+		PO_LoginView.fillForm(driver, "noexiste@hotmail.com", "123456");
+		// Comprobamos que entramos en la sección privada
+		PO_View.checkElement(driver, "text", "Usuario no encontrado");
 	}
 
 	// PR25.
@@ -433,7 +437,17 @@ public class UOChatTests {
 	// Que al menos tenga tres amigos
 	@Test
 	public void PR25() {
-		assertTrue("PR25 sin hacer", false);
+		driver.navigate().to(URL_API);
+		PO_LoginView.fillForm(driver, "prueba2@hotmail.com", "123456");
+		// Comprobamos que entramos en la sección privada
+		PO_View.checkElement(driver, "text", "Cerrar sesión");
+		// Comprobamos que estamos en la lista de sus amigos		
+		PO_NavView.checkNavMode(driver, "navAmigos");
+		SeleniumUtils.textoPresentePagina(driver, "Amigos");
+		SeleniumUtils.textoPresentePagina(driver, "prueba6@hotmail.com");
+		SeleniumUtils.textoPresentePagina(driver, "prueba7@hotmail.com");
+		SeleniumUtils.textoPresentePagina(driver, "prueba8@hotmail.com");
+		SeleniumUtils.textoPresentePagina(driver, "prueba9@hotmail.com");	
 	}
 
 	// PR26.
@@ -441,7 +455,17 @@ public class UOChatTests {
 	// Realizar un filtrado para encontrar a un amigo por nombre
 	@Test
 	public void PR26() {
-		assertTrue("PR26 sin hacer", false);
+		driver.navigate().to(URL_API);
+		PO_LoginView.fillForm(driver, "prueba2@hotmail.com", "123456");
+		// Comprobamos que entramos en la sección privada
+		PO_View.checkElement(driver, "text", "Cerrar sesión");
+		// Comprobamos que estamos en la lista de sus amigos		
+		PO_NavView.checkNavMode(driver, "navAmigos");
+		SeleniumUtils.textoPresentePagina(driver, "Amigos");
+		SeleniumUtils.textoPresentePagina(driver, "prueba6@hotmail.com");
+		SeleniumUtils.textoPresentePagina(driver, "prueba7@hotmail.com");
+		SeleniumUtils.textoPresentePagina(driver, "prueba8@hotmail.com");
+		SeleniumUtils.textoPresentePagina(driver, "prueba9@hotmail.com");	
 	}
 
 	// PR27
