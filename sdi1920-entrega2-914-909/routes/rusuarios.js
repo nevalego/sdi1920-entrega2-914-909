@@ -2,46 +2,61 @@ module.exports = function (app, swig, gestorDB) {
 
     app.get("/usuarios", function (req, res) {
         let criterio = {};
-        if( req.query.busqueda != null){
+        if( req.query.busqueda == null || req.query.busqueda === ""){
+            let pg = parseInt(req.query.pg);
+            if ( req.query.pg == null){
+                pg = 1;
+            }
+            gestorDB.obtenerUsuariosPg(criterio, pg,function (usuarios, total) {
+                if (usuarios == null) {
+                    res.send("Error al listar usuarios");
+                    app.get("logger").error('Error al listar los usuarios');
+                } else {
+                    let ultimaPg = 1;
+                    if(total > 5){
+                        ultimaPg = total/5;
+                    }
+                    if (total % 5 > 0 && total/5 >1){ // Sobran decimales
+                        ultimaPg = ultimaPg+1;
+                    }
+                    let paginas = []; // paginas mostrar
+                    for(let i = pg-2 ; i <= pg+2 ; i++){
+                        if ( i > 0 && i <= ultimaPg){
+                            paginas.push(i);
+                        }
+                    }
+                    let respuesta = swig.renderFile('views/busuarios.html',
+                        {
+                            usuario: req.session.usuario,
+                            usuarios: usuarios,
+                            paginas : paginas,
+                            actual : pg
+                        });
+                    res.send(respuesta);
+                    app.get("logger").info('El usuario ha listado los usuarios correctamente');
+                }
+            });
+        }else{
             criterio = {
                 $or:[{name : {$regex : ".*"+req.query.busqueda+".*"}},
                     {surname : {$regex : ".*"+req.query.busqueda+".*"}},
                     {email : {$regex : ".*"+req.query.busqueda+".*"}}]
             };
+            gestorDB.obtenerUsuarios(criterio,function(usuarios){
+                if (usuarios == null) {
+                    res.send("Error al listar usuarios");
+                    app.get("logger").error('Error al listar los usuarios');
+                }else{
+                    let respuesta = swig.renderFile('views/busuarios.html',
+                        {
+                            usuario: req.session.usuario,
+                            usuarios: usuarios
+                        });
+                    res.send(respuesta);
+                    app.get("logger").info('El usuario ha listado los usuarios correctamente');
+                }
+            });
         }
-        let pg = parseInt(req.query.pg);
-        if ( req.query.pg == null){
-            pg = 1;
-        }
-        gestorDB.obtenerUsuariosPg(criterio, pg,function (usuarios, total) {
-            if (usuarios == null) {
-                res.send("Error al listar usuarios");
-                app.get("logger").error('Error al listar los usuarios');
-            } else {
-                let ultimaPg = 1;
-                if(total > 5){
-                    ultimaPg = total/5;
-                }
-                if (total % 5 > 0 && total/5 >1){ // Sobran decimales
-                    ultimaPg = ultimaPg+1;
-                }
-                let paginas = []; // paginas mostrar
-                for(let i = pg-2 ; i <= pg+2 ; i++){
-                    if ( i > 0 && i <= ultimaPg){
-                        paginas.push(i);
-                    }
-                }
-                let respuesta = swig.renderFile('views/busuarios.html',
-                    {
-                        usuario: req.session.usuario,
-                        usuarios: usuarios,
-                        paginas : paginas,
-                        actual : pg
-                    });
-                res.send(respuesta);
-                app.get("logger").info('El usuario ha listado los usuarios correctamente');
-            }
-        });
     });
 
     app.get('/tienda', function (req, res) {
@@ -173,66 +188,90 @@ module.exports = function (app, swig, gestorDB) {
         }
     });
     app.get("/usuario/amistad", function (req, res) {
-        if ( req.session.usuario == null){
+        if (req.session.usuario == null) {
             app.get("logger").error('No hay un usuario identificado');
             res.redirect("/identificarse?mensaje=No hay un usuario identificado");
         }
-        let criterio = {};
 
-        if( req.query.busqueda != null){
-            criterio = {
-                emisor : {$regex : ".*"+req.query.busqueda+".*"},
+        if (req.query.busqueda == null || req.query.busqueda==="") {
+            let criterio = {
+                remitente: req.session.usuario.email,
+                aceptada: false
+            };
+
+
+            gestorDB.obtenerPeticionesDeAmistad(criterio, function (peticiones) {
+                if (peticiones == null) {
+                    app.get("logger").error('Error al listar las peticiones de amistad');
+                    res.redirect("/usuarios?mensaje=Error al listar las peticiones de amistad");
+                } else {
+                    let emails = [];
+                    peticiones.forEach(peticion => emails.push({"email": peticion.emisor}));
+                    let criterioAmigos = {
+                        "$or": emails
+                    };
+                    let pg = parseInt(req.query.pg); // Es String !!!
+                    if (req.query.pg == null) { // Puede no venir el param
+                        pg = 1;
+                    }
+                    gestorDB.obtenerUsuariosPg(criterioAmigos, pg, function (usuarios, total) {
+                        let ultimaPg = 1;
+                        if (total > 5) {
+                            ultimaPg = total / 5;
+                        }
+                        if (total % 5 > 0 && total / 5 > 1) { // Sobran decimales
+                            ultimaPg = ultimaPg + 1;
+                        }
+                        let paginas = []; // paginas mostrar
+                        for (let i = pg - 2; i <= pg + 2; i++) {
+                            if (i > 0 && i <= ultimaPg) {
+                                paginas.push(i);
+                            }
+                        }
+                        let respuesta = swig.renderFile('views/bsolicitudesAmistad.html',
+                            {
+                                usuario: req.session.usuario,
+                                usuarios: usuarios,
+                                paginas: paginas,
+                                actual: pg
+                            });
+                        res.send(respuesta);
+                        app.get("logger").info('El usuario ha listado sus solicitudes de amistad correctamente');
+                    });
+                }
+            });
+        }
+        else {
+            let criterio = {
+                emisor: {$regex: ".*" + req.query.busqueda + ".*"},
                 remitente: req.session.usuario.email,
                 aceptada: false
 
             };
-        }
-        else{criterio = {
-            remitente: req.session.usuario.email,
-            aceptada: false
-        };}
-
-        gestorDB.obtenerPeticionesDeAmistad(criterio, function (peticiones) {
-            if (peticiones == null) {
-                app.get("logger").error('Error al listar las peticiones de amistad');
-                res.redirect("/usuarios?mensaje=Error al listar las peticiones de amistad");
-            } else {
-                let emails = [];
-                peticiones.forEach(peticion=>emails.push({"email":peticion.emisor}));
-                let criterioAmigos ={
+            gestorDB.obtenerPeticionesDeAmistad(criterio, function (peticiones) {
+                if (peticiones == null) {
+                    res.send("Error al listar peticiones");
+                    app.get("logger").error('Error al listar los usuarios');
+                } else {
+                    let emails = [];
+                    peticiones.forEach(peticion => emails.push({"email": peticion.emisor}));
+                    let criterioAmigos = {
                         "$or": emails
-                };
-                let pg = parseInt(req.query.pg); // Es String !!!
-                if ( req.query.pg == null){ // Puede no venir el param
-                    pg = 1;
-                }
-                gestorDB.obtenerUsuariosPg(criterioAmigos,pg, function (usuarios, total) {
-                    let ultimaPg = 1;
-                    if(total > 5){
-                        ultimaPg = total/5;
-                    }
-                    if (total % 5 > 0 && total/5 >1){ // Sobran decimales
-                        ultimaPg = ultimaPg+1;
-                    }
-                    let paginas = []; // paginas mostrar
-                    for(let i = pg-2 ; i <= pg+2 ; i++){
-                        if ( i > 0 && i <= ultimaPg){
-                            paginas.push(i);
-                        }
-                    }
-                    let respuesta = swig.renderFile('views/bsolicitudesAmistad.html',
-                        {
-                            usuario: req.session.usuario,
-                            usuarios: usuarios,
-                            paginas : paginas,
-                            actual : pg
-                        });
-                    res.send(respuesta);
-                    app.get("logger").info('El usuario ha listado sus solicitudes de amistad correctamente');
+                    };
+                    gestorDB.obtenerUsuarios(criterioAmigos, function (usuarios) {
+                        let respuesta = swig.renderFile('views/bsolicitudesAmistad.html',
+                            {
+                                usuario: req.session.usuario,
+                                usuarios: usuarios
+                            });
+                        res.send(respuesta);
+                        app.get("logger").info('El usuario ha listado sus solicitudes de amistad correctamente');
                     });
                 }
             });
-        });
+
+        }
+    });
     app.get("/usuario/amigos", function (req, res) {
         if ( req.session.usuario == null){
             res.redirect("/identificarse");
@@ -244,10 +283,6 @@ module.exports = function (app, swig, gestorDB) {
             aceptada: true
         };
         gestorDB.obtenerPeticionesDeAmistad(criterio,function (peticiones) {
-            if (peticiones == null) {
-                res.redirect("/usuarios?mensaje=Error al listar las peticiones de amistad");
-                app.get("logger").error('Error al listar las peticiones de amistad');
-            } else {
                 let emails = [];
                 peticiones.forEach(peticion=>emails.push({"email":peticion.emisor}));
                 peticiones.forEach(peticion=>emails.push({"email":peticion.remitente}));
@@ -260,10 +295,6 @@ module.exports = function (app, swig, gestorDB) {
                     pg = 1;
                 }
                 gestorDB.obtenerUsuariosPg(criterioAmigos,pg, function (usuarios, total) {
-                    if (usuarios == null || usuarios.length==0) {
-                        res.redirect("/usuario/amistad?mensaje=Error al obtener los usuarios amigos");
-                        app.get("logger").error('Error al obtener los usuarios amigos');
-                    } else {
                         let ultimaPg = 1;
                         if (total > 5) {
                             ultimaPg = total / 5;
@@ -286,10 +317,8 @@ module.exports = function (app, swig, gestorDB) {
                             });
                         res.send(respuesta);
                         app.get("logger").info('El usuario ha listado sus amigos correctamente');
-                    }
-                });
 
-            }
+                });
         });
     });
     app.get("/usuario/amistad/aceptar/:email", function (req, res) {
