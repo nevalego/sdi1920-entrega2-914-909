@@ -31,7 +31,8 @@ public class UOChatTests {
 
 	// ComÃºn a Windows y a MACOSX
 	static WebDriver driver = getDriver(PathFirefox65, Geckdriver024);
-	static String URL = "https://localhost:8081";
+	//static String URL = "https://localhost:8081";
+	static String URL = "https://localhost:8081/cliente.html";
 
 	public static WebDriver getDriver(String PathFirefox, String Geckdriver) {
 		System.setProperty("webdriver.firefox.bin", PathFirefox);
@@ -414,7 +415,9 @@ public class UOChatTests {
 	// Inicio de sesión con datos válidos
 	@Test
 	public void PR23() {
-		assertTrue("PR23 sin hacer", false);
+		PO_LoginView.fillForm(driver, "prueba@hotmail.com", "123456");
+		// Comprobamos que entramos en la sección privada
+		PO_View.checkElement(driver, "text", "cerrar sesion");
 	}
 
 	// PR24.
