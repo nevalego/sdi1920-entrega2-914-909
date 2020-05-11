@@ -317,7 +317,7 @@ module.exports = function (app, swig, gestorDB) {
                             });
                         res.send(respuesta);
                         app.get("logger").info('El usuario ha listado sus amigos correctamente');
-                    
+
                 });
         });
     });
