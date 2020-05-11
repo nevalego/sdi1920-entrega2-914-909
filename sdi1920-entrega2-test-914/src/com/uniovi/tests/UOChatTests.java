@@ -20,14 +20,11 @@ public class UOChatTests {
 	// En Windows (Debe ser la versiÃ³n 65.0.1 y desactivar las actualizacioens
 	// automÃ¡ticas)):
 	// Rutas Miguel
-	static String PathFirefox65 = "C:\\Program Files\\Mozilla Firefox\\firefox.exe";
-	static String Geckdriver024 = "D:\\Universidad\\SDI\\Pruebas Selenium\\geckodriver024win64.exe";
+	//static String PathFirefox65 = "C:\\Program Files\\Mozilla Firefox\\firefox.exe";
+	//static String Geckdriver024 = "D:\\Universidad\\SDI\\Pruebas Selenium\\geckodriver024win64.exe";
 	// Rutas Nerea
-	// static String PathFirefox65 = "/Archivos de programa/Mozilla
-	// Firefox/firefox.exe";
-	// static String Geckdriver024 = "/Users/nerea/Documents/2 SEMESTRE/SDI/5. Web
-	// testing con
-	// Selenium/PL-SDI-Sesión5-material/PL-SDI-Sesión5-material/geckodriver024win64.exe";
+	 static String PathFirefox65 = "C:\\Program Files\\Mozilla Firefox\firefox.exe";
+	 static String Geckdriver024 = "E:\\SDI Entrega 2\\geckodriver024win64.exe";
 
 	// ComÃºn a Windows y a MACOSX
 	static WebDriver driver = getDriver(PathFirefox65, Geckdriver024);
@@ -462,10 +459,11 @@ public class UOChatTests {
 		// Comprobamos que estamos en la lista de sus amigos		
 		PO_NavView.checkNavMode(driver, "navAmigos");
 		SeleniumUtils.textoPresentePagina(driver, "Amigos");
-		SeleniumUtils.textoPresentePagina(driver, "prueba6@hotmail.com");
-		SeleniumUtils.textoPresentePagina(driver, "prueba7@hotmail.com");
-		SeleniumUtils.textoPresentePagina(driver, "prueba8@hotmail.com");
-		SeleniumUtils.textoPresentePagina(driver, "prueba9@hotmail.com");	
+		
+		// Busqueda por nombre
+		PO_UserListView.makeASearch(driver, "prueba9@hotmail.com");
+		// Amigo mostrado
+		SeleniumUtils.textoPresentePagina(driver, "prueba9@hotmail.com");
 	}
 
 	// PR27
@@ -473,7 +471,18 @@ public class UOChatTests {
 	// La lista debe contener al menos tres mensajes.
 	@Test
 	public void PR27() {
-		assertTrue("PR27 sin hacer", false);
+		driver.navigate().to(URL_API);
+		PO_LoginView.fillForm(driver, "prueba2@hotmail.com", "123456");
+		// Comprobamos que entramos en la sección privada
+		PO_View.checkElement(driver, "text", "Cerrar sesión");
+		// Comprobamos que estamos en la lista de sus amigos		
+		PO_NavView.checkNavMode(driver, "navAmigos");
+		SeleniumUtils.textoPresentePagina(driver, "Amigos");
+		// Abrir conversación
+		driver.findElement(By.id("abrirConversacion")).click();
+		SeleniumUtils.textoPresentePagina(driver, "Hola, ¿que tal?");
+		SeleniumUtils.textoPresentePagina(driver, "Me llamo Julia");
+		SeleniumUtils.textoPresentePagina(driver, "¿ Y tu?");
 	}
 
 	// PR028
@@ -481,7 +490,23 @@ public class UOChatTests {
 	// validar que mensaje aparece en la lista de mensajes
 	@Test
 	public void PR28() {
-		assertTrue("PR29 sin hacer", false);
+		driver.navigate().to(URL_API);
+		PO_LoginView.fillForm(driver, "prueba2@hotmail.com", "123456");
+		// Comprobamos que entramos en la sección privada
+		PO_View.checkElement(driver, "text", "Cerrar sesión");
+		// Comprobamos que estamos en la lista de sus amigos		
+		PO_NavView.checkNavMode(driver, "navAmigos");
+		SeleniumUtils.textoPresentePagina(driver, "Amigos");
+		// Abrir conversación
+		driver.findElement(By.id("abrirConversacion")).click();
+		// Escribir mensaje
+		driver.findElement(By.id("agregar-mensaje")).sendKeys("Hola, ¿que tal?");
+		// Enviar mensaje
+		driver.findElement(By.id("boton-enviar")).click();
+		// Esperar 2 segundos
+		SeleniumUtils.esperarSegundos(driver, 2);
+		// Comprobar mensaje
+		SeleniumUtils.textoPresentePagina(driver, "Hola, ¿que tal?");
 	}
 
 	// PR029
@@ -489,7 +514,37 @@ public class UOChatTests {
 	// Identificarse como el otro usuario y comprobar que el mensaje ha llegado
 	@Test
 	public void PR29() {
-		assertTrue("PR29 sin hacer", false);
+		driver.navigate().to(URL_API);
+		PO_LoginView.fillForm(driver, "prueba2@hotmail.com", "123456");
+		// Comprobamos que entramos en la sección privada
+		PO_View.checkElement(driver, "text", "Cerrar sesión");
+		// Comprobamos que estamos en la lista de sus amigos		
+		PO_NavView.checkNavMode(driver, "navAmigos");
+		SeleniumUtils.textoPresentePagina(driver, "Amigos");
+		// Abrir conversación
+		driver.findElement(By.id("abrirConversacion")).click();
+		// Escribir mensaje
+		driver.findElement(By.id("agregar-mensaje")).sendKeys("Hola, ¿que tal?");
+		// Enviar mensaje
+		driver.findElement(By.id("boton-enviar")).click();
+		// Esperar 2 segundos
+		SeleniumUtils.esperarSegundos(driver, 2);
+		// Comprobar mensaje
+		SeleniumUtils.textoPresentePagina(driver, "Hola, ¿que tal?");
+		// Salir de sesión
+		PO_HomeView.clickOption(driver, "/desconectarse", "id", "desconectarse");
+		// Iniciar sesión como otro usuario amigo de prueba2
+		PO_LoginView.fillForm(driver, "prueba6@hotmail.com", "123456");
+		// Comprobamos que entramos en la sección privada
+		PO_View.checkElement(driver, "text", "Cerrar sesión");
+		// Comprobamos que estamos en la lista de sus amigos		
+		PO_NavView.checkNavMode(driver, "navAmigos");
+		SeleniumUtils.textoPresentePagina(driver, "Amigos");
+		// Abrir conversación
+		driver.findElement(By.id("abrirConversacion")).click();
+		// Comprobar mensaje
+		SeleniumUtils.textoPresentePagina(driver, "Hola, ¿que tal?");
+		
 	}
 
 	// PR030.

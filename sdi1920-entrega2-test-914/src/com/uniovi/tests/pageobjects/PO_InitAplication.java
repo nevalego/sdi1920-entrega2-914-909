@@ -1,6 +1,9 @@
 package com.uniovi.tests.pageobjects;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+
+import com.uniovi.tests.util.SeleniumUtils;
 
 public class PO_InitAplication extends PO_NavView{
 	private static String URLBorrado = "https://localhost:8081/api/eliminarColeccion?coleccion=";
@@ -22,6 +25,27 @@ public class PO_InitAplication extends PO_NavView{
 		}
 	}
 	
+	public static void insertMensajes(WebDriver driver) {
+		driver.navigate().to("https://localhost:8081/api");
+		PO_LoginView.fillForm(driver, "prueba2@hotmail.com", "123456");
+		// Comprobamos que entramos en la sección privada
+		PO_View.checkElement(driver, "text", "Cerrar sesión");
+		// Comprobamos que estamos en la lista de sus amigos		
+		PO_NavView.checkNavMode(driver, "navAmigos");
+		SeleniumUtils.textoPresentePagina(driver, "Amigos");
+		// Abrir conversación
+		driver.findElement(By.id("abrirConversacion")).click();
+		// Escribir mensajes
+		driver.findElement(By.id("agregar-mensaje")).sendKeys("Hola, ¿que tal?");
+		driver.findElement(By.id("boton-enviar")).click();
+		driver.findElement(By.id("boton-enviar")).click();
+		driver.findElement(By.id("agregar-mensaje")).sendKeys("Me llamo Julia");
+		driver.findElement(By.id("boton-enviar")).click();
+		driver.findElement(By.id("agregar-mensaje")).sendKeys("¿ Y tu?");
+		driver.findElement(By.id("boton-enviar")).click();
+		
+	}
+	
 	public static void aceptarAmistades(WebDriver driver, int user) {
 		PO_LoginView.fillForm(driver, "prueba"+user+"@email.com", "123456");
 		for(int i = 6; i<10; i++) {
@@ -37,7 +61,6 @@ public class PO_InitAplication extends PO_NavView{
 		}
 		PO_HomeView.clickOption(driver, "/desconectarse", "class", "btn btn-primary");
 	}
-
 	
 	
 }
