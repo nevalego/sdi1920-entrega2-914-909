@@ -23,7 +23,7 @@ public class UOChatTests {
 	//static String PathFirefox65 = "C:\\Program Files\\Mozilla Firefox\\firefox.exe";
 	//static String Geckdriver024 = "D:\\Universidad\\SDI\\Pruebas Selenium\\geckodriver024win64.exe";
 	// Rutas Nerea
-	 static String PathFirefox65 = "C:\\Program Files\\Mozilla Firefox\firefox.exe";
+	 static String PathFirefox65 = "C:\\Program Files\\Mozilla Firefox\\firefox.exe";
 	 static String Geckdriver024 = "E:\\SDI Entrega 2\\geckodriver024win64.exe";
 
 	// Común a Windows y a MACOSX
