@@ -26,7 +26,7 @@ public class PO_InitAplication extends PO_NavView{
 	}
 	
 	public static void insertMensajes(WebDriver driver) {
-		driver.navigate().to("https://localhost:8081/api");
+		driver.navigate().to("https://localhost:8081/cliente.html");
 		PO_LoginView.fillForm(driver, "prueba2@hotmail.com", "123456");
 		// Comprobamos que entramos en la sección privada
 		PO_View.checkElement(driver, "text", "Cerrar sesión");
