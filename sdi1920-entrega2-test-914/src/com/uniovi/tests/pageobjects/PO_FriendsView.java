@@ -46,6 +46,7 @@ public class PO_FriendsView extends PO_NavView {
 		List<WebElement> elementos = SeleniumUtils.EsperaCargaPagina(driver, "id", "btnFriendDetails"+friendName, getTimeout());
 		elementos.get(0).click();
 }
+
 	
 	
 	static public void checkMyInvitationsText(WebDriver driver, int language) {

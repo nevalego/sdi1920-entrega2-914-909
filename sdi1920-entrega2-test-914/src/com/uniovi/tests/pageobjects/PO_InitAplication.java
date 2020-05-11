@@ -27,14 +27,14 @@ public class PO_InitAplication extends PO_NavView{
 	
 	public static void insertMensajes(WebDriver driver) {
 		driver.navigate().to("https://localhost:8081/cliente.html");
-		PO_LoginView.fillForm(driver, "prueba2@hotmail.com", "123456");
+		PO_LoginView.fillForm(driver, "prueba2@email.com", "123456");
 		// Comprobamos que entramos en la sección privada
-		PO_View.checkElement(driver, "text", "Cerrar sesión");
 		// Comprobamos que estamos en la lista de sus amigos		
 		PO_NavView.checkNavMode(driver, "navAmigos");
-		SeleniumUtils.textoPresentePagina(driver, "Amigos");
+		
 		// Abrir conversación
-		driver.findElement(By.id("abrirConversacion")).click();
+		SeleniumUtils.esperarSegundos(driver, 3);
+		driver.findElement(By.id("abrirConversacion"+"prueba6@email.com")).click();
 		// Escribir mensajes
 		driver.findElement(By.id("agregar-mensaje")).sendKeys("Hola, ¿que tal?");
 		driver.findElement(By.id("boton-enviar")).click();
