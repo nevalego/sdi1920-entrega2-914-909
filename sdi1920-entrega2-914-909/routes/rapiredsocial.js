@@ -69,7 +69,7 @@ module.exports = function (app, gestorBD) {
                             email: {$ne: logeado.email}
                         };
                         gestorBD.obtenerUsuarios(criterioAmigos, function (usuarios) {
-                            if (usuarios == null || usuarios.length == 0) {
+                            if (usuarios == null) {
                                 app.get("logger").error("Se ha producido un error al obtener los usuarios amigos de la API");
                                 res.status(500);
                                 res.json({
